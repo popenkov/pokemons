@@ -1,0 +1,115 @@
+extends ../templates/layout_default.pug
+
+block variables
+  - isMainPage = false
+  - pageTitle = 'Стартовая страница'
+  - metaDescription = 'description'
+  - metaKeywords = 'keywords'
+
+block content
+  .container
+    .library
+      section.library__section
+        .library__anchor(id= library.section[0].href)
+        .hero
+          .hero__inner
+            h1.hero__title Gulp-сборщик
+            p.hero__descr с библиотекой компонентов
+            .hero__row
+              +button('link', 'Библиотека', 'primary, test', '', 'button-library', '#library')
+              +button('link', 'Инструменты', 'secondary', '', 'button-tools', '#tools')
+              +button('button', 'JS-test', 'secondary', 'button-name-js', 'button-js')(class='hero__js-trigger')
+      section.library__section
+        .library__anchor(id= library.section[1].href)
+        .library__inner
+          h2.library__title!= library.section[1].title
+          ul.library__list
+            +library-item(library.section[1].list[0], 'row')
+              .library__grid
+                .library__row
+                  +button('input', 'I’m button', 'primary', 'button-name', 'exp-button')(class='hero__trigger')
+                  +button('input', 'I’m disabled button', 'primary', 'button-name-2', 'exp-button-2')(disabled)
+                .library__row
+                  +button('button', 'Я кнопка', 'secondary', 'button-name-3', 'exp-button-3')
+                  +button('button', 'Я неактивная кнопка', 'secondary', 'button-name-4', 'exp-button-4')(disabled)
+            +library-item(library.section[1].list[1], 'row')
+              .library__inputs-list
+                +input('Введите текст', '', 'input-text-1', 'input-text-1')
+                +input('Введите текст', '', 'input-text-2', 'input-text-2', 'Д’Артаньян')
+                +input('Введите текст', '', 'input-text-2', 'input-text-2d', 'Д’Артаньян')(disabled)
+                +input-email('Введите почту', '', 'input-mail', 'input-mail', value)
+                +input-phone('Введите телефон', '', 'input-phone', 'input-phone', value)
+                +input-search('Поиск', '', 'input-search', 'input-search', value)
+                +input-password('Введите пароль', '', 'input-password', 'input-password', 'batman')
+                +input-number('0', '', 'input-number', 'number-id', 5, 10)
+                +input-file('some-mod', 'file-input', 'file-edu')
+                +input-file('some-mod', 'file-input-2', 'file-edu-2')(disabled)
+            +library-item(library.section[1].list[2], 'row')
+              .library__inputs-list
+                +textarea('Введите текст', '', 'textarea-text-1', 'textarea-text-1')
+                +textarea('Введите текст', '', 'textarea-text-2', 'textarea-text-2', 'Д’Артаньян')
+                +textarea('Введите текст', '', 'textarea-text-2', 'textarea-text-2d', 'Д’Артаньян')(disabled)
+            +library-item(library.section[1].list[3], 'row')
+              .library__inputs-list
+                +select(['Выберите опцию', 'Один', 'Два'], '', 'select-name', 'select-id')
+                +select(['Выберите опцию', 'Один', 'Два'], '', 'select-name-2', 'select-id-2')(disabled)
+            +library-item(library.section[1].list[4], 'row')
+              .library__inputs-list
+                +checkbox('Чекбокс', '', 'some-name', 'some-id-1')(required)
+                +checkbox('Неактивный чекбокс', '', 'some-name-2', 'some-id-2')(disabled)
+                +checkbox('Отмеченный чекбокс', '', 'some-name-3', 'some-id-3')(checked)
+                +checkbox('Отмеченный неактивный чекбокс', '', 'some-name-4', 'some-id-4')(checked, disabled)
+            +library-item(library.section[1].list[5], 'row')
+              .library__inputs-list
+                +radio('Радио-баттон', '', 'radio-name', 'some-id')(required)
+                +radio('Неактивный радио-баттон', '', 'radio-name-2', 'radio-id-2')(disabled)
+                +radio('Отмеченный радио-баттон', '', 'radio-name-3', 'radio-id-3')(checked)
+                +radio('Отмеченный неактивный радио-баттон', '', 'radio-name-4', 'radio-id-4')(checked, disabled)
+            +library-item(library.section[1].list[6], 'row')
+              .library__inputs-list
+                +field('text', 'Имя', 'Введите имя', '', 'field-id', 'field-name', 'Д’Артаньян')(required)
+            +library-item(library.section[1].list[7], 'row')
+              .library__inputs-list
+                +field-dp('text', 'Имя', '', 'field-dp-id', 'field-dp-name', '')(required)
+            +library-item(library.section[1].list[8], 'row')
+              form.form
+                .form__body
+                  +field('text', 'Имя', 'Введите имя', '', 'name-field', 'name-field', 'Д’Артаньян')(required)
+                  +field('email', 'Электропочта', 'Введите почту', '', 'mail-field', 'mail-field', 'gaskonets@musketeer.fr')(required)
+                .form__footer
+                  +checkbox('Я согласен на обработку моих персональных данных', '', 'some-check', 'some-check')(required)
+                  +button('submit', 'Отправить', 'primary', 'button-name-5', 'exp-button-5')(class='form__js-submit')
+            +library-item(library.section[1].list[9], 'row')
+              .tabs
+                .tabs__labels
+                  .tabs__label.tabs__label--active(data-href='#tab1') Таб 1
+                  .tabs__label(data-href='#tab2') Таб 2
+                  .tabs__label(data-href='#tab3') Таб 3
+                .tabs__panes
+                  .tabs__pane.tabs__pane--active#tab1 Содержимое, таб 1
+                  .tabs__pane#tab2 Содержимое, таб 2
+                  .tabs__pane#tab3 Содержимое, таб 3
+      section.library__section
+        .library__anchor(id= library.section[2].href)
+        .library__inner
+          h2.library__title!= library.section[2].title
+          ul.library__list
+            +library-item(library.section[2].list[0])
+              h4.library__fluid I'm a fluid heading
+            +library-item(library.section[2].list[1])
+              .library__data!= library.data
+            +library-item(library.section[2].list[2])
+              .library__tiles
+                .library__tile
+                  .library__tile-descr Иконка из спрайта
+                  svg.library__icon
+                    use(href= src.icon + 'icon__default')
+                .library__tile.library__tile--icon-bg
+                  .library__tile-descr Иконка из спрайта фоном
+            +library-item(library.section[2].list[3])
+              .library__tiles
+                .library__tile
+                  .library__tile-descr Картинка
+                  img.library__img(src= src.img + 'img__gulp.jpg', alt='Gulp logo')
+                .library__tile.library__tile--img-bg
+                  .library__tile-descr Картинка фоном

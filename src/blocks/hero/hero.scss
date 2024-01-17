@@ -1,0 +1,47 @@
+@import "../../scss/breakpoints";
+@import "../../scss/mixins/fluid";
+@import "../../scss/mixins/text-styles";
+
+.hero {
+  $block-name: &; // #{$block-name}__element
+
+  border-bottom: 1px solid var(--divider);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 0;
+
+    @media screen and (min-width: $screen-ti) {
+      padding: 56px 0;
+    }
+
+    @media screen and (min-width: $screen-d) {
+      padding: 80px 0;
+    }
+  }
+
+  &__title {
+    @include hero-title;
+
+    margin: 0 0 8px;
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__descr {
+    @include hero-descr;
+
+    margin: 0;
+    color: var(--front-secondary);
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+}

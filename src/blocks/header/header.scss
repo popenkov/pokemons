@@ -1,0 +1,71 @@
+@import "../../scss/breakpoints";
+@import "../../scss/mixins/fluid";
+
+.header {
+  $block-name: &; // #{$block-name}__element
+
+  background: var(--back-transparency);
+  border-bottom: 1px solid var(--border-primary);
+  backdrop-filter: blur(16px);
+
+  &::before {
+    position: absolute;
+    display: block;
+    background: var(--back-secondary);
+
+    @media screen and (min-width: $screen-ti) {
+      width: 280px;
+      height: calc(100% - 1px);
+      content: "";
+    }
+
+    @media screen and (min-width: $screen-dl) {
+      width: calc((100vw - 1376px) / 2 + 240px);
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 32px);
+    max-width: 1376px;
+    margin: 0 auto;
+    padding: 18px 0 17px;
+
+    @media screen and (min-width: $screen-t) {
+      width: calc(100% - 80px);
+    }
+
+    @media screen and (min-width: $screen-ti) {
+      padding: 20px 0 19px;
+    }
+  }
+
+  &__logo {
+    @media screen and (min-width: $screen-t) {
+      margin-right: auto;
+    }
+  }
+
+  &__menu {
+    padding: 0;
+    border: none;
+
+    @media screen and (min-width: $screen-ti) {
+      display: none;
+    }
+  }
+
+  &__nav-item {
+    color: var(--link-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

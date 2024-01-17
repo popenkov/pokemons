@@ -1,0 +1,56 @@
+@import "../../scss/breakpoints";
+@import "../../scss/mixins/list-reset";
+@import "../../scss/mixins/text-styles";
+
+.nav {
+  $block-name: &; // #{$block-name}__element
+
+  height: 100%;
+  color: var(--front-primary);
+  background: var(--back-secondary);
+
+  @media screen and (min-width: $screen-ti) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  &__inner {
+    display: grid;
+    gap: 24px;
+    min-width: 240px;
+    padding: 32px 16px;
+
+    @media screen and (min-width: $screen-t) {
+      padding: 32px 40px;
+    }
+
+    @media screen and (min-width: $screen-ti) {
+      padding: 96px 0 0;
+    }
+  }
+
+  &__section {
+    display: grid;
+    gap: 8px;
+  }
+
+  &__section-title {
+    @include nav-title;
+
+    color: inherit;
+  }
+
+  &__list {
+    @include list-reset;
+
+    display: grid;
+    gap: 8px;
+  }
+
+  &__link {
+    @include nav-link;
+
+    color: inherit;
+  }
+}

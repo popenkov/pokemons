@@ -1,0 +1,168 @@
+@import "../../scss/breakpoints";
+@import "../../scss/mixins/flexbox";
+@import "../../scss/mixins/list-reset";
+@import "../../scss/mixins/text-styles";
+
+.library {
+  $block-name: &; // #{$block-name}__element
+
+  .form {
+    max-width: 288px;
+  }
+
+  &__section {
+    position: relative;
+  }
+
+  &__anchor {
+    position: absolute;
+    top: -40px;
+  }
+
+  &__subanchor {
+    position: absolute;
+    top: -88px;
+  }
+
+  &__inner {
+    padding: 56px 0;
+  }
+
+  &__title {
+    @include library-title;
+
+    margin: 0 0 40px;
+  }
+
+  &__list {
+    @include list-reset;
+
+    display: grid;
+    gap: 56px;
+    margin-top: 40px;
+  }
+
+  &__item {
+    position: relative;
+    display: grid;
+    gap: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      &--row {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include library-subtitle;
+
+    margin: 0;
+  }
+
+  &__descr {
+    @include library-descr;
+
+    margin: 16px 0 0;
+  }
+
+  &__example {
+    @include flex-center;
+
+    margin: 0 -16px;
+    padding: 24px 8px;
+    background: var(--back-secondary);
+    border-radius: 8px;
+
+    @media screen and (min-width: $screen-t) {
+      margin: 0;
+    }
+
+    @media screen and (min-width: $screen-d) {
+      min-height: 224px;
+      padding: 64px 24px;
+    }
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__inputs-list {
+    display: grid;
+    gap: 16px;
+    width: 288px;
+  }
+
+  &__tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  &__tile {
+    display: grid;
+    gap: 24px;
+    padding: 16px;
+    background-color: var(--back-secondary);
+
+    &--icon-bg {
+      background-image: url("../{{icon}}/icon__default-view");
+      background-repeat: no-repeat;
+      background-position: center bottom 16px;
+      background-size: 64px 64px;
+    }
+
+    &--img-bg {
+      background-image: url("../{{img}}/img__gulp.jpg");
+      background-repeat: no-repeat;
+      background-position: center bottom 16px;
+      background-size: 128px 72px;
+    }
+  }
+
+  &__tile-descr {
+    @include body;
+
+    text-align: center;
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+  }
+
+  &__img {
+    width: 128px;
+    height: auto;
+    aspect-ratio: 64/36;
+    margin: 0 auto;
+  }
+
+  &__fluid {
+    @include fluid-text;
+
+    margin: 0;
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  code {
+    padding: 4px 8px;
+    color: var(--brand-primary);
+    background-color: var(--back-secondary);
+  }
+}

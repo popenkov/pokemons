@@ -1,0 +1,28 @@
+//- Все примеси в этом файле должны начинаться c имени блока (library)
+//- Упоминание имени блока в классах обязательно, без этого он не попадёт в сборку
+
+mixin library-item(data, mods)
+
+  //- Принимает:
+  //-   data    {object} - объект
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +library-item(object, 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' library__item--' + modsList[i].trim();
+      }
+    }
+
+  li.library__item(class=allMods)&attributes(attributes)
+    .library__subanchor(id= data.title)
+    .library__info
+      h3.library__subtitle!= data.title
+      p.library__descr!= data.description
+    .library__example
+      block

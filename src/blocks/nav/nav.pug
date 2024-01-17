@@ -1,0 +1,28 @@
+//- Все примеси в этом файле должны начинаться c имени блока (nav)
+//- Упоминание имени блока в классах обязательно, без этого он не попадёт в сборку
+
+mixin nav
+
+  //- Вызов:
+        +nav
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' nav--' + modsList[i].trim();
+      }
+    }
+
+  nav.nav(class=allMods)&attributes(attributes)
+    .nav__inner
+      each section in library.section
+        .nav__section
+          a.nav__section-title.link(href= '#' + section.href)!= section.title
+          if section.list
+            ul.nav__list
+              each item in section.list
+                li.nav__item
+                  a.nav__link.link(href= '#' + item.title)!= item.title
