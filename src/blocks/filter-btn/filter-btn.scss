@@ -1,0 +1,19 @@
+@import "../../scss/mixins/blocks";
+
+.filter-btn {
+  @include box(48px);
+
+  position: fixed;
+  bottom: 24px;
+  left: 12px;
+  z-index: var(--z-index-filter-btn);
+  padding: 12px;
+  background-color: var(--monochrome-700-blur);
+  border: 1px solid var(--color-blue-300);
+  border-radius: 50%;
+
+  &__icon {
+    @include box(24px);
+  }
+  $block-name: &; // #{$block-name}__element
+}

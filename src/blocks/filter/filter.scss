@@ -1,0 +1,81 @@
+@import "../../scss/mixins/blocks";
+@import "../../scss/mixins/flexbox";
+@import "../../scss/mixins/text-styles";
+
+.filter {
+  position: fixed;
+  z-index: var(--z-index-filter-menu);
+  display: none;
+  backdrop-filter: blur(4px);
+  inset: 0;
+
+  &__inner {
+    @include flex-column;
+
+    gap: 4px;
+    width: 280px;
+    height: 100vh;
+    padding: 8px;
+    overflow-y: auto;
+    background: var(--monochrome-600);
+  }
+
+  &__container {
+    display: flex;
+    padding: 8px;
+    background-color: var(--monochrome-800);
+    border-radius: 16px;
+
+    &--page {
+      justify-content: space-between;
+      padding-left: 16px;
+    }
+
+    &--type {
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__btn {
+    display: flex;
+    border-radius: 8px;
+
+    &--active {
+      background-color: var(--monochrome-500);
+    }
+
+    &-page {
+      justify-content: space-between;
+    }
+
+    &-type {
+      padding: 6px 6px 6px 16px;
+    }
+
+    &-icon {
+      @include box(24px);
+
+      margin-right: 12px;
+    }
+
+    &-amount {
+      @include type-amount;
+
+      margin-left: auto;
+      padding: 8px;
+      border: 1px solid var(--monochrome-500);
+      border-radius: 8px;
+    }
+  }
+  $block-name: &; // #{$block-name}__element
+
+  &.open {
+    display: block;
+  }
+}
