@@ -2,6 +2,10 @@
   font-size: var(--font-size-root);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -32,10 +36,20 @@ svg {
   display: block;
 }
 
+button {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+}
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
 }
 
 [hidden] {
   display: none;
+}
+
+.body-lock {
+  overflow: hidden;
 }

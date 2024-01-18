@@ -1,7 +1,49 @@
 @import "fluid";
 // todo перенести текст с макета
-@mixin body {
-  font-weight: 400;
+
+@mixin title {
   font-size: 16px;
-  line-height: 1;
+  line-height: 125%;
+  letter-spacing: 0.32px;
+
+  @media screen and (min-width: $screen-dl) {
+    font-size: 32px;
+    line-height: 125%;
+    letter-spacing: 0.64px;
+  }
+}
+
+@mixin title-num {
+  font-size: 8px;
+  line-height: 100%;
+
+  @media screen and (min-width: $screen-dl) {
+    font-size: 32px;
+    line-height: 125%;
+    letter-spacing: 0.64px;
+  }
+}
+
+@mixin title-data {
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: 0.4px;
+}
+
+@mixin tab-title {
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.32px;
+}
+
+@mixin type-title {
+  font-size: 14px;
+  line-height: 115%;
+  letter-spacing: 0.42px;
+}
+
+@mixin type-amount {
+  font-size: 10px;
+  line-height: 120%;
+  letter-spacing: 0.2px;
 }
