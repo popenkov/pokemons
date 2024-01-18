@@ -1,7 +1,7 @@
 @import "../../scss/breakpoints";
 
 .container {
-  max-width: 1136px;
+  max-width: 1488px;
   height: 100%;
   margin: 0 auto;
   padding: 0 16px;
@@ -12,7 +12,7 @@
 
   @media screen and (min-width: $screen-dl) {
     width: 100%;
-    margin: 0;
-    padding: 0 112px;
+    margin: 0 auto;
+    padding: 0 120px;
   }
 }

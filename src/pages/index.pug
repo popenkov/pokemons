@@ -8,3 +8,16 @@ block variables
 
 block content
   .container
+    .tabs
+      .tabs__wrapper
+        .tabs__labels
+          each label, key in data.tabs.labels
+            if key === 0
+              .tabs__label.tabs__label--active(data-href='#tab' + key)= label
+            else
+              .tabs__label(data-href='#tab'+ key)= label
+      .tabs__panes
+        .tabs__pane.tabs__pane--active#tab0
+          +section-pokemon
+
+        .tabs__pane#tab1 Содержимое, таб 2

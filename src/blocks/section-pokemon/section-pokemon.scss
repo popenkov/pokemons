@@ -1,0 +1,10 @@
+.section-pokemon {
+  $block-name: &; // #{$block-name}__element
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: var(--mobile-header-height);
+  }
+}

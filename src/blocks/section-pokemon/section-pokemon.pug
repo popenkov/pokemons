@@ -1,0 +1,34 @@
+//- Все примеси в этом файле должны начинаться c имени блока (section-pokemon)
+//- Упоминание имени блока в классах обязательно, без этого он не попадёт
+//- в сборку
+
+mixin section-pokemon(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +section-pokemon('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' section-pokemon--' + modsList[i].trim();
+      }
+    }
+
+  section.section-pokemon(class=allMods)&attributes(attributes)
+    block
+    +filter
+    .section-pokemon__items
+      each pokemon in data.pokemons
+        +p-card(pokemon)
+    +pagination
+    button.filter-btn.js-mobile-filter-btn
+      svg.filter-btn__icon
+        use(href= src.icon + 'filter-icon')
+
+
