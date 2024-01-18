@@ -1,0 +1,81 @@
+@import "../../scss/mixins/flexbox";
+@import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/blocks";
+
+.p-card {
+  $block-name: &; // #{$block-name}__element
+
+  @include flex-column-center;
+
+  width: calc(100% / 2 - 4px);
+  padding: 8px;
+  background-color: var(--monochrome-600);
+  border-top: var(--card-border-top);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow-mobile);
+
+  &__photo {
+    position: relative;
+    margin-bottom: 8px;
+    padding: 16px;
+    background-color: var(--monochrome-700);
+    border-radius: 8px;
+
+    &-id {
+      @include title-num;
+
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  }
+
+  &__name {
+    margin-bottom: 16px;
+
+    &-value {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__types {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  &__type {
+    @include box(16px);
+  }
+
+  &__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  &__feature {
+    width: calc(100% / 2 - 2px);
+    border: 1px solid var(--monochrome-500);
+    border-radius: 8px;
+
+    &-container {
+      @include flex-center;
+
+      padding: 8px 12px;
+    }
+
+    &-icon {
+      border-bottom: 1px solid var(--monochrome-500);
+
+      &-svg {
+        @include box(16px);
+      }
+    }
+
+    &-value {
+      @include title-data;
+    }
+  }
+}

@@ -1,32 +1,59 @@
 @import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/flexbox.scss";
 
 .tabs {
   $block-name: &; // #{$block-name}__element
 
+  &__wrapper {
+    position: fixed;
+    right: 0;
+    left: 0;
+    // z-index: var(--z-index-mobile-header);
+    z-index: 1;
+    padding: 12px 16px;
+    background-color: var(--monochrome-700-blur);
+  }
+
   &__labels {
     display: flex;
+    gap: 8px;
+    padding: 8px;
+    background-color: var(--monochrome-800);
+    border-radius: 16px;
   }
 
   &__label {
-    @include tabs-label;
+    @include flex-center;
+    @include tab-title;
 
     position: relative;
+    flex-grow: 1;
+    padding: 8px 16px;
+    border-top: var(--buttons-border-top);
+    border-radius: 8px;
     cursor: pointer;
-    transition: padding 0.25s ease;
 
     &--active {
       z-index: 3;
+      background-color: var(--tab-hover-color);
       cursor: default;
     }
   }
 
   &__panes {
+    position: relative;
     display: flex;
   }
 
   &__pane {
+    display: flex;
+    display: none;
+    pointer-events: none;
+
     &--active {
-      display: flex;
+      display: block;
+      flex-grow: 1;
+      pointer-events: auto;
     }
   }
 }

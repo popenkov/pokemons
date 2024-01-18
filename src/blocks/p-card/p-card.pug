@@ -1,0 +1,40 @@
+//- Все примеси в этом файле должны начинаться c имени блока (p-card)
+//- Упоминание имени блока в классах обязательно, без этого он не попадёт
+//- в сборку
+
+mixin p-card(data, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +p-card('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' p-card--' + modsList[i].trim();
+      }
+    }
+
+  .p-card(class=allMods)&attributes(attributes)
+      .p-card__photo
+          span.p-card__photo-id= data.id
+          img.p-card__photo-img(src=data.photo, alt=data.name)
+      .p-card__name
+        span.p-card__name-value= data.name
+        .p-card__types
+          each type in data.types
+            svg.p-card__type
+              use(href= src.icon + 'type-' + type)
+      .p-card__features
+        each feat in data.features
+          .p-card__feature
+            span.p-card__feature-container.p-card__feature-icon
+              svg.p-card__feature-icon-svg
+                use(href= src.icon + 'category-' + feat.name)
+            span.p-card__feature-container.p-card__feature-value= feat.value
+
