@@ -1,3 +1,48 @@
 .pagination {
   $block-name: &; // #{$block-name}__element
+
+  margin-bottom: 32px;
+
+  &__inner {
+    display: grid;
+    grid-template: repeat(2, auto) / repeat(2, 1fr);
+    grid-template-areas:
+      "btns btns"
+      "first last";
+    gap: 8px;
+    justify-items: center;
+    padding: 8px;
+    background: var(--monochrome-800);
+    border-radius: 16px;
+  }
+
+  &__btn {
+    min-width: 32px;
+    padding: 8px 4px;
+    background-color: var(--monochrome-600);
+    border-top: 1px solid var(--monochrome-500);
+    border-radius: 8px;
+
+    &--active {
+      background-color: var(--monochrome-500);
+    }
+
+    &-first {
+      grid-area: first;
+      width: 100%;
+      padding: 8px;
+    }
+
+    &-last {
+      grid-area: last;
+      width: 100%;
+      padding: 8px;
+    }
+  }
+
+  &__btns-wrapper {
+    display: flex;
+    grid-area: btns;
+    gap: 8px;
+  }
 }
