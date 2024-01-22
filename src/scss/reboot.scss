@@ -46,8 +46,9 @@ button {
   outline: 0;
 }
 
-[hidden] {
-  display: none;
+[hidden],
+.hidden {
+  display: none !important;
 }
 
 .body-lock {

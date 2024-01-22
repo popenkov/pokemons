@@ -23,12 +23,14 @@ mixin section-pokemon(text, mods)
   section.section-pokemon(class=allMods)&attributes(attributes)
     block
     +filter
-    .section-pokemon__items
-      each pokemon in data.pokemons
-        +p-card(pokemon)
+
+    .section-pokemon__wrapper
+      +loader
+      .section-pokemon__items.js-pokemon-items
+        each pokemon in data.pokemons
+          +p-card(pokemon)
     +pagination
+
     button.filter-btn.js-mobile-filter-btn
       svg.filter-btn__icon
         use(href= src.icon + 'filter-icon')
-
-

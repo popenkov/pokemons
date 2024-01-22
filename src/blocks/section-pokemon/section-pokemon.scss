@@ -1,30 +1,37 @@
 @import "../../scss/breakpoints";
 
+/* stylelint-disable */
+
 .section-pokemon {
   $block-name: &; // #{$block-name}__element
 
   @media screen and (min-width: $screen-d) {
     display: grid;
-    grid-template: repeat(2, auto) / 354px, 1fr;
     grid-template-areas:
       "filter pokemons"
       "pagination pagination";
+    grid-template-rows: auto auto;
+    grid-template-columns: 354px 1fr;
     gap: 48px 20px;
     justify-items: center;
+  }
+
+  &__wrapper {
+    width: 100%;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      grid-area: pokemons;
+      margin-bottom: 0;
+    }
   }
 
   &__items {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 16px;
     padding: 8px;
     background: var(--monochrome-800);
     border-radius: 16px;
-
-    @media screen and (min-width: $screen-d) {
-      grid-area: pokemons;
-      margin-bottom: 0;
-    }
   }
 }

@@ -1,0 +1,24 @@
+//- Все примеси в этом файле должны начинаться c имени блока (loader)
+//- Упоминание имени блока в классах обязательно, без этого он не попадёт
+//- в сборку
+
+mixin loader(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +loader('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' loader--' + modsList[i].trim();
+      }
+    }
+
+  .loader.js-loader(class=allMods)&attributes(attributes)
+    .loader__inner
