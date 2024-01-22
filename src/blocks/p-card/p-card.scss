@@ -1,10 +1,9 @@
 @import "../../scss/mixins/flexbox";
 @import "../../scss/mixins/text-styles";
 @import "../../scss/mixins/blocks";
+@import "../../scss/breakpoints";
 
 .p-card {
-  $block-name: &; // #{$block-name}__element
-
   @include flex-column-center;
 
   width: calc(100% / 2 - 4px);
@@ -14,28 +13,63 @@
   border-radius: 8px;
   box-shadow: var(--card-shadow-mobile);
 
+  @media screen and (min-width: $screen-tl) {
+    width: calc(100% / 3 - 6px);
+    padding-bottom: 16px;
+    border-radius: 16px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--monochrome-400);
+    }
+  }
+
   &__photo {
+    @include flex-center;
+
     position: relative;
+    width: 100%;
     margin-bottom: 8px;
-    padding: 16px;
+    padding: 16px 8px;
     background-color: var(--monochrome-700);
     border-radius: 8px;
+
+    @media screen and (min-width: $screen-tl) {
+      margin-bottom: 14px;
+      padding: 40px;
+    }
 
     &-id {
       @include title-num;
 
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 8px;
+      left: 8px;
+
+      @media screen and (min-width: $screen-tl) {
+        top: 11px;
+        left: 12px;
+      }
     }
   }
 
   &__name {
-    margin-bottom: 16px;
+    margin-bottom: 19px;
+
+    @media screen and (min-width: $screen-tl) {
+      @include flex-center-sb;
+
+      width: 100%;
+      margin-bottom: 13px;
+      padding: 0 8px;
+    }
 
     &-value {
+      @include title;
+
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
   }
 
@@ -47,18 +81,33 @@
 
   &__type {
     @include box(16px);
+
+    @media screen and (min-width: $screen-tl) {
+      @include box(24px);
+    }
   }
 
   &__features {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
+    width: 100%;
+
+    @media screen and (min-width: $screen-tl) {
+      gap: 8px;
+      padding: 0 8px;
+    }
   }
 
   &__feature {
     width: calc(100% / 2 - 2px);
     border: 1px solid var(--monochrome-500);
     border-radius: 8px;
+
+    @media screen and (min-width: $screen-tl) {
+      display: flex;
+      width: calc(100% / 2 - 4px);
+    }
 
     &-container {
       @include flex-center;
@@ -69,13 +118,27 @@
     &-icon {
       border-bottom: 1px solid var(--monochrome-500);
 
+      @media screen and (min-width: $screen-tl) {
+        border-right: 1px solid var(--monochrome-500);
+        border-bottom: none;
+      }
+
       &-svg {
         @include box(16px);
+
+        @media screen and (min-width: $screen-tl) {
+          @include box(24px);
+        }
       }
     }
 
     &-value {
       @include title-data;
+
+      @media screen and (min-width: $screen-tl) {
+        width: 100%;
+      }
     }
   }
+  $block-name: &; // #{$block-name}__element
 }

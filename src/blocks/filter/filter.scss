@@ -1,6 +1,9 @@
 @import "../../scss/mixins/blocks";
 @import "../../scss/mixins/flexbox";
 @import "../../scss/mixins/text-styles";
+@import "../../scss/breakpoints";
+
+/* stylelint-disable */
 
 .filter {
   position: fixed;
@@ -8,6 +11,13 @@
   display: none;
   backdrop-filter: blur(4px);
   inset: 0;
+
+  @media screen and (min-width: $screen-d) {
+    position: static;
+    display: block;
+    grid-area: filter;
+    backdrop-filter: none;
+  }
 
   &__inner {
     @include flex-column;
@@ -17,7 +27,15 @@
     height: 100vh;
     padding: 8px;
     overflow-y: auto;
-    background: var(--monochrome-600);
+    background-color: var(--monochrome-600);
+
+    @media screen and (min-width: $screen-d) {
+      gap: 16px;
+      width: 354px;
+      height: auto;
+      padding: 0;
+      background-color: none;
+    }
   }
 
   &__container {
@@ -27,6 +45,7 @@
     border-radius: 16px;
 
     &--page {
+      align-items: center;
       justify-content: space-between;
       padding-left: 16px;
     }
@@ -37,6 +56,10 @@
     }
   }
 
+  &__title {
+    @include type-title;
+  }
+
   &__items {
     display: flex;
     gap: 8px;
@@ -44,33 +67,54 @@
 
   &__btn {
     display: flex;
+    align-items: center;
     border-radius: 8px;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--monochrome-400);
+        .filter__btn-amount {
+          border: 1px solid var(--monochrome-300);
+        }
+      }
+    }
+
+    &-amount {
+      @include type-amount;
+
+      min-width: 48px;
+      margin-left: auto;
+      padding: 8px;
+      border: 1px solid var(--monochrome-500);
+      border-radius: 8px;
+    }
 
     &--active {
       background-color: var(--monochrome-500);
+
+      .filter__btn-amount {
+        border: 1px solid var(--monochrome-400);
+      }
     }
 
     &-page {
       justify-content: space-between;
+
+      &-amount {
+        @include pagination;
+
+        min-width: unset;
+      }
     }
 
     &-type {
-      padding: 6px 6px 6px 16px;
+      padding: 6px 6px 4px 16px;
     }
 
     &-icon {
       @include box(24px);
 
       margin-right: 12px;
-    }
-
-    &-amount {
-      @include type-amount;
-
-      margin-left: auto;
-      padding: 8px;
-      border: 1px solid var(--monochrome-500);
-      border-radius: 8px;
     }
   }
   $block-name: &; // #{$block-name}__element

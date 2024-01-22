@@ -10,7 +10,8 @@
     padding: 0 40px;
   }
 
-  @media screen and (min-width: $screen-dl) {
+  @media screen and (min-width: $screen-d) {
+    box-sizing: content-box;
     width: 100%;
     margin: 0 auto;
     padding: 0 120px;

@@ -29,10 +29,10 @@ mixin filter(text, mods)
           each menu, key in data.filters.perPage
             if key === 0
               button.filter__btn.filter__btn-page.filter__btn--active.js-per-page-btn
-                span.filter__btn-amount= menu
+                span.filter__btn-amount.filter__btn-page-amount= menu
             else
               button.filter__btn.filter__btn-page.js-per-page-btn
-                span.filter__btn-amount= menu
+                span.filter__btn-amount.filter__btn-page-amount= menu
 
       .filter__container.filter__container--type.js-type-filter-container
         each menu, key in data.filters.perType
@@ -48,5 +48,3 @@ mixin filter(text, mods)
                 use(href= src.icon + 'type-' + menu.icon)
               span.filter__btn-value= menu.name
               span.filter__btn-amount= menu.amount
-
-

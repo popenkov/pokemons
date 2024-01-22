@@ -1,4 +1,5 @@
 @import "../../scss/mixins/blocks";
+@import "../../scss/breakpoints";
 
 .filter-btn {
   @include box(48px);
@@ -12,8 +13,11 @@
   border: 1px solid var(--color-blue-300);
   border-radius: 50%;
 
+  @media screen and (min-width: $screen-d) {
+    display: none;
+  }
+
   &__icon {
     @include box(24px);
   }
-  $block-name: &; // #{$block-name}__element
 }

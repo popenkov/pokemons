@@ -1,7 +1,12 @@
-.pagination {
-  $block-name: &; // #{$block-name}__element
+@import "../../scss/breakpoints";
 
+.pagination {
   margin-bottom: 32px;
+
+  @media screen and (min-width: $screen-d) {
+    grid-area: pagination;
+    margin-bottom: 72px;
+  }
 
   &__inner {
     display: grid;
@@ -14,29 +19,91 @@
     padding: 8px;
     background: var(--monochrome-800);
     border-radius: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      grid-template: auto / repeat(3, auto);
+      grid-template-areas: "first btns last";
+      margin: 0 auto;
+    }
   }
 
   &__btn {
+    @include pagination;
+
+    width: 100%;
     min-width: 32px;
     padding: 8px 4px;
     background-color: var(--monochrome-600);
     border-top: 1px solid var(--monochrome-500);
     border-radius: 8px;
 
+    @media screen and (min-width: $screen-d) {
+      width: auto;
+      min-width: 40px;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        padding: 4px 8px 3px;
+        background-color: var(--monochrome-600);
+        border: 1px solid var(--color-blue-300);
+      }
+    }
+
     &--active {
       background-color: var(--monochrome-500);
     }
 
-    &-first {
+    &--first {
       grid-area: first;
-      width: 100%;
       padding: 8px;
+
+      @media screen and (min-width: $screen-d) {
+        padding: 8px 16px;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          padding: 8px 8px 7px;
+        }
+      }
+
+      @media (hover: hover) and (min-width: $screen-d) {
+        &:hover {
+          padding: 8px 15px 7px !important;
+        }
+      }
     }
 
-    &-last {
+    &--last {
       grid-area: last;
-      width: 100%;
       padding: 8px;
+
+      @media screen and (min-width: $screen-d) {
+        padding: 8px 16px;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          padding: 8px 8px 7px;
+        }
+      }
+
+      @media (hover: hover) and (min-width: $screen-d) {
+        &:hover {
+          padding: 8px 15px 7px !important;
+        }
+      }
+    }
+
+    &--dots {
+      background-color: inherit;
+      border-top: none;
+      pointer-events: none;
+    }
+
+    &.hidden {
+      display: none;
     }
   }
 
@@ -45,4 +112,5 @@
     grid-area: btns;
     gap: 8px;
   }
+  $block-name: &; // #{$block-name}__element
 }

@@ -17,10 +17,13 @@ ready(function () {
     };
 
     filterMenu.addEventListener("click", (evt) => {
-      console.log(evt.target === filterMenu);
       if (evt.target === filterMenu) {
         closeMenu();
       }
+    });
+
+    window.addEventListener("resize", () => {
+      closeMenu();
     });
   }
 });

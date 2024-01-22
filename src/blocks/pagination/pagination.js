@@ -4,8 +4,10 @@ ready(function () {
   const paginationBlock = document.querySelector(".pagination");
   if (paginationBlock) {
     const paginationBtns = paginationBlock.querySelector(".js-pagination-btns-wrapper");
+    const firstPageBtn = paginationBlock.querySelector(".js-pagination-first");
+    const lastPageBtn = paginationBlock.querySelector(".js-pagination-last");
 
-    // todo test amount
+    // todo test amountgit
     const totalcount = 12;
 
     let currentPage = 1;
@@ -13,8 +15,12 @@ ready(function () {
 
     const addButton = (number) => {
       return `<button class="pagination__btn js-pagination-btn ${
-        number === currentPage ? "pagination__btn--active" : ""
+        Number(number) === currentPage ? "pagination__btn--active" : ""
       }">${number}</button>`;
+    };
+
+    const addDots = () => {
+      return `<button class="pagination__btn pagination__btn--dots">...</button>`;
     };
 
     const initPagination = () => {
@@ -32,7 +38,7 @@ ready(function () {
 
         // Отрисовка точек  "..." если currentPage is > 3
         if (currentPage > 1) {
-          HTML += "...";
+          HTML += addDots();
         }
 
         // Если выбрана последняя страница
@@ -66,24 +72,33 @@ ready(function () {
         }
 
         // Если выбрана первая страница
-        if (currentPage == 1) {
-          HTML += addButton(currentPage + 2);
+        if (currentPage == 1 && totalcount > 3) {
+          HTML += addButton(currentPage + 3);
+        }
+        if (currentPage == 1 && totalcount > 4) {
+          HTML += addButton(currentPage + 4);
         }
 
         // отрисовка точек "..." если currentPage is < lastPage -2
         if (currentPage < totalcount - 2) {
-          HTML += "...";
+          HTML += addDots();
         }
-
-        //  отрисовка последней страницы
-        // if (currentPage === totalcount) {
-        //   HTML += addButton(totalcount);
-        // }
       }
       paginationBtns.innerHTML = HTML;
+      if (currentPage === 1) {
+        firstPageBtn.classList.add("hidden");
+      } else {
+        firstPageBtn.classList.remove("hidden");
+      }
+
+      if (currentPage === totalcount - 1) {
+        lastPageBtn.classList.add("hidden");
+      } else {
+        lastPageBtn.classList.remove("hidden");
+      }
     };
 
-    initPagination(currentPage);
+    initPagination();
 
     const handleFirstPageClick = () => {
       currentPage = 1;
@@ -91,7 +106,7 @@ ready(function () {
     };
 
     const handleLastPageClick = () => {
-      currentPage = totalcount;
+      currentPage = totalcount - 1;
       initPagination();
     };
 

@@ -6,7 +6,7 @@
   line-height: 125%;
   letter-spacing: 0.32px;
 
-  @media screen and (min-width: $screen-dl) {
+  @media screen and (min-width: $screen-d) {
     font-size: 32px;
     line-height: 125%;
     letter-spacing: 0.64px;
@@ -17,10 +17,9 @@
   font-size: 8px;
   line-height: 100%;
 
-  @media screen and (min-width: $screen-dl) {
-    font-size: 32px;
-    line-height: 125%;
-    letter-spacing: 0.64px;
+  @media screen and (min-width: $screen-d) {
+    font-size: 12px;
+    line-height: 120%;
   }
 }
 
@@ -28,6 +27,11 @@
   font-size: 8px;
   line-height: 100%;
   letter-spacing: 0.4px;
+
+  @media screen and (min-width: $screen-dl) {
+    font-size: 16px;
+    letter-spacing: 0.8px;
+  }
 }
 
 @mixin tab-title {
@@ -46,4 +50,16 @@
   font-size: 10px;
   line-height: 120%;
   letter-spacing: 0.2px;
+}
+
+@mixin pagination {
+  font-size: 10px;
+  line-height: 120%;
+  letter-spacing: 0.2px;
+
+  @media screen and (min-width: $screen-d) {
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: normal;
+  }
 }
