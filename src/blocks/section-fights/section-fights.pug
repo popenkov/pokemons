@@ -1,0 +1,34 @@
+//- Все примеси в этом файле должны начинаться c имени блока (section-fights)
+//- Упоминание имени блока в классах обязательно, без этого он не попадёт
+//- в сборку
+
+mixin section-fights(text, mods)
+
+  //- Принимает:
+  //-   text    {string} - текст
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +section-fights('Текст', 'some-mod')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' section-fights--' + modsList[i].trim();
+      }
+    }
+
+  section.section-fights(class=allMods)&attributes(attributes)
+    .section-fights__wrapper
+      //- .section-fights__loader.js-loader
+      //-   +loader
+      .section-fights__choose-fighter-wrapper
+        .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+          .choose-fighter-card__search
+            +search-field('123321')
+
+          .choose-fighter-card__result.js-fighter-card-result
+            span.choose-fighter-card__result-text Type name of  champion above
+        span VS

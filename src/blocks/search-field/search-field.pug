@@ -1,7 +1,7 @@
-//- Все примеси в этом файле должны начинаться c имени блока (field)
+//- Все примеси в этом файле должны начинаться c имени блока (search-field)
 //- Упоминание имени блока в классах обязательно, без этого он не попадёт в сборку
 
-mixin field(type, label, placeholder, mods, name, id, value, max)
+mixin search-field( placeholder, mods, name, id, value, max)
 
   //- Принимает:
   //-   type        {string} - тип поля [text|email|phone|search|password|number|file|textarea|select]
@@ -13,7 +13,7 @@ mixin field(type, label, placeholder, mods, name, id, value, max)
   //-   value       {string} - атрибут value
   //-   max         {string} - максимальное значение
   //- Вызов:
-        +field('text', 'Имя', 'Введите имя', 'some-mod', 'field-id', 'field-name', 'Д’Артаньян')
+        +search-field('text', 'Имя', 'Введите имя', 'some-mod', 'search-field-id', 'search-field-name', 'Д’Артаньян')
 
   -
     // список модификаторов
@@ -21,17 +21,14 @@ mixin field(type, label, placeholder, mods, name, id, value, max)
     if(typeof(mods) !== 'undefined' && mods) {
       var modsList = mods.split(',');
       for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' field--' + modsList[i].trim();
+        allMods = allMods + ' search-field--' + modsList[i].trim();
       }
     }
 
 
-  .field(class= allMods)
-    label.field__inner
-      if type === 'text'
-        +input(placeholder, '', id, name, value)(class='field__input')&attributes(attributes)
-      if type === 'search'
-        +input-search(placeholder, '', id, name, value)(class='field__input')&attributes(attributes)
+  .search-field(class= allMods)
+    label.search-field__inner
+      input.search-field__input(type='text', placeholder, name, id, value)&attributes(attributes)
       if label
-        span.field__label!= label
-    .field__message Текст ошибки
+        span.search-field__label!= label
+    .search-field__message Текст ошибки

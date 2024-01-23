@@ -25,7 +25,8 @@ mixin section-pokemon(text, mods)
     +filter
 
     .section-pokemon__wrapper
-      +loader
+      .section-pokemon__loader.js-loader
+        +loader
       .section-pokemon__items.js-pokemon-items
         each pokemon in data.pokemons
           +p-card(pokemon)

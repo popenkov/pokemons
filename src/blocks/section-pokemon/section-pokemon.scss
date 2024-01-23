@@ -26,6 +26,14 @@
     }
   }
 
+  &__loader {
+    @include flex-center;
+
+    width: 100%;
+    min-height: 480px;
+    margin: 0 auto;
+  }
+
   &__items {
     display: flex;
     flex-wrap: wrap;

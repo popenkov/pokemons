@@ -1,0 +1,62 @@
+@import "../../scss/breakpoints.scss";
+@import "../../scss/mixins/flexbox.scss";
+@import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/blocks";
+
+.section-fights {
+  $block-name: &; // #{$block-name}__element
+
+  &__wrapper {
+    width: 100%;
+    margin-bottom: 16px;
+    background: var(--monochrome-800);
+    border-radius: 24px;
+
+    @media screen and (min-width: $screen-d) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__loader {
+    @include flex-center;
+
+    width: 100%;
+    min-height: 480px;
+    margin: 0 auto;
+  }
+
+  &__choose-fighter {
+    &-wrapper {
+      @include flex-column;
+    }
+
+    &-card {
+      // todo
+    }
+  }
+}
+
+.choose-fighter-card {
+  &__search {
+    // todo
+  }
+
+  &__result {
+    position: relative;
+    min-height: 248px;
+    padding: 8px;
+    border: 2px dashed var(--monochrome-600);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%);
+
+    &-text {
+      @include absolute-center;
+      @include tab-title;
+
+      width: 100%;
+      max-width: 312px;
+      color: var(--monochrome-500);
+      text-align: center;
+    }
+  }
+}

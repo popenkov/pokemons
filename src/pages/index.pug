@@ -17,7 +17,8 @@ block content
             else
               .tabs__label(data-href='#tab'+ key)= label
       .tabs__panes
-        .tabs__pane.tabs__pane--active#tab0
+        .tabs__pane#tab0
           +section-pokemon
 
-        .tabs__pane#tab1 Содержимое, таб 2
+        .tabs__pane.tabs__pane--active#tab1
+          +section-fights
