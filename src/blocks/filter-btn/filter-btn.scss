@@ -9,11 +9,12 @@
   left: 12px;
   z-index: var(--z-index-filter-btn);
   padding: 12px;
-  background-color: var(--monochrome-700-blur);
+  background-color: var(--monochrome-700-transparent);
   border: 1px solid var(--color-blue-300);
   border-radius: 50%;
+  backdrop-filter: blur(4px);
 
-  @media screen and (min-width: $screen-d) {
+  @media screen and (min-width: $screen-tl) {
     display: none;
   }
 

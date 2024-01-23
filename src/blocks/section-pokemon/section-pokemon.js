@@ -21,7 +21,6 @@ ready(function () {
     };
 
     //  todo test
-
     const testShowLoader = () => {
       showLoader();
       setTimeout(() => {

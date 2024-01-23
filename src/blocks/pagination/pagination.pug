@@ -1,34 +1,13 @@
-//- Все примеси в этом файле должны начинаться c имени блока (pagination)
-//- Упоминание имени блока в классах обязательно, без этого он не попадёт
-//- в сборку
-
-mixin pagination(text, mods)
-
-  //- Принимает:
-  //-   text    {string} - текст
-  //-   mods    {string} - список модификаторов
-  //- Вызов:
-        +pagination('Текст', 'some-mod')
-
-  -
-    // список модификаторов
-    var allMods = '';
-    if(typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' pagination--' + modsList[i].trim();
-      }
-    }
-
-  .pagination.js-pagination(class=allMods)&attributes(attributes)
+mixin pagination
+  .pagination.js-pagination
     .pagination__inner
-      button.pagination__btn.pagination__btn--first.js-pagination-first first
+      button.pagination__btn.pagination__btn--large.pagination__btn--first.js-pagination-first first
       .pagination__btns-wrapper.js-pagination-btns-wrapper
-        button.pagination__btn.pagination__btn--dots ...
+        span.pagination__btn.pagination__btn--dots ...
         button.pagination__btn.js-pagination-btn 11
         button.pagination__btn.js-pagination-btn.pagination__btn--active 12
         button.pagination__btn.js-pagination-btn 13
         button.pagination__btn.js-pagination-btn 14
         button.pagination__btn.js-pagination-btn 15
-        button.pagination__btn.pagination__btn--dots ...
-      button.pagination__btn.pagination__btn--last.js-pagination-last last
+        span.pagination__btn.pagination__btn--dots ...
+      button.pagination__btn.pagination__btn--large.pagination__btn--last.js-pagination-last last

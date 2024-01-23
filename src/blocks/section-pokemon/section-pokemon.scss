@@ -5,7 +5,7 @@
 .section-pokemon {
   $block-name: &; // #{$block-name}__element
 
-  @media screen and (min-width: $screen-d) {
+  @media screen and (min-width: $screen-tl) {
     display: grid;
     grid-template-areas:
       "filter pokemons"
@@ -20,7 +20,7 @@
     width: 100%;
     margin-bottom: 16px;
 
-    @media screen and (min-width: $screen-d) {
+    @media screen and (min-width: $screen-ti) {
       grid-area: pokemons;
       margin-bottom: 0;
     }
@@ -31,7 +31,23 @@
     flex-wrap: wrap;
     gap: 8px;
     padding: 8px;
-    background: var(--monochrome-800);
+    background-color: var(--monochrome-800);
     border-radius: 16px;
+  }
+
+  &__item {
+    width: calc(100% / 2 - 4px);
+
+    // @media screen and (min-width: $screen-ti) {
+    //   width: 100%;
+    // }
+
+    @media screen and (min-width: $screen-txl) {
+      width: calc(100% / 2 - 4px);
+    }
+
+    @media screen and (min-width: $screen-d) {
+      width: calc(100% / 3 - 6px);
+    }
   }
 }

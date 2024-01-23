@@ -106,7 +106,7 @@
     {
       "id": "001",
       "name": "Bulbasaur",
-      "photo": "./img/bulbasaur.png",
+      "photo": "/bulbasaur.png",
       "types": ["poison", "grass"],
       "features": [
         {
@@ -130,7 +130,7 @@
     {
       "id": "002",
       "name": "Ivysaur",
-      "photo": "./img/ivysaur.png",
+      "photo": "/ivysaur.png",
       "types": ["poison", "grass"],
       "features": [
         {
@@ -154,7 +154,7 @@
     {
       "id": "003",
       "name": "Venusaur",
-      "photo": "./img/venusaur.png",
+      "photo": "/venusaur.png",
       "types": ["poison", "grass"],
       "features": [
         {
@@ -178,7 +178,7 @@
     {
       "id": "004",
       "name": "Charmander",
-      "photo": "./img/charmander.png",
+      "photo": "/charmander.png",
       "types": ["fire"],
       "features": [
         {
@@ -202,7 +202,7 @@
     {
       "id": "005",
       "name": "Charmeleon",
-      "photo": "./img/charmeleon.png",
+      "photo": "/charmeleon.png",
       "types": ["fire"],
       "features": [
         {
@@ -226,7 +226,7 @@
     {
       "id": "006",
       "name": "Charizard",
-      "photo": "./img/charizard.png",
+      "photo": "/charizard.png",
       "types": ["fire"],
       "features": [
         {

@@ -2,22 +2,49 @@ extends ../templates/layout_default.pug
 
 block variables
   - isMainPage = false
-  - pageTitle = 'Стартовая страница'
-  - metaDescription = 'description'
-  - metaKeywords = 'keywords'
+  - pageTitle = 'Покемоны'
+  - metaDescription = 'Покемоны описание'
+  - metaKeywords = 'покемоны'
 
 block content
   .container
-    .tabs
-      .tabs__wrapper
+    h1.visually-hidden Покемоны
+    .pockemon-page__tabs.tabs
+      .tabs__wrapper.container
         .tabs__labels
-          each label, key in data.tabs.labels
-            if key === 0
-              .tabs__label.tabs__label--active(data-href='#tab' + key)= label
+          each label, index in data.tabs.labels
+            if index === 0
+              button.tabs__label.tabs__label--active(data-href='#tab' + index)= label
             else
-              .tabs__label(data-href='#tab'+ key)= label
+              button.tabs__label(data-href='#tab'+ index)= label
       .tabs__panes
         .tabs__pane.tabs__pane--active#tab0
-          +section-pokemon
+          .section-pokemon
+            h2.visually-hidden Выбор покемона
+
+            .filter.js-filter-menu
+              .filter__inner.js-filter-menu-body
+                .filter__container.filter__container--page
+                  span.filter__title Per page:
+                  .filter__items
+                    each menu, index in data.filters.perPage
+                      button.filter__btn.filter__btn-page.js-per-page-btn(class= (index === 0) ? "filter__btn--active" : '')= menu
+                .filter__container.filter__container--type.js-type-filter-container
+                  each menu, index in data.filters.perType
+                    button.filter__btn.filter__btn-type.js-type-btn(class= (index === 0) ? "filter__btn--active" : '')
+                      svg.filter__btn-icon: use(href= src.icon + 'type-' + menu.icon)
+                      span.filter__btn-value= menu.name
+                      span.filter__btn-amount= menu.amount
+
+            .section-pokemon__wrapper
+              +loader
+              .section-pokemon__items.js-pokemon-items
+                each pokemon in data.pokemons
+                  .section-pokemon__item
+                    +p-card(pokemon)
+            +pagination
+
+            button.filter-btn.js-mobile-filter-btn
+              svg.filter-btn__icon: use(href= src.icon + 'filter-icon')
 
         .tabs__pane#tab1 Содержимое, таб 2

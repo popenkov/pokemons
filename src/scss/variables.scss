@@ -1,7 +1,6 @@
 @use "sass:color";
 
 :root {
-  //  todo  перенести данные с макета
   --body-color: var(--front-primary);
   --body-bg: var(--back-primary);
   --font-base: var(--font-sans);
@@ -32,21 +31,14 @@
   --monochrome-500: #363a3d;
   --monochrome-600: #1a1d21;
   --monochrome-700: #131619;
+  --monochrome-700-transparent: rgba(19, 22, 25, 0.7);
   --monochrome-800: #0d0f10;
-  --monochrome-700-blur: rgba(19, 22, 25, 0.7);
+  --monochrome-900: #060708;
 
   // Оформление
-  --mobile-header-height: 89px;
+  --max-container-width: 1488px;
+  --mobile-header-height: 80px;
   --z-index-mobile-header: 2;
   --z-index-filter-menu: 3;
   --z-index-filter-btn: 3;
-
-  --buttons-border-top: 1px solid var(--monochrome-400, #686b6e);
-  --card-border-top: 1px solid var(--monochrome-500, #363a3d);
-  --border-primary: var(--monochrome-500);
-  --tab-hover-color: var(--monochrome-500);
-  --link-hover-color: var(--monochrome-400);
-  --card-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.05),
-    0px 20px 25px -5px rgba(0, 0, 0, 0.05);
-  --card-shadow-mobile: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
 }

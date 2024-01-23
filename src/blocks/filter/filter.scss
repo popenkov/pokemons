@@ -12,7 +12,7 @@
   backdrop-filter: blur(4px);
   inset: 0;
 
-  @media screen and (min-width: $screen-d) {
+  @media screen and (min-width: $screen-tl) {
     position: static;
     display: block;
     grid-area: filter;
@@ -25,16 +25,16 @@
     gap: 4px;
     width: 280px;
     height: 100vh;
-    padding: 8px;
+    padding: 8px 8px 80px;
     overflow-y: auto;
     background-color: var(--monochrome-600);
 
-    @media screen and (min-width: $screen-d) {
+    @media screen and (min-width: $screen-tl) {
       gap: 16px;
       width: 354px;
       height: auto;
       padding: 0;
-      background-color: none;
+      background-color: unset;
     }
   }
 
@@ -47,6 +47,7 @@
     &--page {
       align-items: center;
       justify-content: space-between;
+      padding: 8px;
       padding-left: 16px;
     }
 
@@ -63,6 +64,9 @@
   &__items {
     display: flex;
     gap: 8px;
+    @media screen and (min-width: $screen-tl) {
+      gap: 9px;
+    }
   }
 
   &__btn {
@@ -70,45 +74,68 @@
     align-items: center;
     border-radius: 8px;
 
-    @media (hover: hover) {
-      &:hover {
-        background-color: var(--monochrome-400);
-        .filter__btn-amount {
-          border: 1px solid var(--monochrome-300);
-        }
-      }
-    }
-
     &-amount {
       @include type-amount;
 
       min-width: 48px;
       margin-left: auto;
-      padding: 8px;
+      padding: 7px;
       border: 1px solid var(--monochrome-500);
       border-radius: 8px;
-    }
-
-    &--active {
-      background-color: var(--monochrome-500);
-
-      .filter__btn-amount {
-        border: 1px solid var(--monochrome-400);
-      }
+      color: var(--monochrome-400);
     }
 
     &-page {
+      @include pagination;
       justify-content: space-between;
+      min-width: 32px;
+      min-height: 32px;
+      background: var(--monochrome-600);
+      border-top: 1px solid var(--monochrome-500);
 
-      &-amount {
-        @include pagination;
+      margin-left: auto;
+      padding: 7px 8px 8px;
+      border-radius: 8px;
 
-        min-width: unset;
+      @media screen and (min-width: $screen-tl) {
+        padding: 7px 8px 8px;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--monochrome-400);
+          border-top: 1px solid var(--monochrome-300);
+        }
       }
     }
 
     &-type {
-      padding: 6px 6px 4px 16px;
+      padding: 5px 6px 6px 16px;
+      border-top: 1px solid var(--monochrome-800);
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--monochrome-400);
+          border-top: 1px solid var(--monochrome-300);
+          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+          .filter__btn-amount {
+            border: 1px solid var(--monochrome-300);
+            color: var(--monochrome-100);
+          }
+        }
+      }
+    }
+
+    &--active {
+      pointer-events: none;
+      background-color: var(--monochrome-500);
+      border-top: 1px solid var(--monochrome-400);
+      box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+
+      .filter__btn-amount {
+        color: var(--monochrome-100);
+        border: 1px solid var(--monochrome-400);
+      }
     }
 
     &-icon {
@@ -116,8 +143,11 @@
 
       margin-right: 12px;
     }
+
+    &-value {
+      @include type-title;
+    }
   }
-  $block-name: &; // #{$block-name}__element
 
   &.open {
     display: block;

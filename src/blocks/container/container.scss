@@ -1,19 +1,19 @@
 @import "../../scss/breakpoints";
 
 .container {
-  max-width: 1488px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 16px;
+  max-width: 100vw;
+  margin: 0 16px;
 
   @media screen and (min-width: $screen-t) {
-    padding: 0 40px;
+    margin: 0 40px;
   }
 
   @media screen and (min-width: $screen-d) {
     box-sizing: content-box;
     width: 100%;
+    max-width: var(--max-container-width);
     margin: 0 auto;
-    padding: 0 120px;
+    padding-right: 40px;
+    padding-left: 40px;
   }
 }
