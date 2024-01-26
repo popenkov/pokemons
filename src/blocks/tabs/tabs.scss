@@ -28,7 +28,7 @@
   &__label {
     @include flex-center;
     @include tab-title;
-    @include page-button(16px);
+    @include page-button();
     @include tab-title;
 
     position: relative;
