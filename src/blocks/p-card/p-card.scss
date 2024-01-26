@@ -86,12 +86,13 @@
   &__row {
     @include flex-column-center;
 
-    flex-direction: row;
+    flex-direction: column;
     flex-grow: 1;
     gap: 10px;
     margin-bottom: 12px;
 
     @media screen and (min-width: $screen-ti) {
+      flex-direction: row;
       gap: 16px;
       align-items: space;
       align-items: flex-end;
@@ -111,12 +112,13 @@
 
   &__types {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
+    width: 100%;
     max-width: 33%;
 
     @media screen and (min-width: $screen-ti) {
+      flex-wrap: wrap;
       padding: 5px 0;
     }
   }

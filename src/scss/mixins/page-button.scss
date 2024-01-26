@@ -24,7 +24,6 @@
 @mixin page-button-hover--tab() {
   background-color: var(--monochrome-400);
   border-top: 1px solid var(--monochrome-300);
-  pointer-events: none;
 }
 
 @mixin page-button-active() {

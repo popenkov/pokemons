@@ -46,7 +46,6 @@
       }
     }
 
-    &:active,
     &--active {
       @include page-button-active;
     }

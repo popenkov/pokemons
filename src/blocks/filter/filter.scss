@@ -111,7 +111,7 @@
     &--type {
       @include page-button-menu;
 
-      padding: 5px 6px 6px 16px;
+      padding: 5px 6px 5px 16px;
 
       @media (hover: hover) {
         &:hover {
@@ -127,7 +127,6 @@
       }
     }
 
-    &:active,
     &--active {
       @include page-button-active;
 

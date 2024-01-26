@@ -120,7 +120,6 @@ ready(function () {
 
     const handlePaginationButtonClick = (currentButton) => {
       const currentPageValue = Number(currentButton.textContent);
-      console.log("123", currentPageValue);
       currentPage = currentPageValue;
       initPagination();
     };
