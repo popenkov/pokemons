@@ -9,14 +9,12 @@ block variables
 block content
   .container
     h1.visually-hidden Покемоны
-    .pockemon-page__tabs.tabs
+    .pockemon-page.tabs
       .tabs__wrapper.container
         .tabs__labels
           each label, index in data.tabs.labels
-            if index === 0
-              button.tabs__label.tabs__label--active(data-href='#tab' + index)= label
-            else
-              button.tabs__label(data-href='#tab'+ index)= label
+              button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
+
       .tabs__panes
         .tabs__pane.tabs__pane--active#tab0
           .section-pokemon
@@ -28,10 +26,10 @@ block content
                   span.filter__title Per page:
                   .filter__items
                     each menu, index in data.filters.perPage
-                      button.filter__btn.filter__btn-page.js-per-page-btn(class= (index === 0) ? "filter__btn--active" : '')= menu
+                      button.filter__btn.filter__btn--page.js-per-page-btn(class= (index === 0) ? "filter__btn--active" : '')= menu
                 .filter__container.filter__container--type.js-type-filter-container
                   each menu, index in data.filters.perType
-                    button.filter__btn.filter__btn-type.js-type-btn(class= (index === 0) ? "filter__btn--active" : '')
+                    button.filter__btn.filter__btn--type.js-type-btn(class= (index === 0) ? "filter__btn--active" : '')
                       svg.filter__btn-icon: use(href= src.icon + 'type-' + menu.icon)
                       span.filter__btn-value= menu.name
                       span.filter__btn-amount= menu.amount

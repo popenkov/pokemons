@@ -1,0 +1,19 @@
+/* stylelint-disable */
+
+.pockemon-page {
+  $block-name: &; // #{$block-name}__element
+
+  .tabs__wrapper {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: var(--z-index-mobile-header);
+    background-color: var(--monochrome-700-transparent);
+    backdrop-filter: blur(4px);
+
+    @media screen and (min-width: $screen-d) {
+      position: static;
+      backdrop-filter: none;
+    }
+  }
+}

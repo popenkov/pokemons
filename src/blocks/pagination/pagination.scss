@@ -1,8 +1,9 @@
 @import "../../scss/breakpoints";
-
-/* stylelint-disable */
+@import "../../scss/mixins/page-button.scss";
 
 .pagination {
+  $block-name: &; // #{$block-name}__element
+
   margin-bottom: 32px;
 
   @media screen and (min-width: $screen-tl) {
@@ -32,13 +33,11 @@
 
   &__btn {
     @include pagination;
+    @include page-button();
 
     width: 100%;
     min-width: 32px;
     padding: 8px 4px;
-    background-color: var(--monochrome-600);
-    border-top: 1px solid var(--monochrome-500);
-    border-radius: 8px;
 
     @media screen and (min-width: $screen-tl) {
       width: auto;
@@ -46,46 +45,32 @@
     }
 
     @media (hover: hover) {
-      &:not(.pagination__btn--active, .pagination__btn--large):hover {
-        padding: 4px 8px 3px;
-        background-color: var(--monochrome-600);
-        border: 1px solid var(--color-blue-300);
+      &:not(#{$block-name}__btn--active, #{$block-name}__btn--large):hover {
+        @include page-button-hover;
       }
     }
 
+    &:active,
     &--active {
-      background-color: var(--monochrome-500);
-      pointer-events: none;
+      @include page-button-active;
     }
 
-    &--large {
+    &--first {
+      grid-area: first;
       padding: 8px;
 
       @media screen and (min-width: $screen-tl) {
         padding: 8px 16px;
       }
-
-      @media (hover: hover) {
-        &:hover {
-          padding: 8px 8px 7px;
-          background-color: var(--monochrome-600);
-          border: 1px solid var(--color-blue-300);
-        }
-      }
-
-      @media (hover: hover) and (min-width: $screen-tl) {
-        &:hover {
-          padding: 8px 15px 7px !important;
-        }
-      }
-    }
-
-    &--first {
-      grid-area: first;
     }
 
     &--last {
       grid-area: last;
+      padding: 8px;
+
+      @media screen and (min-width: $screen-tl) {
+        padding: 8px 16px;
+      }
     }
 
     &--dots {

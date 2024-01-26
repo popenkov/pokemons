@@ -1,10 +1,10 @@
 @import "../../scss/mixins/text-styles";
 @import "../../scss/mixins/flexbox.scss";
+@import "../../scss/mixins/page-button.scss";
 @import "../../scss/breakpoints";
 
-/* stylelint-disable */
-
 .tabs {
+  $block-name: &; // #{$block-name}__element
   &__wrapper {
     padding: 12px 0;
 
@@ -28,14 +28,12 @@
   &__label {
     @include flex-center;
     @include tab-title;
+    @include page-button(16px);
+    @include tab-title;
 
     position: relative;
-    width: calc(50% - 4px);
+    width: 100%;
     padding: 7px 16px 8px;
-    background-color: var(--monochrome-700);
-    border-top: 1px solid var(--monochrome-500);
-    border-radius: 8px;
-    cursor: pointer;
 
     @media screen and (min-width: $screen-d) {
       padding: 15px 16px 16px;
@@ -43,15 +41,14 @@
     }
 
     @media (hover: hover) {
-      &:not(.tabs__label--active):hover {
-        background-color: var(--monochrome-400);
+      &:not(#{$block-name}__label--active):hover {
+        @include page-button-hover--tab;
       }
     }
 
+    &:active,
     &--active {
-      background-color: var(--monochrome-500);
-      border-top: 1px solid var(--monochrome-400);
-      cursor: default;
+      @include page-button-active;
     }
   }
 
@@ -73,23 +70,6 @@
       display: block;
       width: 100%;
       pointer-events: auto;
-    }
-  }
-  $block-name: &; // #{$block-name}__element
-}
-
-.pockemon-page__tabs {
-  .tabs__wrapper {
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index: var(--z-index-mobile-header);
-    background-color: var(--monochrome-700-transparent);
-    backdrop-filter: blur(4px);
-
-    @media screen and (min-width: $screen-d) {
-      position: static;
-      backdrop-filter: none;
     }
   }
 }

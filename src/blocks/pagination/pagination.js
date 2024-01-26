@@ -120,11 +120,13 @@ ready(function () {
 
     const handlePaginationButtonClick = (currentButton) => {
       const currentPageValue = Number(currentButton.textContent);
+      console.log("123", currentPageValue);
       currentPage = currentPageValue;
       initPagination();
     };
 
-    document.addEventListener("click", (evt) => {
+    paginationBlock.addEventListener("click", (evt) => {
+      evt.stopPropagation();
       if (evt.target.closest(".js-pagination-first")) {
         evt.preventDefault();
         handleFirstPageClick();

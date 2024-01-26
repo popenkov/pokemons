@@ -2,10 +2,16 @@
 @import "../../scss/mixins/flexbox";
 @import "../../scss/mixins/text-styles";
 @import "../../scss/breakpoints";
-
-/* stylelint-disable */
+@import "../../scss/mixins/page-button.scss";
 
 .filter {
+  $block-name: &; // #{$block-name}__element
+
+  --btn-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%); // stylelint-disable-line
+  --amount-border: 1px solid var(--monochrome-500); // stylelint-disable-line
+  --amount-border-hover: 1px solid var(--monochrome-400); // stylelint-disable-line
+  --amount-border-active: 1px solid var(--monochrome-300); // stylelint-disable-line
+
   position: fixed;
   z-index: var(--z-index-filter-menu);
   display: none;
@@ -47,8 +53,7 @@
     &--page {
       align-items: center;
       justify-content: space-between;
-      padding: 8px;
-      padding-left: 16px;
+      padding: 8px 8px 8px 16px;
     }
 
     &--type {
@@ -64,9 +69,21 @@
   &__items {
     display: flex;
     gap: 8px;
+
     @media screen and (min-width: $screen-tl) {
       gap: 9px;
     }
+  }
+
+  &__btn-amount {
+    @include type-amount;
+
+    min-width: 48px;
+    margin-left: auto;
+    padding: 7px;
+    color: var(--monochrome-400);
+    border: var(--amount-border);
+    border-radius: 8px;
   }
 
   &__btn {
@@ -74,79 +91,63 @@
     align-items: center;
     border-radius: 8px;
 
-    &-amount {
-      @include type-amount;
-
-      min-width: 48px;
-      margin-left: auto;
-      padding: 7px;
-      border: 1px solid var(--monochrome-500);
-      border-radius: 8px;
-      color: var(--monochrome-400);
-    }
-
-    &-page {
+    &--page {
       @include pagination;
+      @include page-button();
+
       justify-content: space-between;
       min-width: 32px;
       min-height: 32px;
-      background: var(--monochrome-600);
-      border-top: 1px solid var(--monochrome-500);
-
       margin-left: auto;
-      padding: 7px 8px 8px;
-      border-radius: 8px;
-
-      @media screen and (min-width: $screen-tl) {
-        padding: 7px 8px 8px;
-      }
+      padding: 7px;
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--monochrome-400);
-          border-top: 1px solid var(--monochrome-300);
+          @include page-button-hover;
         }
       }
     }
 
-    &-type {
+    &--type {
+      @include page-button-menu;
+
       padding: 5px 6px 6px 16px;
-      border-top: 1px solid var(--monochrome-800);
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--monochrome-400);
-          border-top: 1px solid var(--monochrome-300);
-          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
-          .filter__btn-amount {
-            border: 1px solid var(--monochrome-300);
+          @include page-button-hover--tab;
+
+          box-shadow: var(--btn-shadow);
+
+          #{$block-name}__btn-amount {
             color: var(--monochrome-100);
+            border: var(--amount-border-active);
           }
         }
       }
     }
 
+    &:active,
     &--active {
-      pointer-events: none;
-      background-color: var(--monochrome-500);
-      border-top: 1px solid var(--monochrome-400);
-      box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+      @include page-button-active;
 
-      .filter__btn-amount {
+      box-shadow: var(--btn-shadow);
+
+      #{$block-name}__btn-amount {
         color: var(--monochrome-100);
-        border: 1px solid var(--monochrome-400);
+        border: var(--amount-border-active);
       }
     }
+  }
 
-    &-icon {
-      @include box(24px);
+  &__btn-icon {
+    @include box(24px);
 
-      margin-right: 12px;
-    }
+    margin-right: 12px;
+  }
 
-    &-value {
-      @include type-title;
-    }
+  &__btn-value {
+    @include type-title;
   }
 
   &.open {
