@@ -1,20 +1,14 @@
 @import "../../scss/mixins/text-styles";
 @import "../../scss/mixins/flexbox.scss";
+@import "../../scss/mixins/page-button.scss";
 @import "../../scss/breakpoints";
 
 .tabs {
   $block-name: &; // #{$block-name}__element
-
   &__wrapper {
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index: var(--z-index-mobile-header);
-    padding: 12px 16px;
-    background-color: var(--monochrome-700-blur);
+    padding: 12px 0;
 
     @media screen and (min-width: $screen-d) {
-      position: static;
       padding: 80px 0 32px;
     }
   }
@@ -25,26 +19,35 @@
     padding: 8px;
     background-color: var(--monochrome-800);
     border-radius: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      border-radius: 24px;
+    }
   }
 
   &__label {
     @include flex-center;
     @include tab-title;
+    @include page-button();
+    @include tab-title;
 
     position: relative;
-    width: calc(50% - 4px);
-    padding: 8px 16px;
-    border-top: var(--buttons-border-top);
-    border-radius: 8px;
-    cursor: pointer;
+    width: 100%;
+    padding: 7px 16px 8px;
 
     @media screen and (min-width: $screen-d) {
-      padding: 16px;
+      padding: 15px 16px 16px;
+      border-radius: 16px;
+    }
+
+    @media (hover: hover) {
+      &:not(#{$block-name}__label--active):hover {
+        @include page-button-hover--tab;
+      }
     }
 
     &--active {
-      background-color: var(--tab-hover-color);
-      cursor: default;
+      @include page-button-active;
     }
   }
 

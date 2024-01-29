@@ -7,7 +7,7 @@ ready(function () {
     const firstPageBtn = paginationBlock.querySelector(".js-pagination-first");
     const lastPageBtn = paginationBlock.querySelector(".js-pagination-last");
 
-    // todo test amountgit
+    // todo test amount
     const totalcount = 12;
 
     let currentPage = 1;
@@ -20,7 +20,7 @@ ready(function () {
     };
 
     const addDots = () => {
-      return `<button class="pagination__btn pagination__btn--dots">...</button>`;
+      return `<span class="pagination__btn pagination__btn--dots">...</span>`;
     };
 
     const initPagination = () => {
@@ -32,51 +32,59 @@ ready(function () {
         }
       } else {
         // Если текущая страница первая
-        if (currentPage === 1) {
-          HTML += addButton("1");
-        }
+        // if (currentPage === 1) {
+        //   HTML += addButton("1");
+        // }
 
-        // Отрисовка точек  "..." если currentPage is > 3
-        if (currentPage > 1) {
+        if (currentPage >= 5 && totalcount > 5) {
           HTML += addDots();
         }
 
-        // Если выбрана последняя страница
-        if (currentPage == totalcount) {
-          HTML += addButton(currentPage - 2);
-        }
+        // Отрисовка точек  "..." если currentPage is > 3
+        //  if (currentPage > 1) {
+        if (currentPage < 5 && totalcount > 5) {
+          // HTML += addDots();
+          for (let i = 1; i <= 5; i++) {
+            HTML += addButton(i);
+          }
+        } else {
+          // Если выбрана последняя страница
+          if (currentPage == totalcount) {
+            HTML += addButton(currentPage - 2);
+          }
 
-        // отрисовать 2 предыдущую страницу
-        if (currentPage > 3) {
-          HTML += addButton(currentPage - 2);
-        }
+          // отрисовать 2 предыдущую страницу
+          if (currentPage > 3) {
+            HTML += addButton(currentPage - 2);
+          }
 
-        // отрисовать предыдущую страницу
-        if (currentPage > 2) {
-          HTML += addButton(currentPage - 1);
-        }
+          // отрисовать предыдущую страницу
+          if (currentPage > 2) {
+            HTML += addButton(currentPage - 1);
+          }
 
-        //Отрисовать текущую страницу, если она не первая
-        if (currentPage != 1 && currentPage != totalcount) {
-          HTML += addButton(currentPage);
-        }
+          //Отрисовать текущую страницу, если она не первая
+          if (currentPage != 1 && currentPage != totalcount) {
+            HTML += addButton(currentPage);
+          }
 
-        // отрисовать следующую страницу
-        if (currentPage < totalcount - 1) {
-          HTML += addButton(currentPage + 1);
-        }
+          // отрисовать следующую страницу
+          if (currentPage < totalcount - 1) {
+            HTML += addButton(currentPage + 1);
+          }
 
-        //отрисовать 2 следующую страницу
-        if (currentPage < totalcount - 2) {
-          HTML += addButton(currentPage + 2);
-        }
+          //отрисовать 2 следующую страницу
+          if (currentPage < totalcount - 2) {
+            HTML += addButton(currentPage + 2);
+          }
 
-        // Если выбрана первая страница
-        if (currentPage == 1 && totalcount > 3) {
-          HTML += addButton(currentPage + 3);
-        }
-        if (currentPage == 1 && totalcount > 4) {
-          HTML += addButton(currentPage + 4);
+          // Если выбрана первая страница
+          if (currentPage == 1 && totalcount > 3) {
+            HTML += addButton(currentPage + 3);
+          }
+          if (currentPage == 1 && totalcount > 4) {
+            HTML += addButton(currentPage + 4);
+          }
         }
 
         // отрисовка точек "..." если currentPage is < lastPage -2
@@ -116,7 +124,8 @@ ready(function () {
       initPagination();
     };
 
-    document.addEventListener("click", (evt) => {
+    paginationBlock.addEventListener("click", (evt) => {
+      evt.stopPropagation();
       if (evt.target.closest(".js-pagination-first")) {
         evt.preventDefault();
         handleFirstPageClick();

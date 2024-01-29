@@ -4,85 +4,129 @@
 @import "../../scss/breakpoints";
 
 .p-card {
+  $block-name: &; // #{$block-name}__element
+
+  --card-box-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%); // stylelint-disable-line
+  --card-border: 1px solid var(--monochrome-500); // stylelint-disable-line
+  --card-border-hover: 1px solid var(--monochrome-500); // stylelint-disable-line
+
   @include flex-column-center;
 
-  width: calc(100% / 2 - 4px);
-  padding: 8px;
+  gap: 8px;
+  height: 100%;
+  padding: 7px 8px 8px;
   background-color: var(--monochrome-600);
-  border-top: var(--card-border-top);
+  border-top: var(--card-border);
   border-radius: 8px;
-  box-shadow: var(--card-shadow-mobile);
+  box-shadow: var(--card-box-shadow);
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
 
-  @media screen and (min-width: $screen-tl) {
-    width: calc(100% / 3 - 6px);
+  @media screen and (min-width: $screen-ti) {
+    gap: 16px;
     padding-bottom: 16px;
     border-radius: 16px;
   }
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--monochrome-400);
-    }
-  }
+      background-color: var(--monochrome-500);
+      border-top: var(--card-border-hover);
 
-  &__photo {
-    @include flex-center;
+      #{$block-name}__miniature {
+        background-color: var(--monochrome-900);
+      }
 
-    position: relative;
-    width: 100%;
-    margin-bottom: 8px;
-    padding: 16px 8px;
-    background-color: var(--monochrome-700);
-    border-radius: 8px;
-
-    @media screen and (min-width: $screen-tl) {
-      margin-bottom: 14px;
-      padding: 40px;
-    }
-
-    &-id {
-      @include title-num;
-
-      position: absolute;
-      top: 8px;
-      left: 8px;
-
-      @media screen and (min-width: $screen-tl) {
-        top: 11px;
-        left: 12px;
+      #{$block-name}__feature,
+      #{$block-name}__feature-icon {
+        border-color: var(--monochrome-400);
       }
     }
   }
 
-  &__name {
-    margin-bottom: 19px;
+  &__miniature {
+    @include flex-center;
 
-    @media screen and (min-width: $screen-tl) {
-      @include flex-center-sb;
+    position: relative;
+    width: 100%;
+    padding: 16px 8px;
+    background-color: var(--monochrome-700);
+    border-radius: 8px;
 
-      width: 100%;
-      margin-bottom: 13px;
+    @media screen and (min-width: $screen-ti) {
+      padding: 40px;
+    }
+  }
+
+  &__miniature-id {
+    @include title-num;
+
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    @media screen and (min-width: $screen-ti) {
+      top: 11px;
+      left: 12px;
+    }
+  }
+
+  &__info {
+    @include flex-column-center;
+
+    flex-grow: 1;
+    gap: 8px;
+    width: 100%;
+
+    @media screen and (min-width: $screen-ti) {
+      gap: 24px;
       padding: 0 8px;
     }
+  }
 
-    &-value {
-      @include title;
+  &__row {
+    @include flex-column-center;
 
-      display: block;
-      margin-bottom: 12px;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+    margin-bottom: 12px;
+
+    @media screen and (min-width: $screen-ti) {
+      flex-direction: row;
+      gap: 16px;
+      align-items: space;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 0;
     }
+  }
+
+  &__title {
+    @include title;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__types {
     display: flex;
     gap: 8px;
     justify-content: center;
+    width: 100%;
+    max-width: 33%;
+
+    @media screen and (min-width: $screen-ti) {
+      flex-wrap: wrap;
+      padding: 5px 0;
+    }
   }
 
   &__type {
     @include box(16px);
 
-    @media screen and (min-width: $screen-tl) {
+    @media screen and (min-width: $screen-ti) {
       @include box(24px);
     }
   }
@@ -93,52 +137,52 @@
     gap: 4px;
     width: 100%;
 
-    @media screen and (min-width: $screen-tl) {
+    @media screen and (min-width: $screen-ti) {
       gap: 8px;
-      padding: 0 8px;
     }
   }
 
   &__feature {
     width: calc(100% / 2 - 2px);
-    border: 1px solid var(--monochrome-500);
+    border: var(--card-border);
     border-radius: 8px;
 
-    @media screen and (min-width: $screen-tl) {
+    @media screen and (min-width: $screen-ti) {
       display: flex;
       width: calc(100% / 2 - 4px);
     }
+  }
 
-    &-container {
-      @include flex-center;
+  &__feature-container {
+    @include flex-center;
+  }
 
-      padding: 8px 12px;
-    }
+  &__feature-icon {
+    padding: 7px 12px;
+    border-bottom: var(--card-border);
 
-    &-icon {
-      border-bottom: 1px solid var(--monochrome-500);
-
-      @media screen and (min-width: $screen-tl) {
-        border-right: 1px solid var(--monochrome-500);
-        border-bottom: none;
-      }
-
-      &-svg {
-        @include box(16px);
-
-        @media screen and (min-width: $screen-tl) {
-          @include box(24px);
-        }
-      }
-    }
-
-    &-value {
-      @include title-data;
-
-      @media screen and (min-width: $screen-tl) {
-        width: 100%;
-      }
+    @media screen and (min-width: $screen-ti) {
+      border-right: var(--card-border);
+      border-bottom: none;
     }
   }
-  $block-name: &; // #{$block-name}__element
+
+  &__feature-icon-svg {
+    @include box(16px);
+
+    @media screen and (min-width: $screen-ti) {
+      @include box(24px);
+    }
+  }
+
+  &__feature-value {
+    @include title-data;
+
+    padding: 8px 12px 7px;
+    white-space: nowrap;
+
+    @media screen and (min-width: $screen-ti) {
+      width: 100%;
+    }
+  }
 }

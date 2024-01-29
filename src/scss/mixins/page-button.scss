@@ -1,0 +1,34 @@
+@import "../breakpoints";
+
+@mixin page-button($br: 8px) {
+  background-color: var(--monochrome-600);
+  border: 1px solid transparent;
+  border-top-color: var(--monochrome-500);
+  border-radius: $br;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+}
+
+@mixin page-button-menu() {
+  background-color: var(--monochrome-800);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+}
+
+@mixin page-button-hover() {
+  border: 1px solid var(--color-blue-300);
+}
+
+@mixin page-button-hover--tab() {
+  background-color: var(--monochrome-400);
+  border-top: 1px solid var(--monochrome-300);
+}
+
+@mixin page-button-active() {
+  background-color: var(--monochrome-500);
+  border: 1px solid transparent;
+  border-top: 1px solid var(--monochrome-400);
+  pointer-events: none;
+}
