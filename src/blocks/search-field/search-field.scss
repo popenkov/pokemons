@@ -2,24 +2,52 @@
 @import "../../scss/mixins/flexbox";
 
 .search-field {
-  $block-name: &; // #{$block-name}__element
+  position: relative;
+
+  .highlight {
+    color: var(--color-yellow);
+  }
 
   &__input {
-    padding: 16px 16px 16px 56px;
+    @include tab-title;
+
+    width: 100%;
+    padding: 15px 16px;
     background-color: var(--monochrome-700);
+    border: 1px solid transparent;
     border-bottom: 1px solid var(--monochrome-500);
+    border-radius: 16px;
+
+    &::placeholder {
+      padding-left: 40px;
+      color: var(--monochrome-400);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__results {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-height: 300px;
+    padding: 8px;
+    overflow-y: auto;
+    background: var(--monochrome-700);
     border-radius: 16px;
   }
 
-  &__message {
-    @include field;
-
-    display: none;
-    margin-top: 4px;
-    color: var(--color-warning);
-
-    #{$block-name}__input:invalid + & {
-      display: block;
-    }
+  &__results-container {
+    @include flex-column;
   }
+
+  &__results-item {
+    @include flex-center;
+
+    padding: 0 8px;
+    border-radius: 8px;
+  }
+  $block-name: &; // #{$block-name}__element
 }

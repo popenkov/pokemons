@@ -2,17 +2,26 @@
 @import "../../scss/mixins/flexbox.scss";
 @import "../../scss/mixins/text-styles";
 @import "../../scss/mixins/blocks";
+@import "../../scss/mixins/dashed-border";
 
 .section-fights {
-  $block-name: &; // #{$block-name}__element
+  .button {
+    max-width: 320px;
+    margin: 0 auto;
+  }
 
   &__wrapper {
+    @include flex-column;
+
+    gap: 24px;
     width: 100%;
     margin-bottom: 16px;
+    padding: 8px;
     background: var(--monochrome-800);
     border-radius: 24px;
 
     @media screen and (min-width: $screen-d) {
+      gap: 48px;
       margin-bottom: 0;
     }
   }
@@ -25,36 +34,93 @@
     margin: 0 auto;
   }
 
-  &__choose-fighter {
-    &-wrapper {
-      @include flex-column;
-    }
+  &__choose-fighter-wrapper {
+    @include flex-column;
 
-    &-card {
-      // todo
+    gap: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      flex-direction: row;
+      align-items: center;
     }
   }
+
+  &__choose-fighter-card {
+    @media screen and (min-width: $screen-d) {
+      flex-grow: 1;
+      width: 100%;
+      max-width: 607px;
+    }
+  }
+
+  &__choose-fighter-separator {
+    @include tile-title-desktop;
+
+    margin: 0 auto;
+
+    @media screen and (min-width: $screen-d) {
+      margin-top: 72px;
+    }
+  }
+
+  &__footer {
+    @include flex-column;
+
+    gap: 16px;
+  }
+
+  &__results {
+    @include dashed-border;
+
+    &::before {
+      @include dashed-border--before;
+    }
+  }
+
+  &__results-text {
+    @include tile-title-mobile;
+
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+
+    @media screen and (min-width: $screen-d) {
+      @include tile-title-desktop;
+    }
+
+    &--winner {
+      color: var(--color-red);
+    }
+  }
+  $block-name: &; // #{$block-name}__element
 }
 
 .choose-fighter-card {
-  &__search {
-    // todo
-  }
+  @include flex-column;
+
+  gap: 16px;
 
   &__result {
     position: relative;
     min-height: 248px;
-    padding: 8px;
-    border: 2px dashed var(--monochrome-600);
-    border-radius: 16px;
-    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%);
+
+    &--empty {
+      @include dashed-border;
+
+      padding: 8px;
+
+      &::before {
+        @include dashed-border--before;
+      }
+    }
 
     &-text {
       @include absolute-center;
       @include tab-title;
 
       width: 100%;
-      max-width: 312px;
+      padding: 0 20px;
       color: var(--monochrome-500);
       text-align: center;
     }

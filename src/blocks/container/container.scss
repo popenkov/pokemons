@@ -9,7 +9,6 @@
   }
 
   @media screen and (min-width: $screen-d) {
-    box-sizing: content-box;
     width: 100%;
     max-width: var(--max-container-width);
     margin: 0 auto;

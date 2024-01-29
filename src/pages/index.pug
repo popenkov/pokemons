@@ -16,6 +16,7 @@ block content
               button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
 
       .tabs__panes
+        //-todo .tabs__pane--active
         .tabs__pane.tabs__pane--active#tab0
           .section-pokemon
             h2.visually-hidden Выбор покемона
@@ -35,7 +36,8 @@ block content
                       span.filter__btn-amount= menu.amount
 
             .section-pokemon__wrapper
-              +loader
+              .section-pokemon__items--loading.js-pokemon-loader
+                +loader
               .section-pokemon__items.js-pokemon-items
                 each pokemon in data.pokemons
                   .section-pokemon__item
@@ -45,5 +47,5 @@ block content
             button.filter-btn.js-mobile-filter-btn
               svg.filter-btn__icon: use(href= src.icon + 'filter-icon')
 
-        .tabs__pane.tabs__pane--active#tab1
+        .tabs__pane#tab1
           +section-fights

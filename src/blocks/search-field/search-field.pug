@@ -1,34 +1,6 @@
-//- Все примеси в этом файле должны начинаться c имени блока (search-field)
-//- Упоминание имени блока в классах обязательно, без этого он не попадёт в сборку
-
-mixin search-field( placeholder, mods, name, id, value, max)
-
-  //- Принимает:
-  //-   type        {string} - тип поля [text|email|phone|search|password|number|file|textarea|select]
-  //-   label       {string} - заголовок поля
-  //-   placeholder {string} - атрибут placeholder
-  //-   mods        {string} - список модификаторов
-  //-   name        {string} - атрибут name
-  //-   id          {string} - атрибут id
-  //-   value       {string} - атрибут value
-  //-   max         {string} - максимальное значение
-  //- Вызов:
-        +search-field('text', 'Имя', 'Введите имя', 'some-mod', 'search-field-id', 'search-field-name', 'Д’Артаньян')
-
-  -
-    // список модификаторов
-    var allMods = '';
-    if(typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' search-field--' + modsList[i].trim();
-      }
-    }
-
-
+mixin search-field(placeholder, name )
   .search-field(class= allMods)
     label.search-field__inner
-      input.search-field__input(type='text', placeholder, name, id, value)&attributes(attributes)
-      if label
-        span.search-field__label!= label
-    .search-field__message Текст ошибки
+      input.search-field__input.js-search-input(type='text', placeholder=placeholder, name=name)&attributes(attributes)
+  .search-field__results.js-search-results.hide
+    .search-field__results-container.js-search-results-container

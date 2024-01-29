@@ -4,7 +4,7 @@ ready(function () {
   const pokemonsSection = document.querySelector(".section-pokemon");
 
   if (pokemonsSection) {
-    const loader = pokemonsSection.querySelector(".js-loader");
+    const loader = pokemonsSection.querySelector(".js-pokemon-loader");
     const pagination = pokemonsSection.querySelector(".js-pagination");
     const pokemonsItems = pokemonsSection.querySelector(".js-pokemon-items");
 

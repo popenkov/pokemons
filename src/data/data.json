@@ -125,7 +125,35 @@
           "name": "defence",
           "value": "00 / 00"
         }
-      ]
+      ],
+      "fightFeatures": [
+        {
+          "name": "health",
+          "value": "00"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "speed",
+          "value": "00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        },
+        {
+          "name": "weight",
+          "value": "00.0"
+        },
+        {
+          "name": "height",
+          "value": "00"
+        }
+      ],
+      "weakness": ["water", "ground", "rock"],
+      "strength": "Blaze"
     },
     {
       "id": "002",
@@ -149,7 +177,35 @@
           "name": "defence",
           "value": "00 / 00"
         }
-      ]
+      ],
+      "fightFeatures": [
+        {
+          "name": "health",
+          "value": "00"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "speed",
+          "value": "00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        },
+        {
+          "name": "weight",
+          "value": "00.0"
+        },
+        {
+          "name": "height",
+          "value": "00"
+        }
+      ],
+      "weakness": ["water", "ground", "rock"],
+      "strength": "Blaze"
     },
     {
       "id": "003",
@@ -173,7 +229,35 @@
           "name": "defence",
           "value": "00 / 00"
         }
-      ]
+      ],
+      "fightFeatures": [
+        {
+          "name": "health",
+          "value": "00"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "speed",
+          "value": "00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        },
+        {
+          "name": "weight",
+          "value": "00.0"
+        },
+        {
+          "name": "height",
+          "value": "00"
+        }
+      ],
+      "weakness": ["water", "ground", "rock"],
+      "strength": "Blaze"
     },
     {
       "id": "004",
@@ -197,7 +281,35 @@
           "name": "defence",
           "value": "00 / 00"
         }
-      ]
+      ],
+      "fightFeatures": [
+        {
+          "name": "health",
+          "value": "00"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "speed",
+          "value": "00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        },
+        {
+          "name": "weight",
+          "value": "00.0"
+        },
+        {
+          "name": "height",
+          "value": "00"
+        }
+      ],
+      "weakness": ["water", "ground", "rock"],
+      "strength": "Blaze"
     },
     {
       "id": "005",
@@ -221,7 +333,35 @@
           "name": "defence",
           "value": "00 / 00"
         }
-      ]
+      ],
+      "fightFeatures": [
+        {
+          "name": "health",
+          "value": "00"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "speed",
+          "value": "00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        },
+        {
+          "name": "weight",
+          "value": "00.0"
+        },
+        {
+          "name": "height",
+          "value": "00"
+        }
+      ],
+      "weakness": ["water", "ground", "rock"],
+      "strength": "Blaze"
     },
     {
       "id": "006",
@@ -245,7 +385,35 @@
           "name": "defence",
           "value": "00 / 00"
         }
-      ]
+      ],
+      "fightFeatures": [
+        {
+          "name": "health",
+          "value": "00"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "speed",
+          "value": "00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        },
+        {
+          "name": "weight",
+          "value": "00.0"
+        },
+        {
+          "name": "height",
+          "value": "00"
+        }
+      ],
+      "weakness": ["water", "ground", "rock"],
+      "strength": "Blaze"
     }
   ]
 }

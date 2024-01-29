@@ -1,0 +1,32 @@
+@import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/flexbox";
+
+.button {
+  $block-name: &; // #{$block-name}__element
+
+  @include flex-center;
+  @include tab-title;
+
+  width: 100%;
+  padding: 15px;
+  background-color: var(--color-red);
+  border: 1px solid transparent;
+  border-top-color: var(--monochrome-200);
+  border-radius: 16px;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-orange);
+    }
+  }
+
+  &:active {
+    background-color: var(--color-violet-200);
+  }
+
+  &:disabled {
+    background-color: var(--monochrome-700);
+    border-top-color: var(--monochrome-500);
+    pointer-events: none;
+  }
+}
