@@ -1,70 +1,111 @@
-import axios from "axios";
+// import axios from "axios";
 import ready from "../../js/utils/documentReady.js";
-import { getMockResultsHtml } from "./mock-helpers.js";
+import { createSearchResultsItem, getMockResultsHtml } from "./mock-helpers.js";
 import { debounce } from "../../js/utils/debounce.js";
+import { highlightText } from "../../js/utils/highlightText.js";
 
 ready(function () {
-  const searchInputs = document.querySelectorAll(".js-search-input");
-  const searchResultsWrapper = document.querySelector(".js-search-results");
-  const searchResultsContainer = document.querySelector(".js-search-results-container");
+  const fightsSection = document.querySelector(".section-fights");
 
-  const handleResultsShow = (searchResultsContainer) => {
-    searchResultsContainer?.classList.remove("hide");
-  };
-  const handleResultsHide = (container) => {
-    container?.classList.add("hide");
-  };
+  if (fightsSection) {
+    const searchInputs = fightsSection.querySelectorAll(".js-search-input");
+    const searchResultsWrapper = fightsSection.querySelector(".js-search-results");
+    const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
 
-  // todo шаблон запроса
-  const getSearchData = async (value) => {
-    try {
-      const testUrl = "https://jsonplaceholder.typicode.com/posts";
-      const result = await axios.post(
-        testUrl,
-        { q: value },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        },
+    const handleResultsShow = (resultsContainer) => {
+      resultsContainer.classList.remove("hide");
+    };
+    const handleResultsHide = (resultsContainer) => {
+      resultsContainer.classList.add("hide");
+    };
+
+    const showLoader = (loader) => {
+      loader.classList.remove("hide");
+    };
+
+    const hideLoader = (loader) => {
+      loader.classList.add("hide");
+    };
+
+    // todo шаблон запроса
+    // const getSearchData = async (value) => {
+    //   try {
+    //     const testUrl = "https://jsonplaceholder.typicode.com/posts";
+    //     const result = await axios.post(
+    //       testUrl,
+    //       { q: value },
+    //       {
+    //         headers: {
+    //           "Content-Type": "multipart/form-data",
+    //         },
+    //       },
+    //     );
+
+    //     if (result.data) {
+    //       return result.data;
+    //     }
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+
+    const handleInputSearch = async (evt) => {
+      evt.preventDefault();
+
+      const currentInput = evt.target;
+
+      const trimmedValue = currentInput.value.trim();
+      const currentSearchContainer = currentInput.closest(".search-field");
+      const currentLoader = currentSearchContainer.querySelector(".js-search-loader");
+      // todo
+      // const currentResults = currentSearchContainer.querySelector(".js-search-results");
+      const currentResultsContainer = currentSearchContainer.querySelector(
+        ".js-search-results-container",
       );
 
-      if (result.data) {
-        return result.data;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleInputSearch = async (evt) => {
-    evt.preventDefault();
-
-    const value = evt.target.value;
-
-    if (value.trim().length > 0) {
-      const result = await getSearchData(value);
-      if (result) {
-        searchResultsContainer.innerHTML = null;
+      if (trimmedValue.length > 0) {
         // todo made for test
-        getMockResultsHtml(searchResultsContainer);
+        // const result = await getSearchData(value);
+        const result = await getMockResultsHtml(searchResultsContainer);
 
-        handleResultsShow(searchResultsWrapper);
+        console.log("result", result);
+
+        if (result) {
+          showLoader(currentLoader);
+          currentResultsContainer.innerHTML = null;
+
+          result.forEach((item) => {
+            currentResultsContainer.insertAdjacentHTML("beforeend", createSearchResultsItem(item));
+          });
+
+          highlightText(trimmedValue);
+
+          hideLoader(currentLoader);
+          handleResultsShow(currentResultsContainer);
+        } else {
+          handleResultsHide(currentResultsContainer);
+        }
       } else {
-        handleResultsHide(searchResultsWrapper);
+        searchResultsContainer.innerHTML = null;
       }
-    } else {
-      searchResultsContainer.innerHTML = null;
-    }
-  };
+    };
 
-  const handleInputBlur = () => {
-    handleResultsHide(searchResultsWrapper);
-  };
+    const handleInputBlur = (evt) => {
+      // todo
+      const currentInput = evt.target;
+      const currentSearchContainer = currentInput.closest(".search-field");
+      const currentResultsContainer = currentSearchContainer.querySelector(
+        ".js-search-results-container",
+      );
 
-  searchInputs.forEach((input) => {
-    input.addEventListener("input", debounce(handleInputSearch, 500));
-    input.addEventListener("blur", handleInputBlur);
-    input.addEventListener("focus", () => handleResultsShow(searchResultsWrapper));
-  });
+      handleResultsHide(currentResultsContainer);
+      currentInput.value = "";
+    };
+
+    searchInputs.forEach((input) => {
+      input.addEventListener("input", debounce(handleInputSearch, 500));
+      input.addEventListener("blur", handleInputBlur);
+      input.addEventListener("focus", () => handleResultsShow(searchResultsWrapper));
+    });
+  }
 });

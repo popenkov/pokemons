@@ -2,5 +2,7 @@ mixin search-field(placeholder, name )
   .search-field(class= allMods)
     label.search-field__inner
       input.search-field__input.js-search-input(type='text', placeholder=placeholder, name=name)&attributes(attributes)
-  .search-field__results.js-search-results.hide
-    .search-field__results-container.js-search-results-container
+    .search-field__results.js-search-results
+      .search-field__results-loader.js-search-loader.hide
+        +loader
+      .search-field__results-container.js-search-results-container.hide

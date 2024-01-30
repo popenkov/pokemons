@@ -5,6 +5,12 @@
 @import "../../scss/mixins/dashed-border";
 
 .section-fights {
+  @media screen and (min-width: $screen-d) {
+    @include flex-column;
+
+    gap: 48px;
+  }
+
   .button {
     max-width: 320px;
     margin: 0 auto;
@@ -70,6 +76,7 @@
   }
 
   &__results {
+    @include flex-center;
     @include dashed-border;
 
     &::before {
@@ -80,10 +87,7 @@
   &__results-text {
     @include tile-title-mobile;
 
-    display: inline-block;
-    width: 100%;
     padding: 16px;
-    text-align: center;
 
     @media screen and (min-width: $screen-d) {
       @include tile-title-desktop;
@@ -91,6 +95,10 @@
 
     &--winner {
       color: var(--color-red);
+    }
+
+    &--draw {
+      color: var(--color-yellow);
     }
   }
   $block-name: &; // #{$block-name}__element

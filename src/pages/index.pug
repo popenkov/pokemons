@@ -17,7 +17,7 @@ block content
 
       .tabs__panes
         //-todo .tabs__pane--active
-        .tabs__pane.tabs__pane--active#tab0
+        .tabs__pane#tab0
           .section-pokemon
             h2.visually-hidden Выбор покемона
 
@@ -47,5 +47,5 @@ block content
             button.filter-button.js-mobile-filter-button
               svg.filter-button__icon: use(href= src.icon + 'filter-icon')
 
-        .tabs__pane#tab1
+        .tabs__pane.tabs__pane--active#tab1
           +section-fights

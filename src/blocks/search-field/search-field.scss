@@ -2,6 +2,8 @@
 @import "../../scss/mixins/flexbox";
 
 .search-field {
+  $block-name: &; // #{$block-name}__element
+
   position: relative;
 
   .highlight {
@@ -33,21 +35,36 @@
     z-index: 2;
     width: 100%;
     max-height: 300px;
-    padding: 8px;
     overflow-y: auto;
     background: var(--monochrome-700);
     border-radius: 16px;
   }
 
+  &__results-loader {
+    @include flex-center;
+
+    box-sizing: border-box;
+    height: 56px;
+    padding: 4px 16px;
+  }
+
   &__results-container {
     @include flex-column;
+
+    padding: 8px;
   }
 
   &__results-item {
-    @include flex-center;
+    @include flex-center-vertical;
+    @include tab-title;
 
     padding: 0 8px;
     border-radius: 8px;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--monochrome-600);
+      }
+    }
   }
-  $block-name: &; // #{$block-name}__element
 }

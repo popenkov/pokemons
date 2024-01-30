@@ -1,15 +1,39 @@
 const SEARCH_MOCK_DATA = [
   {
-    img: "/",
-    title: "Bulbasaur",
+    img: "./img/preview.png",
+    title: "001 — Bulbasaur",
   },
   {
-    img: "",
-    title: "Ivysaur",
+    img: "./img/preview.png",
+    title: "002 — Ivysaur",
   },
   {
-    img: "",
-    title: "Venusaur",
+    img: "./img/preview.png",
+    title: "003 — Venusaur",
+  },
+  {
+    img: "./img/preview.png",
+    title: "001 — Bulbasaur",
+  },
+  {
+    img: "./img/preview.png",
+    title: "002 — Ivysaur",
+  },
+  {
+    img: "./img/preview.png",
+    title: "003 — Venusaur",
+  },
+  {
+    img: "./img/preview.png",
+    title: "001 — Bulbasaur",
+  },
+  {
+    img: "./img/preview.png",
+    title: "002 — Ivysaur",
+  },
+  {
+    img: "./img/preview.png",
+    title: "003 — Venusaur",
   },
 ];
 
@@ -23,18 +47,19 @@ const generateRandomData = () => {
   return SEARCH_MOCK_DATA.slice(0, randomLengthValue);
 };
 
-const createSearchResultsItem = (itemData) => {
+export const createSearchResultsItem = (itemData) => {
   const { img, title } = itemData;
-  return `<button class="search-field__results-item"
-            href="/search.html"><img class="search-field__results-item-img" src="${img}"
+  return `<button class="search-field__results-item js-search-result-item"
+            ><img class="search-field__results-item-img" src="${img}"
               alt="#" />
             <p class="search-field__results-item-title js-highlight-text">${title}</p>
           </button>`;
 };
 
-export const getMockResultsHtml = (container) => {
+export const getMockResultsHtml = async () => {
   const data = generateRandomData();
-  data.forEach((item) => {
-    container.insertAdjacentHTML("beforeend", createSearchResultsItem(item));
-  });
+
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  return data;
 };
