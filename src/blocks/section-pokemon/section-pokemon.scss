@@ -4,12 +4,19 @@
 .section-pokemon {
   @media screen and (min-width: $screen-tl) {
     display: grid;
-    grid-template: auto auto / 354px 1fr;
+    grid-template: auto auto / 1fr 2fr;
     grid-template-areas:
       "filter pokemons"
       "pagination pagination";
     gap: 48px 20px;
     justify-items: center;
+  }
+
+  @media screen and (min-width: $screen-d) {
+    grid-template: auto auto / 354px auto;
+    grid-template-areas:
+      "filter pokemons"
+      "pagination pagination";
   }
 
   &__wrapper {
@@ -37,6 +44,10 @@
     padding: 8px;
     background-color: var(--monochrome-800);
     border-radius: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      background-repeat: 24px;
+    }
 
     &--loading {
       @include flex-center;

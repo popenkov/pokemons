@@ -1,7 +1,7 @@
 import ready from "../../js/utils/documentReady.js";
 
 ready(function () {
-  const filterBtn = document.querySelector(".js-mobile-filter-btn");
+  const filterBtn = document.querySelector(".js-mobile-filter-button");
 
   if (filterBtn) {
     const filterMenu = document.querySelector(".js-filter-menu");

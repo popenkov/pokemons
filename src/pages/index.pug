@@ -10,10 +10,10 @@ block content
   .container
     h1.visually-hidden Покемоны
     .pockemon-page.tabs
-      .tabs__wrapper.container
-        .tabs__labels
-          each label, index in data.tabs.labels
-              button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
+      //- todo проверить контейнер
+      .tabs__labels
+        each label, index in data.tabs.labels
+            button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
 
       .tabs__panes
         //-todo .tabs__pane--active
@@ -27,13 +27,13 @@ block content
                   span.filter__title Per page:
                   .filter__items
                     each menu, index in data.filters.perPage
-                      button.filter__btn.filter__btn--page.js-per-page-btn(class= (index === 0) ? "filter__btn--active" : '')= menu
+                      button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '')= menu
                 .filter__container.filter__container--type.js-type-filter-container
                   each menu, index in data.filters.perType
-                    button.filter__btn.filter__btn--type.js-type-btn(class= (index === 0) ? "filter__btn--active" : '')
-                      svg.filter__btn-icon: use(href= src.icon + 'type-' + menu.icon)
-                      span.filter__btn-value= menu.name
-                      span.filter__btn-amount= menu.amount
+                    button.filter__button.filter__button--type.js-type-button(class= (index === 0) ? "filter__button--active" : '')
+                      svg.filter__button-icon: use(href= src.icon + 'type-' + menu.icon)
+                      span.filter__button-value= menu.name
+                      span.filter__button-amount= menu.amount
 
             .section-pokemon__wrapper
               .section-pokemon__items--loading.js-pokemon-loader
@@ -44,8 +44,8 @@ block content
                     +p-card(pokemon)
             +pagination
 
-            button.filter-btn.js-mobile-filter-btn
-              svg.filter-btn__icon: use(href= src.icon + 'filter-icon')
+            button.filter-button.js-mobile-filter-button
+              svg.filter-button__icon: use(href= src.icon + 'filter-icon')
 
         .tabs__pane#tab1
           +section-fights

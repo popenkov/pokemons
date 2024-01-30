@@ -171,6 +171,8 @@
     left: 8px;
 
     @media screen and (min-width: $screen-ti) {
+      @include title-num-desktop;
+
       top: 11px;
       left: 12px;
     }
@@ -227,7 +229,7 @@
     gap: 8px;
     justify-content: center;
     width: 100%;
-    max-width: 33%;
+    max-width: 24%;
 
     @media screen and (min-width: $screen-ti) {
       flex-wrap: wrap;
@@ -268,11 +270,9 @@
     }
   }
 
-  &__feature-container {
-    @include flex-center;
-  }
-
   &__feature-icon {
+    @include flex-center;
+
     padding: 7px 12px;
     border-bottom: var(--card-border);
 
@@ -291,9 +291,10 @@
   }
 
   &__feature-value {
+    @include flex-center;
     @include title-data;
 
-    padding: 8px 12px 7px;
+    padding: 8px 7px 7px;
     white-space: nowrap;
 
     @media screen and (min-width: $screen-ti) {

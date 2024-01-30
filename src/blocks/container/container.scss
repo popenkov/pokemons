@@ -10,8 +10,8 @@
 
   @media screen and (min-width: $screen-d) {
     width: 100%;
+    width: calc(100% - 40px);
     max-width: var(--max-container-width);
     margin: 0 auto;
-    padding: 0 40px;
   }
 }

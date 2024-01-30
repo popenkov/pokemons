@@ -15,11 +15,6 @@
 @mixin title-num {
   font-size: 8px;
   line-height: 100%;
-
-  @media screen and (min-width: $screen-d) {
-    font-size: 12px;
-    line-height: 120%;
-  }
 }
 
 @mixin title-num-desktop {

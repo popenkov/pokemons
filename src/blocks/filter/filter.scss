@@ -7,40 +7,54 @@
 .filter {
   $block-name: &; // #{$block-name}__element
 
-  --btn-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%); // stylelint-disable-line
+  --button-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%); // stylelint-disable-line
   --amount-border: 1px solid var(--monochrome-500); // stylelint-disable-line
   --amount-border-hover: 1px solid var(--monochrome-400); // stylelint-disable-line
   --amount-border-active: 1px solid var(--monochrome-300); // stylelint-disable-line
 
   position: fixed;
   z-index: var(--z-index-filter-menu);
-  display: none;
-  backdrop-filter: blur(4px);
   inset: 0;
+  opacity: 0;
+  backdrop-filter: blur(4px);
+  transition: opacity ease-in-out 0.25s;
 
   @media screen and (min-width: $screen-tl) {
     position: static;
-    display: block;
     grid-area: filter;
+    width: 100%;
+    opacity: 1;
     backdrop-filter: none;
+  }
+
+  @media screen and (min-width: $screen-d) {
+    width: auto;
   }
 
   &__inner {
     @include flex-column;
 
+    position: relative;
+    left: -280px;
     gap: 4px;
     width: 280px;
     height: 100vh;
     padding: 8px 8px 80px;
     overflow-y: auto;
     background-color: var(--monochrome-600);
+    transition: left ease-in-out 0.25s;
 
     @media screen and (min-width: $screen-tl) {
+      left: unset;
       gap: 16px;
-      width: 354px;
+      width: 100%;
       height: auto;
       padding: 0;
       background-color: unset;
+    }
+
+    @media screen and (min-width: $screen-d) {
+      width: 354px;
     }
   }
 
@@ -75,7 +89,7 @@
     }
   }
 
-  &__btn-amount {
+  &__button-amount {
     @include type-amount;
 
     min-width: 48px;
@@ -86,7 +100,7 @@
     border-radius: 8px;
   }
 
-  &__btn {
+  &__button {
     display: flex;
     align-items: center;
     border-radius: 8px;
@@ -111,15 +125,15 @@
     &--type {
       @include page-button-menu;
 
-      padding: 5px 6px 5px 16px;
+      padding: 5px;
 
       @media (hover: hover) {
         &:hover {
           @include page-button-hover--tab;
 
-          box-shadow: var(--btn-shadow);
+          box-shadow: var(--button-shadow);
 
-          #{$block-name}__btn-amount {
+          #{$block-name}__button-amount {
             color: var(--monochrome-100);
             border: var(--amount-border-active);
           }
@@ -130,26 +144,31 @@
     &--active {
       @include page-button-active;
 
-      box-shadow: var(--btn-shadow);
+      box-shadow: var(--button-shadow);
 
-      #{$block-name}__btn-amount {
+      #{$block-name}__button-amount {
         color: var(--monochrome-100);
         border: var(--amount-border-active);
       }
     }
   }
 
-  &__btn-icon {
+  &__button-icon {
     @include box(24px);
 
     margin-right: 12px;
+    margin-left: 11px;
   }
 
-  &__btn-value {
+  &__button-value {
     @include type-title;
   }
 
   &.open {
-    display: block;
+    opacity: 1;
+
+    #{$block-name}__inner {
+      left: 0;
+    }
   }
 }

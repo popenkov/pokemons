@@ -4,18 +4,15 @@
 .pagination {
   $block-name: &; // #{$block-name}__element
 
-  margin-bottom: 32px;
-
   @media screen and (min-width: $screen-tl) {
     grid-area: pagination;
-    margin-bottom: 72px;
   }
 
   &__inner {
     display: grid;
     grid-template: repeat(2, auto) / repeat(2, 1fr);
     grid-template-areas:
-      "btns btns"
+      "buttons buttons"
       "first last";
     gap: 8px;
     justify-items: center;
@@ -26,12 +23,12 @@
     @media screen and (min-width: $screen-tl) {
       display: flex;
       grid-template: auto / repeat(3, auto);
-      grid-template-areas: "first btns last";
+      grid-template-areas: "first buttons last";
       margin: 0 auto;
     }
   }
 
-  &__btn {
+  &__button {
     @include pagination;
     @include page-button();
 
@@ -45,7 +42,7 @@
     }
 
     @media (hover: hover) {
-      &:not(#{$block-name}__btn--active, #{$block-name}__btn--large):hover {
+      &:not(#{$block-name}__button--active, #{$block-name}__button--large):hover {
         @include page-button-hover;
       }
     }
@@ -79,9 +76,9 @@
     }
   }
 
-  &__btns-wrapper {
+  &__buttons-wrapper {
     display: flex;
-    grid-area: btns;
+    grid-area: buttons;
     gap: 8px;
   }
   $block-name: &; // #{$block-name}__element

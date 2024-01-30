@@ -3,7 +3,7 @@ import ready from "../../js/utils/documentReady.js";
 ready(function () {
   const paginationBlock = document.querySelector(".pagination");
   if (paginationBlock) {
-    const paginationBtns = paginationBlock.querySelector(".js-pagination-btns-wrapper");
+    const paginationBtns = paginationBlock.querySelector(".js-pagination-buttons-wrapper");
     const firstPageBtn = paginationBlock.querySelector(".js-pagination-first");
     const lastPageBtn = paginationBlock.querySelector(".js-pagination-last");
 
@@ -14,13 +14,13 @@ ready(function () {
     const BTNS_IN_ROW_AMOUNT = 6;
 
     const addButton = (number) => {
-      return `<button class="pagination__btn js-pagination-btn ${
-        Number(number) === currentPage ? "pagination__btn--active" : ""
+      return `<button class="pagination__button js-pagination-button ${
+        Number(number) === currentPage ? "pagination__button--active" : ""
       }">${number}</button>`;
     };
 
     const addDots = () => {
-      return `<span class="pagination__btn pagination__btn--dots">...</span>`;
+      return `<span class="pagination__button pagination__button--dots">...</span>`;
     };
 
     const initPagination = () => {
@@ -135,9 +135,9 @@ ready(function () {
         handleLastPageClick();
       }
 
-      if (evt.target.closest(".js-pagination-btn")) {
+      if (evt.target.closest(".js-pagination-button")) {
         evt.preventDefault();
-        handlePaginationButtonClick(evt.target.closest(".js-pagination-btn"));
+        handlePaginationButtonClick(evt.target.closest(".js-pagination-button"));
       }
     });
   }

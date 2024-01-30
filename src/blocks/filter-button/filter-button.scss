@@ -1,13 +1,13 @@
 @import "../../scss/mixins/blocks";
 @import "../../scss/breakpoints";
 
-.filter-btn {
+.filter-button {
   @include box(48px);
 
   position: fixed;
   bottom: 24px;
   left: 12px;
-  z-index: var(--z-index-filter-btn);
+  z-index: var(--z-index-filter-button);
   padding: 12px;
   background-color: var(--monochrome-700-transparent);
   border: 1px solid var(--color-blue-300);
