@@ -1,10 +1,13 @@
 import ready from "../../js/utils/documentReady.js";
+import { generateFilterMenu } from "./utils.js";
 
 ready(function () {
   const filterBtn = document.querySelector(".js-mobile-filter-button");
 
   if (filterBtn) {
     const filterMenu = document.querySelector(".js-filter-menu");
+    const typesContainer = filterMenu.querySelector(".js-type-filter-container");
+
     filterBtn.addEventListener("click", (evt) => {
       evt.preventDefault();
       filterMenu.classList.toggle("open");
@@ -25,5 +28,7 @@ ready(function () {
     window.addEventListener("resize", () => {
       closeMenu();
     });
+
+    generateFilterMenu(typesContainer);
   }
 });
