@@ -1,0 +1,16 @@
+@mixin dashed-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%);
+}
+
+@mixin dashed-border--before {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  border: 12px dashed var(--monochrome-600);
+  content: "";
+}

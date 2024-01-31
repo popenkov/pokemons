@@ -90,6 +90,7 @@
   },
   "dependencies": {
     "autosize": "^5.0.2",
+    "axios": "^1.6.7",
     "imask": "^6.4.3",
     "sanitize.css": "^13.0.0"
   },

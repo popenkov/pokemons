@@ -1,0 +1,76 @@
+@import "../../scss/breakpoints";
+@import "../../scss/mixins/dashed-border";
+
+.section-pokemon {
+  @media screen and (min-width: $screen-tl) {
+    display: grid;
+    grid-template: auto auto / 1fr 2fr;
+    grid-template-areas:
+      "filter pokemons"
+      "pagination pagination";
+    gap: 48px 20px;
+    justify-items: center;
+  }
+
+  @media screen and (min-width: $screen-d) {
+    grid-template: auto auto / 354px auto;
+    grid-template-areas:
+      "filter pokemons"
+      "pagination pagination";
+  }
+
+  &__wrapper {
+    width: 100%;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $screen-ti) {
+      grid-area: pokemons;
+      margin-bottom: 0;
+    }
+  }
+
+  &__loader {
+    @include flex-center;
+
+    width: 100%;
+    min-height: 480px;
+    margin: 0 auto;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    background-color: var(--monochrome-800);
+    border-radius: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      background-repeat: 24px;
+    }
+
+    &--loading {
+      @include flex-center;
+      @include dashed-border;
+
+      min-height: 480px;
+
+      &::before {
+        @include dashed-border--before;
+      }
+    }
+  }
+
+  &__item {
+    width: calc(100% / 2 - 4px);
+
+    @media screen and (min-width: $screen-txl) {
+      width: calc(100% / 2 - 4px);
+    }
+
+    @media screen and (min-width: $screen-d) {
+      width: calc(100% / 3 - 6px);
+    }
+  }
+  $block-name: &; // #{$block-name}__element
+}

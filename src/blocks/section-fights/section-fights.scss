@@ -1,0 +1,147 @@
+@import "../../scss/breakpoints.scss";
+@import "../../scss/mixins/flexbox.scss";
+@import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/blocks";
+@import "../../scss/mixins/dashed-border";
+
+.section-fights {
+  @media screen and (min-width: $screen-d) {
+    @include flex-column;
+
+    gap: 48px;
+  }
+
+  .button {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  &__wrapper {
+    padding: 8px;
+    background: var(--monochrome-800);
+    border-radius: 24px;
+  }
+
+  &__fights-field {
+    @include flex-column;
+
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      gap: 48px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__loader {
+    @include flex-center;
+
+    width: 100%;
+    min-height: 480px;
+    margin: 0 auto;
+  }
+
+  &__choose-fighter-wrapper {
+    @include flex-column;
+
+    gap: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__choose-fighter-card {
+    &:last-child {
+      margin-bottom: 8px;
+    }
+
+    @media screen and (min-width: $screen-d) {
+      flex-grow: 1;
+      width: 100%;
+      max-width: 607px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__choose-fighter-separator {
+    @include tile-title-desktop;
+
+    margin: 0 auto;
+
+    @media screen and (min-width: $screen-d) {
+      margin-top: 72px;
+    }
+  }
+
+  &__footer {
+    @include flex-column;
+
+    gap: 16px;
+  }
+
+  &__results {
+    @include flex-center;
+    @include dashed-border;
+
+    &::before {
+      @include dashed-border--before;
+    }
+  }
+
+  &__results-text {
+    @include tile-title-mobile;
+
+    padding: 16px;
+
+    @media screen and (min-width: $screen-d) {
+      @include tile-title-desktop;
+    }
+
+    &--winner {
+      color: var(--color-red);
+    }
+
+    &--draw {
+      color: var(--color-yellow);
+    }
+  }
+  $block-name: &; // #{$block-name}__element
+}
+
+.choose-fighter-card {
+  @include flex-column;
+
+  gap: 16px;
+
+  &__result {
+    position: relative;
+    min-height: 248px;
+
+    &--empty {
+      @include dashed-border;
+
+      padding: 8px;
+
+      &::before {
+        @include dashed-border--before;
+      }
+    }
+
+    &-text {
+      @include absolute-center;
+      @include tab-title;
+
+      width: 100%;
+      padding: 0 20px;
+      color: var(--monochrome-500);
+      text-align: center;
+    }
+  }
+}

@@ -2,6 +2,10 @@
   font-size: var(--font-size-root);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -26,16 +30,57 @@ body {
   font-family: var(--font-base);
   line-height: var(--line-height-base);
   background-color: var(--body-bg);
+
+  overflow-x: hidden;
+
+  &.body-lock {
+    overflow: hidden;
+  }
 }
 
 svg {
   display: block;
 }
 
+button {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+}
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
 }
 
-[hidden] {
-  display: none;
+[hidden],
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.hide {
+  display: none !important;
 }
