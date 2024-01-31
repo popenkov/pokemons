@@ -3,6 +3,8 @@ import { getPockemons } from "../../js/services.js";
 const pokemonsItems = document.querySelector(".js-pokemon-items");
 
 import { BASE_URL } from "../../js/services.js";
+import { state } from "../../js/state.js";
+import { initPagination } from "../../js/utils/initPagination.js";
 
 const generateTypesHTML = (type) => {
   const typesContainer = document.createElement("div");
@@ -38,7 +40,9 @@ const renderPockemonCard = (data) => {
                         " alt="${name}"></div>
                         <div class="p-card__row">
                           <h3 class="p-card__title">${name}</h3>
-                          ${generateTypesHTML(type)}
+                          <div class="p-card__types">
+                            ${generateTypesHTML(type)}
+                          </div>
                         </div>
                         <div class="p-card__features">
                           <div class="p-card__feature"><span class="p-card__feature-icon"><svg class="p-card__feature-icon-svg"><use href="./img/svgSprite.svg#category-health"></use></svg></span><span class="p-card__feature-value">${health}</span></div>
@@ -54,13 +58,20 @@ const renderPockemonCard = (data) => {
 
 export const renderPockemonCards = async () => {
   const data = await getPockemons();
-  console.log(data);
+  // todo
+  // console.log(data);
 
   if (!data) {
     return;
   }
+
+  const { totalPages, items } = data;
+
+  state.totalcount = Number(totalPages);
+
   pokemonsItems.innerHTML = "";
-  data.items.forEach((elem) => {
+  items.forEach((elem) => {
     pokemonsItems.insertAdjacentHTML("beforeend", renderPockemonCard(elem));
   });
+  initPagination(state.currentPage, state.totalcount);
 };

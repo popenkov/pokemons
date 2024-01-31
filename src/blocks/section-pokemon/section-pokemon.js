@@ -10,9 +10,6 @@ ready(function () {
     const pagination = pokemonsSection.querySelector(".js-pagination");
     const pokemonsItems = pokemonsSection.querySelector(".js-pokemon-items");
 
-    // state.perPage = 24;
-    // state.perPage = 32;
-
     const showLoader = () => {
       loader.classList.remove("hidden");
       pagination.classList.add("hidden");
@@ -25,18 +22,10 @@ ready(function () {
       pokemonsItems.classList.remove("hidden");
     };
 
-    //  todo test
-    const testShowLoader = () => {
-      showLoader();
-      setTimeout(() => {
-        hideLoader();
-      }, 2000);
-    };
-
-    testShowLoader();
-
     if (state) {
+      showLoader();
       renderPockemonCards();
+      hideLoader();
     }
   }
 });
