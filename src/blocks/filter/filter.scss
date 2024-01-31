@@ -13,8 +13,8 @@
   --amount-border-active: 1px solid var(--monochrome-300); // stylelint-disable-line
 
   position: fixed;
+  left: -100vw;
   z-index: var(--z-index-filter-menu);
-  inset: 0;
   opacity: 0;
   backdrop-filter: blur(4px);
   transition: opacity ease-in-out 0.25s;
@@ -166,7 +166,7 @@
 
   &.open {
     opacity: 1;
-
+    inset: 0;
     #{$block-name}__inner {
       left: 0;
     }

@@ -92,6 +92,7 @@
     "autosize": "^5.0.2",
     "axios": "^1.6.7",
     "imask": "^6.4.3",
+    "pocketbase": "^0.21.0",
     "sanitize.css": "^13.0.0"
   },
   "husky": {

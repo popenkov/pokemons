@@ -13,6 +13,7 @@
   border: 1px solid transparent;
   border-top-color: var(--monochrome-200);
   border-radius: 16px;
+  transition: background-color 0.3s ease-out;
 
   @media (hover: hover) {
     &:hover {
