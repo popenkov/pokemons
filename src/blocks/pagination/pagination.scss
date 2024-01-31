@@ -1,0 +1,88 @@
+@import "../../scss/breakpoints";
+@import "../../scss/mixins/page-button.scss";
+
+.pagination {
+  $block-name: &; // #{$block-name}__element
+
+  margin-bottom: 32px;
+
+  @media screen and (min-width: $screen-tl) {
+    grid-area: pagination;
+    margin-bottom: 72px;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template: repeat(2, auto) / repeat(2, 1fr);
+    grid-template-areas:
+      "btns btns"
+      "first last";
+    gap: 8px;
+    justify-items: center;
+    padding: 8px;
+    background-color: var(--monochrome-800);
+    border-radius: 16px;
+
+    @media screen and (min-width: $screen-tl) {
+      display: flex;
+      grid-template: auto / repeat(3, auto);
+      grid-template-areas: "first btns last";
+      margin: 0 auto;
+    }
+  }
+
+  &__btn {
+    @include pagination;
+    @include page-button();
+
+    width: 100%;
+    min-width: 32px;
+    padding: 8px 4px;
+
+    @media screen and (min-width: $screen-tl) {
+      width: auto;
+      min-width: 40px;
+    }
+
+    @media (hover: hover) {
+      &:not(#{$block-name}__btn--active, #{$block-name}__btn--large):hover {
+        @include page-button-hover;
+      }
+    }
+
+    &--active {
+      @include page-button-active;
+    }
+
+    &--first {
+      grid-area: first;
+      padding: 8px;
+
+      @media screen and (min-width: $screen-tl) {
+        padding: 8px 16px;
+      }
+    }
+
+    &--last {
+      grid-area: last;
+      padding: 8px;
+
+      @media screen and (min-width: $screen-tl) {
+        padding: 8px 16px;
+      }
+    }
+
+    &--dots {
+      background-color: inherit;
+      border-top: none;
+      pointer-events: none;
+    }
+  }
+
+  &__btns-wrapper {
+    display: flex;
+    grid-area: btns;
+    gap: 8px;
+  }
+  $block-name: &; // #{$block-name}__element
+}

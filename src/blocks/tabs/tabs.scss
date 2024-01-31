@@ -1,71 +1,73 @@
 @import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/flexbox.scss";
+@import "../../scss/mixins/page-button.scss";
+@import "../../scss/breakpoints";
 
 .tabs {
   $block-name: &; // #{$block-name}__element
+  &__wrapper {
+    padding: 12px 0;
+
+    @media screen and (min-width: $screen-d) {
+      padding: 80px 0 32px;
+    }
+  }
 
   &__labels {
-    position: relative;
     display: flex;
-    gap: 4px;
-    align-items: flex-end;
-    height: 40px;
+    gap: 8px;
+    padding: 8px;
+    background-color: var(--monochrome-800);
+    border-radius: 16px;
 
-    &::after {
-      position: absolute;
-      bottom: 0;
-      z-index: 2;
-      display: block;
-      width: 100%;
-      height: 1px;
-      background: var(--brand-primary);
-      content: "";
+    @media screen and (min-width: $screen-d) {
+      border-radius: 24px;
     }
   }
 
   &__label {
-    @include tabs-label;
+    @include flex-center;
+    @include tab-title;
+    @include page-button();
+    @include tab-title;
 
     position: relative;
-    padding: 9px 19px 10px;
-    color: var(--front-secondary);
-    background: var(--back-primary);
-    border: 1px solid var(--border-button);
-    border-bottom: 0;
-    border-radius: 8px 8px 0 0;
-    cursor: pointer;
-    transition: padding 0.25s ease;
+    width: 100%;
+    padding: 7px 16px 8px;
+
+    @media screen and (min-width: $screen-d) {
+      padding: 15px 16px 16px;
+      border-radius: 16px;
+    }
+
+    @media (hover: hover) {
+      &:not(#{$block-name}__label--active):hover {
+        @include page-button-hover--tab;
+      }
+    }
 
     &--active {
-      z-index: 3;
-      padding: 11px 19px 12px;
-      color: var(--front-primary);
-      border-color: var(--brand-primary);
-      cursor: default;
+      @include page-button-active;
     }
   }
 
   &__panes {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    background: var(--back-primary);
-    border: 1px solid var(--brand-primary);
-    border-top: 0;
+    display: flex;
+    padding-top: var(--mobile-header-height);
+
+    @media screen and (min-width: $screen-d) {
+      padding-top: 0;
+    }
   }
 
   &__pane {
-    grid-area: tab;
-    grid-column: 1/2;
-    width: 100%;
-    padding: 16px;
-    transform: translateY(16px);
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    display: none;
     pointer-events: none;
 
     &--active {
-      transform: translateY(0);
-      opacity: 1;
+      display: block;
+      width: 100%;
       pointer-events: auto;
     }
   }

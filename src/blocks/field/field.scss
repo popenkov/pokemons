@@ -1,11 +1,12 @@
 @import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/flexbox";
 
 .field {
   $block-name: &; // #{$block-name}__element
 
   &__inner {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
+
     gap: 8px;
   }
 
@@ -21,9 +22,7 @@
     }
   }
 
-  &__input,
-  &__select,
-  &__textarea {
+  &__input {
     order: 2;
   }
 

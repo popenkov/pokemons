@@ -1,9 +1,0 @@
-.link {
-  $block-name: &; // #{$block-name}__element
-
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}

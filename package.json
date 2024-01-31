@@ -92,7 +92,8 @@
     "autosize": "^5.0.2",
     "imask": "^6.4.3",
     "sanitize.css": "^13.0.0"
-  },
+  }
+  ,
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

@@ -1,0 +1,251 @@
+{
+  "tabs": {
+    "labels": ["Pockemons", "Fight"]
+  },
+  "filters": {
+    "perPage": ["12", "24", "48"],
+    "perType": [
+      {
+        "icon": "all",
+        "name": "All",
+        "amount": "809"
+      },
+      {
+        "icon": "bug",
+        "name": "Bug",
+        "amount": "77"
+      },
+      {
+        "icon": "dark",
+        "name": "Dark",
+        "amount": "46"
+      },
+      {
+        "icon": "dragon",
+        "name": "Dragon",
+        "amount": "45"
+      },
+      {
+        "icon": "electric",
+        "name": "Electric",
+        "amount": "48"
+      },
+      {
+        "icon": "fairy",
+        "name": "Fairy",
+        "amount": "47"
+      },
+      {
+        "icon": "fighting",
+        "name": "Fighting",
+        "amount": "54"
+      },
+      {
+        "icon": "fire",
+        "name": "Fire",
+        "amount": "64"
+      },
+      {
+        "icon": "flying",
+        "name": "Flying",
+        "amount": "98"
+      },
+      {
+        "icon": "ghost",
+        "name": "Ghost",
+        "amount": "43"
+      },
+      {
+        "icon": "grass",
+        "name": "Grass",
+        "amount": "97"
+      },
+      {
+        "icon": "ground",
+        "name": "Ground",
+        "amount": "64"
+      },
+      {
+        "icon": "ice",
+        "name": "Ice",
+        "amount": "34"
+      },
+      {
+        "icon": "normal",
+        "name": "Normal",
+        "amount": "107"
+      },
+      {
+        "icon": "poison",
+        "name": "Poison",
+        "amount": "66"
+      },
+      {
+        "icon": "psychic",
+        "name": "Psychic",
+        "amount": "82"
+      },
+      {
+        "icon": "rock",
+        "name": "Rock",
+        "amount": "60"
+      },
+      {
+        "icon": "steel",
+        "name": "Steel",
+        "amount": "49"
+      },
+      {
+        "icon": "water",
+        "name": "Water",
+        "amount": "131"
+      }
+    ]
+  },
+  "pokemons": [
+    {
+      "id": "001",
+      "name": "Bulbasaur",
+      "photo": "/bulbasaur.png",
+      "types": ["poison", "grass"],
+      "features": [
+        {
+          "name": "health",
+          "value": "0"
+        },
+        {
+          "name": "speed",
+          "value": "0"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "name": "Ivysaur",
+      "photo": "/ivysaur.png",
+      "types": ["poison", "grass"],
+      "features": [
+        {
+          "name": "health",
+          "value": "0"
+        },
+        {
+          "name": "speed",
+          "value": "0"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        }
+      ]
+    },
+    {
+      "id": "003",
+      "name": "Venusaur",
+      "photo": "/venusaur.png",
+      "types": ["poison", "grass"],
+      "features": [
+        {
+          "name": "health",
+          "value": "0"
+        },
+        {
+          "name": "speed",
+          "value": "0"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        }
+      ]
+    },
+    {
+      "id": "004",
+      "name": "Charmander",
+      "photo": "/charmander.png",
+      "types": ["fire"],
+      "features": [
+        {
+          "name": "health",
+          "value": "0"
+        },
+        {
+          "name": "speed",
+          "value": "0"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        }
+      ]
+    },
+    {
+      "id": "005",
+      "name": "Charmeleon",
+      "photo": "/charmeleon.png",
+      "types": ["fire"],
+      "features": [
+        {
+          "name": "health",
+          "value": "0"
+        },
+        {
+          "name": "speed",
+          "value": "0"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        }
+      ]
+    },
+    {
+      "id": "006",
+      "name": "Charizard",
+      "photo": "/charizard.png",
+      "types": ["fire"],
+      "features": [
+        {
+          "name": "health",
+          "value": "0"
+        },
+        {
+          "name": "speed",
+          "value": "0"
+        },
+        {
+          "name": "attack",
+          "value": "00 / 00"
+        },
+        {
+          "name": "defence",
+          "value": "00 / 00"
+        }
+      ]
+    }
+  ]
+}
