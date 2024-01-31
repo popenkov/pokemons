@@ -1,4 +1,6 @@
+import { state } from "../../js/state.js";
 import ready from "../../js/utils/documentReady.js";
+import { renderPockemonCards } from "./renderPokemons.js";
 
 ready(function () {
   const pokemonsSection = document.querySelector(".section-pokemon");
@@ -20,14 +22,10 @@ ready(function () {
       pokemonsItems.classList.remove("hidden");
     };
 
-    //  todo test
-    const testShowLoader = () => {
+    if (state) {
       showLoader();
-      setTimeout(() => {
-        hideLoader();
-      }, 2000);
-    };
-
-    testShowLoader();
+      renderPockemonCards();
+      hideLoader();
+    }
   }
 });

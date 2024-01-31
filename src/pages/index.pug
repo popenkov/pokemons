@@ -26,21 +26,13 @@ block content
                   span.filter__title Per page:
                   .filter__items
                     each menu, index in data.filters.perPage
-                      button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '')= menu
+                      button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '', data-perpage=menu)= menu
                 .filter__container.filter__container--type.js-type-filter-container
-                  each menu, index in data.filters.perType
-                    button.filter__button.filter__button--type.js-type-button(class= (index === 0) ? "filter__button--active" : '')
-                      svg.filter__button-icon: use(href= src.icon + 'type-' + menu.icon)
-                      span.filter__button-value= menu.name
-                      span.filter__button-amount= menu.amount
 
             .section-pokemon__wrapper
               .section-pokemon__items--loading.js-pokemon-loader
                 +loader
               .section-pokemon__items.js-pokemon-items
-                each pokemon in data.pokemons
-                  .section-pokemon__item
-                    +p-card(pokemon)
             +pagination
 
             button.filter-button.js-mobile-filter-button

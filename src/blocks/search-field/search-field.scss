@@ -14,14 +14,13 @@
     @include tab-title;
 
     width: 100%;
-    padding: 15px 16px;
+    padding: 15px 16px 15px 56px;
     background-color: var(--monochrome-700);
     border: 1px solid transparent;
     border-bottom: 1px solid var(--monochrome-500);
     border-radius: 16px;
 
     &::placeholder {
-      padding-left: 40px;
       color: var(--monochrome-400);
     }
 
