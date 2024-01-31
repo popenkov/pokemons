@@ -15,7 +15,6 @@ export const getMenuData = async () => {
 
 export const getPockemons = async () => {
   const { currentPage, type, perPage } = state;
-  console.log(currentPage, type, perPage);
   const data = await pb.collection("pockemon").getList(currentPage, perPage, {
     sort: "+id",
     filter: type !== "All" ? `type ~ "${type}"` : "",
