@@ -1,4 +1,5 @@
 import { renderPockemonCards } from "../blocks/section-pokemon/renderPokemons";
+import { scrollToTop } from "./utils/scrollToTop";
 
 const initialState = {
   perPage: 12,
@@ -10,18 +11,18 @@ const initialState = {
 const handler = {
   set: function (obj, prop, value) {
     if (prop === "perPage") {
-      // todo trigger request
       obj.currentPage = 1;
     }
     if (prop === "type") {
-      // todo trigger request
-
       obj.currentPage = 1;
     }
     if (prop === "totalcount") {
-      // todo trigger request
       obj[prop] = value;
       return true;
+    }
+
+    if (prop === "currentPage") {
+      scrollToTop();
     }
 
     obj[prop] = value;
