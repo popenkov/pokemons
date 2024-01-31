@@ -42,7 +42,7 @@
     }
 
     @media (hover: hover) {
-      &:not(#{$block-name}__button--active, #{$block-name}__button--large):hover {
+      &:not(#{$block-name}__button--active):hover {
         @include page-button-hover;
       }
     }
@@ -50,30 +50,42 @@
     &--active {
       @include page-button-active;
     }
+  }
 
-    &--first {
-      grid-area: first;
-      padding: 8px;
+  &__button-first {
+    @include pagination;
+    @include page-button();
 
-      @media screen and (min-width: $screen-tl) {
-        padding: 8px 16px;
-      }
+    grid-area: first;
+    padding: 8px;
+
+    @media screen and (min-width: $screen-tl) {
+      padding: 8px 16px;
     }
+  }
 
-    &--last {
-      grid-area: last;
-      padding: 8px;
+  &__button-last {
+    @include pagination;
+    @include page-button();
 
-      @media screen and (min-width: $screen-tl) {
-        padding: 8px 16px;
-      }
+    grid-area: last;
+    padding: 8px;
+
+    @media screen and (min-width: $screen-tl) {
+      padding: 8px 16px;
     }
+  }
 
-    &--dots {
-      background-color: inherit;
-      border-top: none;
-      pointer-events: none;
-    }
+  &__dots {
+    @include page-button();
+
+    width: 100%;
+    min-width: 32px;
+    padding: 8px 4px;
+    text-align: center;
+    background-color: inherit;
+    border-top: none;
+    pointer-events: none;
   }
 
   &__buttons-wrapper {
