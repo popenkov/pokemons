@@ -16,8 +16,7 @@ block content
             button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
 
       .tabs__panes
-        //-todo .tabs__pane--active
-        .tabs__pane#tab0
+        .tabs__pane.tabs__pane--active#tab0
           .section-pokemon
             h2.visually-hidden Выбор покемона
 
@@ -47,5 +46,29 @@ block content
             button.filter-button.js-mobile-filter-button
               svg.filter-button__icon: use(href= src.icon + 'filter-icon')
 
-        .tabs__pane.tabs__pane--active#tab1
-          +section-fights
+        .tabs__pane#tab1
+          .section-fights(class=allMods)&attributes(attributes)
+            .section-fights__wrapper
+              .section-pokemon__items--loading.js-pokemon-loader
+                +loader
+              .section-fights__fights-field.js-fights-field
+                .section-fights__choose-fighter-wrapper
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+                    .choose-fighter-card__search
+                      +search-field('Choose fighter', '', 'fighter-search')
+                    .choose-fighter-card__result.choose-fighter-card__result--empty.js-fighter-card-result
+                      span.choose-fighter-card__result-text Type name <br/> of champion above
+
+                  span.section-fights__choose-fighter-separator VS
+
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+                    .choose-fighter-card__search
+                      +search-field('Choose fighter', '', 'fighter-search')
+                    .choose-fighter-card__result.js-fighter-card-result
+                      +p-card(data.pokemons[3], true, 'fighter')
+
+                .section-fights__footer
+                  +button('FIGHT!')
+
+                .section-fights__results
+                  span.section-fights__results-text.section-fights__results-text--winner Charmander is the winner!

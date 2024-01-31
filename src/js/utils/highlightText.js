@@ -4,8 +4,6 @@ export const highlightText = (input) => {
   texts &&
     texts.forEach((item) => {
       let highlightedText = item.innerHTML
-        // todo
-        // .replaceAll(/\<span class\=\"highlight\"\>(.*?)\<\/span\>/gi, "$1")
         .replaceAll(/<span class="highlight">(.*?)/ < /span>/gi, "$1")
         .replaceAll(inputValue, '<span class="highlight">' + inputValue + "</span>")
         .replaceAll(

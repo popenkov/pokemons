@@ -8,9 +8,31 @@ ready(function () {
   const fightsSection = document.querySelector(".section-fights");
 
   if (fightsSection) {
+    const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
+    const fightPockemonsSection = fightsSection.querySelector(".js-fights-field");
     const searchInputs = fightsSection.querySelectorAll(".js-search-input");
     const searchResultsWrapper = fightsSection.querySelector(".js-search-results");
     const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
+
+    const showPageLoader = () => {
+      pageLoader.classList.remove("hidden");
+      fightPockemonsSection.classList.add("hidden");
+    };
+
+    const hidePageLoader = () => {
+      pageLoader.classList.add("hidden");
+      fightPockemonsSection.classList.remove("hidden");
+    };
+
+    //  todo test
+    const testShowLoader = () => {
+      showPageLoader();
+      setTimeout(() => {
+        hidePageLoader();
+      }, 2000);
+    };
+
+    testShowLoader();
 
     const handleResultsShow = (resultsContainer) => {
       resultsContainer.classList.remove("hide");
@@ -57,8 +79,6 @@ ready(function () {
       const trimmedValue = currentInput.value.trim();
       const currentSearchContainer = currentInput.closest(".search-field");
       const currentLoader = currentSearchContainer.querySelector(".js-search-loader");
-      // todo
-      // const currentResults = currentSearchContainer.querySelector(".js-search-results");
       const currentResultsContainer = currentSearchContainer.querySelector(
         ".js-search-results-container",
       );
@@ -66,20 +86,15 @@ ready(function () {
       if (trimmedValue.length > 0) {
         // todo made for test
         // const result = await getSearchData(value);
+        showLoader(currentLoader);
+        currentResultsContainer.innerHTML = null;
         const result = await getMockResultsHtml(searchResultsContainer);
 
-        console.log("result", result);
-
         if (result) {
-          showLoader(currentLoader);
-          currentResultsContainer.innerHTML = null;
-
           result.forEach((item) => {
             currentResultsContainer.insertAdjacentHTML("beforeend", createSearchResultsItem(item));
           });
-
           highlightText(trimmedValue);
-
           hideLoader(currentLoader);
           handleResultsShow(currentResultsContainer);
         } else {
@@ -91,7 +106,6 @@ ready(function () {
     };
 
     const handleInputBlur = (evt) => {
-      // todo
       const currentInput = evt.target;
       const currentSearchContainer = currentInput.closest(".search-field");
       const currentResultsContainer = currentSearchContainer.querySelector(

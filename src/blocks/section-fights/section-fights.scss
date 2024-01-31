@@ -17,14 +17,17 @@
   }
 
   &__wrapper {
-    @include flex-column;
-
-    gap: 24px;
-    width: 100%;
-    margin-bottom: 16px;
     padding: 8px;
     background: var(--monochrome-800);
     border-radius: 24px;
+  }
+
+  &__fights-field {
+    @include flex-column;
+
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 16px;
 
     @media screen and (min-width: $screen-d) {
       gap: 48px;
@@ -52,10 +55,18 @@
   }
 
   &__choose-fighter-card {
+    &:last-child {
+      margin-bottom: 8px;
+    }
+
     @media screen and (min-width: $screen-d) {
       flex-grow: 1;
       width: 100%;
       max-width: 607px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

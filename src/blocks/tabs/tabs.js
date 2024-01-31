@@ -15,6 +15,8 @@ ready(function () {
       document.body.style.marginRight = hasScroll ? `${getScrollSize()}px` : "0";
     }
 
+    checkScroll();
+
     function activateTab(e) {
       e.preventDefault();
       Array.from(tabsLabels).forEach(function (label) {
