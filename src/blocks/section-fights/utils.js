@@ -60,9 +60,11 @@ export const generateFighterPockemon = (itemData) => {
   const imageURL = `${BASE_URL}/api/files/${collectionId}/${id}/${image}`;
   const abilitiesValue = abilities.join(", ");
 
+  const idValue = id.slice(-3);
+
   return `
     <div class="p-card  p-card--fighter">
-      <div class="p-card__miniature"><span class="p-card__miniature-id">004</span><img class="p-card__miniature-img" src="${imageURL}" alt="${name}"></div>
+      <div class="p-card__miniature"><span class="p-card__miniature-id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}" alt="${name}"></div>
       <div class="p-card__row">
         <h3 class="p-card__title">${name}</h3>
         <div class="p-card__types">

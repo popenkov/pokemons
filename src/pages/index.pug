@@ -42,21 +42,30 @@ block content
             .section-fights__wrapper
               .section-pokemon__items--loading.js-pokemon-loader
                 +loader
-              .section-fights__fights-field.js-fights-field
+              .section-fights__fights-field.js-fights-field.hide
                 .section-fights__choose-fighter-wrapper
-                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container
                     .choose-fighter-card__search
                       +search-field('Choose fighter', '', 'fighter-search')
-                    .choose-fighter-card__result.choose-fighter-card__result--empty.js-fighter-card-result
-                      span.choose-fighter-card__result-text Type name <br/> of champion above
+                    .choose-fighter-card__result
+                      .choose-fighter-card__result-empty.js-fighter-empty
+                        span.choose-fighter-card__result-text Type name <br/> of champion above
+                      .choose-fighter-card__result-loader.js-fighter-loader.hide
+                        +loader
+                      .js-fighter-card.hide
 
                   span.section-fights__choose-fighter-separator VS
 
-                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container
                     .choose-fighter-card__search
                       +search-field('Choose fighter', '', 'fighter-search')
-                    .choose-fighter-card__result.js-fighter-card-result
-                      +p-card(data.pokemons[3], true, 'fighter')
+                    .choose-fighter-card__result
+                      .choose-fighter-card__result-empty.js-fighter-empty
+                        span.choose-fighter-card__result-text Type name <br/> of champion above
+                      .choose-fighter-card__result-loader.js-fighter-loader.hide
+                        +loader
+                      .js-fighter-card.hide
+                        +p-card(data.pokemons[3], true, 'fighter')
 
                 .section-fights__footer
                   +button('FIGHT!')

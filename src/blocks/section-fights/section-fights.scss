@@ -123,25 +123,38 @@
   &__result {
     position: relative;
     min-height: 248px;
+  }
 
-    &--empty {
-      @include dashed-border;
+  &__result-empty {
+    @include dashed-border;
 
-      padding: 8px;
+    position: relative;
+    min-height: 248px;
+    padding: 8px;
 
-      &::before {
-        @include dashed-border--before;
-      }
+    &::before {
+      @include dashed-border--before;
     }
+  }
 
-    &-text {
-      @include absolute-center;
-      @include tab-title;
+  &__result-loader {
+    @include flex-center;
+    @include dashed-border;
 
-      width: 100%;
-      padding: 0 20px;
-      color: var(--monochrome-500);
-      text-align: center;
+    min-height: 248px;
+
+    &::before {
+      @include dashed-border--before;
     }
+  }
+
+  &__result-text {
+    @include absolute-center;
+    @include tab-title;
+
+    width: 100%;
+    padding: 0 20px;
+    color: var(--monochrome-500);
+    text-align: center;
   }
 }
