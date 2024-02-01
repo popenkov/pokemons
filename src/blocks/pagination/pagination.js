@@ -9,7 +9,7 @@ ready(function () {
     };
 
     const handleLastPageClick = () => {
-      state.currentPage = state.totalcount - 1;
+      state.currentPage = state.totalcount;
     };
 
     const handlePaginationButtonClick = (currentButton) => {
