@@ -1,4 +1,3 @@
-// import axios from "axios";
 import ready from "../../js/utils/documentReady.js";
 import { createSearchResultsItem, generateFighterPockemon } from "./utils.js";
 import { debounce } from "../../js/utils/debounce.js";
@@ -9,31 +8,9 @@ ready(function () {
   const fightsSection = document.querySelector(".section-fights");
 
   if (fightsSection) {
-    const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
-    const fightPockemonsSection = fightsSection.querySelector(".js-fights-field");
     const searchInputs = fightsSection.querySelectorAll(".js-search-input");
     const searchResultsWrapper = fightsSection.querySelector(".js-search-results");
     const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
-
-    const showPageLoader = () => {
-      pageLoader.classList.remove("hidden");
-      fightPockemonsSection.classList.add("hidden");
-    };
-
-    const hidePageLoader = () => {
-      pageLoader.classList.add("hidden");
-      fightPockemonsSection.classList.remove("hidden");
-    };
-
-    //  todo test
-    const testShowLoader = () => {
-      showPageLoader();
-      setTimeout(() => {
-        hidePageLoader();
-      }, 2000);
-    };
-
-    testShowLoader();
 
     const handleResultsShow = (resultsContainer) => {
       resultsContainer.classList.remove("hide");
@@ -50,28 +27,6 @@ ready(function () {
       loader.classList.add("hide");
     };
 
-    // todo шаблон запроса
-    // const getSearchData = async (value) => {
-    //   try {
-    //     const testUrl = "https://jsonplaceholder.typicode.com/posts";
-    //     const result = await axios.post(
-    //       testUrl,
-    //       { q: value },
-    //       {
-    //         headers: {
-    //           "Content-Type": "multipart/form-data",
-    //         },
-    //       },
-    //     );
-
-    //     if (result.data) {
-    //       return result.data;
-    //     }
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-
     const handleInputSearch = async (evt) => {
       evt.preventDefault();
 
@@ -85,12 +40,9 @@ ready(function () {
       );
 
       if (trimmedValue.length > 0) {
-        // todo made for test
-        // const result = await getSearchData(value);
         showLoader(currentLoader);
         currentResultsContainer.innerHTML = null;
 
-        // const result = await getMockResultsHtml(searchResultsContainer);
         const result = await getPockemonByName(trimmedValue);
 
         if (result) {

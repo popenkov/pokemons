@@ -84,7 +84,6 @@ export const renderPockemonCards = async () => {
   const { totalPages, items } = data;
 
   state.totalcount = Number(totalPages);
-  console.log(totalPages);
 
   pokemonsItems.innerHTML = "";
   items.forEach((elem) => {

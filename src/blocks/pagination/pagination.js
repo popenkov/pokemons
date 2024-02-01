@@ -9,8 +9,6 @@ ready(function () {
     };
 
     const handleLastPageClick = () => {
-      console.log("handleLastPageClick", state.totalcount);
-      // state.currentPage = state.totalcount - 1;
       state.currentPage = state.totalcount;
     };
 
