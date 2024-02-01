@@ -31,3 +31,33 @@ export const getPockemons = async () => {
 
   return data;
 };
+
+export const getPockemonByName = async (name) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/collections/pockemon/records?filter=(name.english ~ '${name}')`,
+    );
+
+    if (response.status === 200) {
+      const data = await response.json();
+      return data.items;
+    }
+  } catch (err) {
+    console.log("Ошибка загрузки", err.message);
+  }
+};
+
+export const getPockemonById = async (id) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/collections/pockemon/records?filter=(id ='${id}')`,
+    );
+
+    if (response.status === 200) {
+      const data = await response.json();
+      return data.items;
+    }
+  } catch (err) {
+    console.log("Ошибка загрузки", err.message);
+  }
+};

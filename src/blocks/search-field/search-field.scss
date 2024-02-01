@@ -1,5 +1,6 @@
 @import "../../scss/mixins/text-styles";
 @import "../../scss/mixins/flexbox";
+@import "../../scss/mixins/blocks";
 
 .search-field {
   $block-name: &; // #{$block-name}__element
@@ -65,5 +66,9 @@
         background-color: var(--monochrome-600);
       }
     }
+  }
+
+  &__results-item-img {
+    @include box(40px);
   }
 }
