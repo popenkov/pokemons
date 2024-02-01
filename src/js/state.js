@@ -23,11 +23,11 @@ const handler = {
     }
 
     if (prop === "currentPage") {
-      scrollToTop();
       initPagination(state.currentPage, state.totalcount);
     }
 
     obj[prop] = value;
+    scrollToTop();
     renderPockemonCards();
     return true;
   },

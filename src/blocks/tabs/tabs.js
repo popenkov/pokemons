@@ -1,5 +1,5 @@
+import { addScrollPadding } from "../../js/utils/addScrollPadding.js";
 import ready from "../../js/utils/documentReady.js";
-import getScrollSize from "../../js/utils/getScrollSize.js";
 
 ready(function () {
   function makeTabs(tabs, panes) {
@@ -10,12 +10,7 @@ ready(function () {
       elem.addEventListener("click", activateTab);
     });
 
-    function checkScroll() {
-      const hasScroll = document.body.scrollHeight === document.body.offsetHeight;
-      document.body.style.marginRight = hasScroll ? `${getScrollSize()}px` : "0";
-    }
-
-    checkScroll();
+    addScrollPadding();
 
     function activateTab(e) {
       e.preventDefault();
@@ -28,7 +23,7 @@ ready(function () {
       e.target.classList.add("tabs__label--active");
       let clickedTab = e.target.getAttribute("data-href");
       document.querySelector(clickedTab).classList.add("tabs__pane--active");
-      checkScroll();
+      addScrollPadding();
     }
   }
 

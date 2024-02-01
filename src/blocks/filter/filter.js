@@ -1,7 +1,7 @@
 import { getMenuData } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import ready from "../../js/utils/documentReady.js";
-import { createFilterItem } from "./utils.js";
+import { createFilterItem, createFirstFilterItem } from "./utils.js";
 
 ready(function () {
   const filterBtn = document.querySelector(".js-mobile-filter-button");
@@ -61,9 +61,15 @@ ready(function () {
 
       container.innerHTML = "";
 
+      const totalAmount = filterData.reduce((acc, item) => {
+        return acc + item.amount;
+      }, 0);
+
       if (filterData) {
-        filterData.forEach((elem, index) => {
-          container.insertAdjacentHTML("beforeend", createFilterItem(elem, index));
+        createFirstFilterItem;
+        container.insertAdjacentHTML("beforeend", createFirstFilterItem(totalAmount));
+        filterData.forEach((elem) => {
+          container.insertAdjacentHTML("beforeend", createFilterItem(elem));
         });
       }
     };

@@ -1,107 +1,70 @@
-const BTNS_IN_ROW_AMOUNT = 6;
+const BTNS_IN_ROW_AMOUNT = 5;
 
 const paginationBlock = document.querySelector(".pagination");
-const paginationBtns = paginationBlock.querySelector(".js-pagination-buttons-wrapper");
-const firstPageBtn = paginationBlock.querySelector(".js-pagination-first");
-const lastPageBtn = paginationBlock.querySelector(".js-pagination-last");
+const buttonsContainer = paginationBlock.querySelector(".js-pagination-buttons-wrapper");
+const firstBtn = paginationBlock.querySelector(".js-pagination-first");
+const lastBtn = paginationBlock.querySelector(".js-pagination-last");
 
-const addButton = (number, currentPage) => {
-  return `<button class="pagination__button js-pagination-button ${
-    Number(number) === currentPage ? "pagination__button--active" : ""
-  }">${number}</button>`;
+const updateButtons = (currentPage, totalPages) => {
+  if (currentPage === 1) {
+    firstBtn.classList.add("hidden");
+  } else {
+    firstBtn.classList.remove("hidden");
+  }
+  if (currentPage === totalPages) {
+    lastBtn.classList.add("hidden");
+  } else {
+    lastBtn.classList.remove("hidden");
+  }
 };
 
 const addDots = () => {
-  return `<span class="pagination__button pagination__dots">...</span>`;
+  const dots = document.createElement("span");
+  dots.classList.add("pagination__dots");
+  dots.textContent = "...";
+  return dots;
 };
 
-export const initPagination = (currentPage, totalcount) => {
-  let HTML = "";
-
-  if (totalcount <= BTNS_IN_ROW_AMOUNT) {
-    for (let i = 1; i <= totalcount; i++) {
-      HTML += addButton(i, currentPage);
-    }
-  } else {
-    if (currentPage >= 5 && totalcount > 5) {
-      HTML += addDots();
-    }
-
-    // Отрисовка точек  "..." если currentPage is > 3
-    if (currentPage < 5 && totalcount > 5) {
-      for (let i = 1; i <= 5; i++) {
-        HTML += addButton(i, currentPage);
-      }
-    } else {
-      // Если выбрана последняя страница
-      if (currentPage == totalcount) {
-        HTML += addButton(currentPage - 2, currentPage);
-      }
-
-      //
-      if (currentPage == totalcount - 1 && currentPage > 6) {
-        HTML += addButton(currentPage - 4, currentPage);
-      }
-
-      // отрисовать 4 предыдущую страницу
-      if (currentPage == totalcount - 2 && currentPage > 5) {
-        HTML += addButton(currentPage - 4, currentPage);
-      }
-
-      // отрисовать 3 предыдущую страницу
-      if (currentPage == totalcount - 1 && currentPage > 4) {
-        HTML += addButton(currentPage - 3, currentPage);
-      }
-
-      // отрисовать 2 предыдущую страницу
-      if (currentPage > 3) {
-        HTML += addButton(currentPage - 2, currentPage);
-      }
-
-      // отрисовать предыдущую страницу
-      if (currentPage > 2) {
-        HTML += addButton(currentPage - 1, currentPage);
-      }
-
-      //Отрисовать текущую страницу, если она не первая
-      if (currentPage != 1 && currentPage != totalcount) {
-        HTML += addButton(currentPage, currentPage);
-      }
-
-      // отрисовать следующую страницу
-      if (currentPage < totalcount - 1) {
-        HTML += addButton(currentPage + 1, currentPage);
-      }
-
-      //отрисовать 2 следующую страницу
-      if (currentPage < totalcount - 2) {
-        HTML += addButton(currentPage + 2, currentPage);
-      }
-
-      // Если выбрана первая страница
-      if (currentPage == 1 && totalcount > 3) {
-        HTML += addButton(currentPage + 3, currentPage);
-      }
-      if (currentPage == 1 && totalcount > 4) {
-        HTML += addButton(currentPage + 4, currentPage);
-      }
-    }
-
-    // отрисовка точек "..." если currentPage is < lastPage -2
-    if (currentPage < totalcount - 2) {
-      HTML += addDots();
-    }
+const addButton = (number, currentPage) => {
+  const button = document.createElement("button");
+  button.textContent = number;
+  button.classList.add("pagination__button", "js-pagination-button");
+  if (number === currentPage) {
+    button.classList.add("pagination__button--active");
   }
-  paginationBtns.innerHTML = HTML;
-  if (currentPage === 1) {
-    firstPageBtn.classList.add("hidden");
-  } else {
-    firstPageBtn.classList.remove("hidden");
+  return button;
+};
+
+function createButtons(currentPage, totalPages) {
+  buttonsContainer.innerHTML = "";
+  let startPage = currentPage - Math.floor(BTNS_IN_ROW_AMOUNT / 2);
+  let endPage = currentPage + Math.floor(BTNS_IN_ROW_AMOUNT / 2);
+
+  if (startPage < 1) {
+    startPage = 1;
+    endPage = BTNS_IN_ROW_AMOUNT;
   }
 
-  if (currentPage >= totalcount - 2) {
-    lastPageBtn.classList.add("hidden");
-  } else {
-    lastPageBtn.classList.remove("hidden");
+  if (endPage > totalPages) {
+    startPage = totalPages > BTNS_IN_ROW_AMOUNT ? totalPages - BTNS_IN_ROW_AMOUNT + 1 : 1;
+    endPage = totalPages;
   }
+
+  console.log(currentPage, startPage, endPage);
+
+  for (let i = startPage; i <= endPage; i++) {
+    buttonsContainer.appendChild(addButton(i, currentPage));
+  }
+
+  if (startPage > 1) {
+    buttonsContainer.prepend(addDots());
+  }
+  if (endPage < totalPages) {
+    buttonsContainer.append(addDots());
+  }
+}
+
+export const initPagination = (currentPage, totalPages) => {
+  updateButtons(currentPage, totalPages);
+  createButtons(currentPage, totalPages);
 };

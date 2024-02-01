@@ -5,6 +5,7 @@ const pokemonsItems = document.querySelector(".js-pokemon-items");
 
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
+import { addScrollPadding } from "../../js/utils/addScrollPadding.js";
 import { initPagination } from "../pagination/initPagination.js";
 
 const loader = pokemonsSection.querySelector(".js-pokemon-loader");
@@ -83,11 +84,15 @@ export const renderPockemonCards = async () => {
   const { totalPages, items } = data;
 
   state.totalcount = Number(totalPages);
+  console.log(totalPages);
 
   pokemonsItems.innerHTML = "";
   items.forEach((elem) => {
     pokemonsItems.insertAdjacentHTML("beforeend", renderPockemonCard(elem));
   });
   initPagination(state.currentPage, state.totalcount);
-  hideLoader();
+  addScrollPadding();
+  setTimeout(() => {
+    hideLoader();
+  }, 1000);
 };
