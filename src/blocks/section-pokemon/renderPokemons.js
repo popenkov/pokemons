@@ -1,10 +1,26 @@
 import { getPockemons } from "../../js/services.js";
 
+const pokemonsSection = document.querySelector(".section-pokemon");
 const pokemonsItems = document.querySelector(".js-pokemon-items");
 
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import { initPagination } from "../pagination/initPagination.js";
+
+const loader = pokemonsSection.querySelector(".js-pokemon-loader");
+const pagination = pokemonsSection.querySelector(".js-pagination");
+
+const showLoader = () => {
+  loader.classList.remove("hidden");
+  pagination.classList.add("hidden");
+  pokemonsItems.classList.add("hidden");
+};
+
+const hideLoader = () => {
+  loader.classList.add("hidden");
+  pagination.classList.remove("hidden");
+  pokemonsItems.classList.remove("hidden");
+};
 
 const generateTypesHTML = (type) => {
   const typesContainer = document.createElement("div");
@@ -57,6 +73,7 @@ const renderPockemonCard = (data) => {
 };
 
 export const renderPockemonCards = async () => {
+  showLoader();
   const data = await getPockemons();
 
   if (!data) {
@@ -72,4 +89,5 @@ export const renderPockemonCards = async () => {
     pokemonsItems.insertAdjacentHTML("beforeend", renderPockemonCard(elem));
   });
   initPagination(state.currentPage, state.totalcount);
+  hideLoader();
 };
