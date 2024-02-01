@@ -35,7 +35,7 @@ const addButton = (number, currentPage) => {
   return button;
 };
 
-function createButtons(currentPage, totalPages) {
+const createButtons = (currentPage, totalPages) => {
   buttonsContainer.innerHTML = "";
   let startPage = currentPage - Math.floor(BTNS_IN_ROW_AMOUNT / 2);
   let endPage = currentPage + Math.floor(BTNS_IN_ROW_AMOUNT / 2);
@@ -50,8 +50,6 @@ function createButtons(currentPage, totalPages) {
     endPage = totalPages;
   }
 
-  console.log(currentPage, startPage, endPage);
-
   for (let i = startPage; i <= endPage; i++) {
     buttonsContainer.appendChild(addButton(i, currentPage));
   }
@@ -62,7 +60,7 @@ function createButtons(currentPage, totalPages) {
   if (endPage < totalPages) {
     buttonsContainer.append(addDots());
   }
-}
+};
 
 export const initPagination = (currentPage, totalPages) => {
   updateButtons(currentPage, totalPages);
