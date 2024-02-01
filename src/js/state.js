@@ -1,3 +1,4 @@
+import { initPagination } from "../blocks/pagination/initPagination";
 import { renderPockemonCards } from "../blocks/section-pokemon/renderPokemons";
 import { scrollToTop } from "./utils/scrollToTop";
 
@@ -23,6 +24,7 @@ const handler = {
 
     if (prop === "currentPage") {
       scrollToTop();
+      initPagination(state.currentPage, state.totalcount);
     }
 
     obj[prop] = value;

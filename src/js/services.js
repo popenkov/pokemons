@@ -17,7 +17,7 @@ export const getPockemons = async () => {
   const { currentPage, type, perPage } = state;
   const data = await pb.collection("pockemon").getList(currentPage, perPage, {
     sort: "+id",
-    filter: type !== "Normal" ? `type ~ "${type}"` : "",
+    filter: type !== "Normal" && type !== "All" ? `type ~ "${type}"` : "",
   });
 
   return data;
