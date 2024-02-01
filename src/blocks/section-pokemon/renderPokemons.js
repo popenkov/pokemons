@@ -4,7 +4,7 @@ const pokemonsItems = document.querySelector(".js-pokemon-items");
 
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
-import { initPagination } from "../../js/utils/initPagination.js";
+import { initPagination } from "../pagination/initPagination.js";
 
 const generateTypesHTML = (type) => {
   const typesContainer = document.createElement("div");
@@ -58,8 +58,6 @@ const renderPockemonCard = (data) => {
 
 export const renderPockemonCards = async () => {
   const data = await getPockemons();
-  // todo
-  // console.log(data);
 
   if (!data) {
     return;

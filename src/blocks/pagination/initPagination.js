@@ -23,19 +23,12 @@ export const initPagination = (currentPage, totalcount) => {
       HTML += addButton(i, currentPage);
     }
   } else {
-    // Если текущая страница первая
-    // if (currentPage === 1) {
-    //   HTML += addButton("1");
-    // }
-
     if (currentPage >= 5 && totalcount > 5) {
       HTML += addDots();
     }
 
     // Отрисовка точек  "..." если currentPage is > 3
-    //  if (currentPage > 1) {
     if (currentPage < 5 && totalcount > 5) {
-      // HTML += addDots();
       for (let i = 1; i <= 5; i++) {
         HTML += addButton(i, currentPage);
       }
@@ -59,8 +52,6 @@ export const initPagination = (currentPage, totalcount) => {
       if (currentPage == totalcount - 1 && currentPage > 4) {
         HTML += addButton(currentPage - 3, currentPage);
       }
-
-      //
 
       // отрисовать 2 предыдущую страницу
       if (currentPage > 3) {
@@ -97,8 +88,6 @@ export const initPagination = (currentPage, totalcount) => {
     }
 
     // отрисовка точек "..." если currentPage is < lastPage -2
-    // console.log(currentPage < totalcount - 2, currentPage, totalcount - 2);
-    // todo if (currentPage <= totalcount - 2) {
     if (currentPage < totalcount - 2) {
       HTML += addDots();
     }
@@ -110,7 +99,7 @@ export const initPagination = (currentPage, totalcount) => {
     firstPageBtn.classList.remove("hidden");
   }
 
-  if (currentPage === totalcount - 1) {
+  if (currentPage >= totalcount - 2) {
     lastPageBtn.classList.add("hidden");
   } else {
     lastPageBtn.classList.remove("hidden");

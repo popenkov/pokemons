@@ -57,6 +57,7 @@
     @include page-button();
 
     grid-area: first;
+    width: 100%;
     padding: 8px;
 
     @media screen and (min-width: $screen-tl) {
@@ -69,6 +70,7 @@
     @include page-button();
 
     grid-area: last;
+    width: 100%;
     padding: 8px;
 
     @media screen and (min-width: $screen-tl) {

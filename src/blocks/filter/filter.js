@@ -39,6 +39,7 @@ ready(function () {
           ? button.classList.add("filter__button--active")
           : button.classList.remove("filter__button--active");
       });
+      closeMenu();
     };
 
     const selectActivePageMenu = (page) => {
@@ -47,6 +48,7 @@ ready(function () {
           ? button.classList.add("filter__button--active")
           : button.classList.remove("filter__button--active");
       });
+      closeMenu();
     };
 
     const getData = async () => {

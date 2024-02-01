@@ -24,12 +24,7 @@ mixin p-card(data, isFight, mods)
       .p-card__miniature
           span.p-card__miniature-id= data.id
           img.p-card__miniature-img(src= src.img + data.photo, alt=data.name)
-      //- .p-card__row.p-card__row--mobile
-      //-   h3.p-card__title= data.name
-      //-   .p-card__types
-      //-     each type in data.types
-      //-         svg.p-card__type: use(href= src.icon + 'type-' + type)
-      //- .p-card__info
+
       .p-card__row
         h3.p-card__title= data.name
         .p-card__types
