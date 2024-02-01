@@ -58,8 +58,6 @@ const renderPockemonCard = (data) => {
 
 export const renderPockemonCards = async () => {
   const data = await getPockemons();
-  // todo
-  // console.log(data);
 
   if (!data) {
     return;
