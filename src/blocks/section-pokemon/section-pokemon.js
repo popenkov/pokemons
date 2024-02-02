@@ -7,5 +7,7 @@ ready(function () {
 
   if (pokemonsSection && state) {
     renderPockemonCards();
+    const event = new Event("itemsrendered", { bubbles: true });
+    document.dispatchEvent(event);
   }
 });

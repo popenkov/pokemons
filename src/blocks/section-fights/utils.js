@@ -8,34 +8,38 @@ export const createSearchResultsItem = (itemData) => {
     name: { english: name },
   } = itemData;
 
+  const idValue = id.slice(-3);
+
   const imageURL = `${BASE_URL}/api/files/${collectionId}/${id}/${image}?thumb=Wx0`;
   return `<button class="search-field__results-item js-search-result-item" data-id=${id}
             ><img class="search-field__results-item-img" src="${imageURL}"
               alt="#" />
-            <p class="search-field__results-item-title js-highlight-text">${name}</p>
+            <p class="search-field__results-item-title js-highlight-text">${idValue} - ${name}</p>
           </button>`;
 };
 
 const generateWeeknessesHTML = (weak) => {
-  const typesContainer = document.createElement("div");
-  typesContainer.classList.add("p-card__types");
+  const weaknessContainer = document.createElement("span");
+  weaknessContainer.classList.add("p-card__feature-value");
   weak.forEach((type) => {
     const typeToLowerCase = type.toLowerCase();
-    const html = `<svg class="p-card__type">
+    const html = `<svg class="p-card__feature-icon-svg">
                     <use href="./img/svgSprite.svg#type-${typeToLowerCase}"></use>
                   </svg>`;
-    typesContainer.insertAdjacentHTML("beforeend", html);
+    weaknessContainer.insertAdjacentHTML("beforeend", html);
   });
-  return typesContainer.innerHTML;
+
+  console.log("weaknessContainer.innerHTML", weaknessContainer.innerHTML);
+
+  return weaknessContainer.outerHTML;
 };
 
 const generateTypesHTML = (type) => {
   const typesContainer = document.createElement("span");
-  typesContainer.classList.add("p-card__feature-value");
   type.forEach((type) => {
     const typeToLowerCase = type.toLowerCase();
     const html = `
-    <svg class="p-card__feature-value-icon">
+    <svg class="p-card__type">
       <use href="./img/svgSprite.svg#type-${typeToLowerCase}"></use>
     </svg>`;
     typesContainer.insertAdjacentHTML("beforeend", html);
@@ -63,7 +67,7 @@ export const generateFighterPockemon = (itemData) => {
   const idValue = id.slice(-3);
 
   return `
-    <div class="p-card  p-card--fighter">
+    <div class="p-card  p-card--fighter" data-id='${id}'>
       <div class="p-card__miniature"><span class="p-card__miniature-id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}" alt="${name}"></div>
       <div class="p-card__row">
         <h3 class="p-card__title">${name}</h3>

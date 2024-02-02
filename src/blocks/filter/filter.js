@@ -61,9 +61,7 @@ ready(function () {
 
       container.innerHTML = "";
 
-      const totalAmount = filterData.reduce((acc, item) => {
-        return acc + item.amount;
-      }, 0);
+      const totalAmount = state.totalitems;
 
       if (filterData) {
         createFirstFilterItem;
@@ -74,7 +72,18 @@ ready(function () {
       }
     };
 
-    generateFilterMenu(typesContainer);
+    let isFirstLoad = true;
+
+    document.addEventListener("itemsrendered", function () {
+      if (!isFirstLoad) {
+        return;
+      }
+      setTimeout(() => {
+        generateFilterMenu(typesContainer);
+      }, 0);
+
+      isFirstLoad = false;
+    });
 
     document.addEventListener("click", (evt) => {
       if (evt.target.closest(".js-type-button")) {

@@ -91,6 +91,7 @@ export const renderPockemonCards = async () => {
   });
   initPagination(state.currentPage, state.totalcount);
   addScrollPadding();
+
   setTimeout(() => {
     hideLoader();
   }, 1000);

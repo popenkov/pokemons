@@ -7,10 +7,16 @@ const initialState = {
   type: "All",
   currentPage: 1,
   totalcount: 1,
+  totalitems: "",
+  allPokemons: [],
 };
 
 const handler = {
   set: function (obj, prop, value) {
+    if (prop === "totalitems") {
+      obj[prop] = value;
+      return true;
+    }
     if (prop === "perPage") {
       obj.currentPage = 1;
     }
@@ -21,7 +27,10 @@ const handler = {
       obj[prop] = value;
       return true;
     }
-
+    if (prop === "allPokemons") {
+      obj[prop] = value;
+      return true;
+    }
     if (prop === "currentPage") {
       initPagination(state.currentPage, state.totalcount);
     }

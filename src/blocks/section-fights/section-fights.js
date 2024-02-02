@@ -14,6 +14,7 @@ ready(function () {
     const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
     const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
     const fightField = fightsSection.querySelector(".js-fights-field");
+    const fightBtn = document.querySelector(".js-fight-btn");
 
     const showNode = (node) => {
       node.classList.remove("hide");
@@ -45,7 +46,7 @@ ready(function () {
         ".js-search-results-container",
       );
 
-      if (trimmedValue.length > 0) {
+      if (trimmedValue.length > 2) {
         showNode(currentLoader);
         currentResultsContainer.innerHTML = null;
 
@@ -141,6 +142,37 @@ ready(function () {
         const chosenId = currentBtn.dataset.id;
         handlePokemonChoose(chosenId, currentBtn);
       }
+    });
+
+    const handleFightClick = async () => {
+      // сохранить слабости в дата атрибуты
+      // todo
+      // if (state.allPokemons.length) {
+      //   pokemons = state.allPokemons;
+      //   console.log("if", pokemons);
+      // } else {
+      //   const data = await getAllPockemons();
+      //   // pokemons = items;
+      //   // state.allPokemons = pokemons;
+      //   console.log("else", pokemons, data);
+      // }
+      // const firstFighterId = document.querySelectorAll(".js-fighter-card .p-card")[0].dataset.id;
+      // const secondFighterId = document.querySelectorAll(".js-fighter-card .p-card")[1].dataset.id;
+      // const firstFighter = pokemons.find((item) => item.id === firstFighterId);
+      // const secondFighter = pokemons.find((item) => item.id === secondFighterId);
+      // // console.log(firstFighter, secondFighter);
+      // const { weakness: firstWeakness, type: firstType } = firstFighter;
+      // const { weakness: secondWeakness, type: secondType } = secondFighter;
+      // const firstFighterPowerValue = firstType.filter((element) =>
+      //   secondWeakness.includes(element),
+      // );
+      // const secondFighterPowerValue = secondType.filter((element) =>
+      //   firstWeakness.includes(element),
+      // );
+    };
+
+    fightBtn.addEventListener("click", () => {
+      handleFightClick();
     });
   }
 });

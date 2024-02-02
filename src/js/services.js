@@ -9,7 +9,7 @@ const pb = new PocketBase(BASE_URL);
 
 export const getMenuData = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/api/collections/types/records`);
+    const response = await fetch(`${BASE_URL}/api/collections/types/records?sort=+name.english`);
 
     if (response.status === 200) {
       const data = await response.json();
@@ -22,12 +22,31 @@ export const getMenuData = async () => {
 
 export const getPockemons = async () => {
   const { currentPage, type, perPage } = state;
-  const data = await pb.collection("pockemon").getList(currentPage, perPage, {
-    sort: "+id",
-    filter: type !== "All" ? `type ~ "${type}"` : "",
-  });
+  if (type === "All" || type === "all") {
+    const data = await getAllPockemons();
+    state.totalitems = data.totalItems;
+    return data;
+  } else {
+    const data = await pb.collection("pockemon").getList(currentPage, perPage, {
+      sort: "+id",
+      filter: `type ~ "${type}"`,
+    });
 
-  return data;
+    return data;
+  }
+};
+
+export const getAllPockemons = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/collections/pockemon/records`);
+
+    if (response.status === 200) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (err) {
+    console.log("Ошибка загрузки", err.message);
+  }
 };
 
 export const getPockemonByName = async (name) => {

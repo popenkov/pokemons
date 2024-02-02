@@ -16,7 +16,12 @@ mixin button(text, mods)
     if(typeof(mods) !== 'undefined' && mods) {
       var modsList = mods.split(',');
       for (var i = 0; i < modsList.length; i++) {
+        if (modsList[i].includes('js-')) {
+          allMods = allMods + modsList[i].trim();
+        }
+        else {
         allMods = allMods + ' button--' + modsList[i].trim();
+        }
       }
     }
 
