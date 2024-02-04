@@ -78,9 +78,8 @@ ready(function () {
       if (!isFirstLoad) {
         return;
       }
-      setTimeout(() => {
-        generateFilterMenu(typesContainer);
-      }, 0);
+
+      generateFilterMenu(typesContainer);
 
       isFirstLoad = false;
     });
