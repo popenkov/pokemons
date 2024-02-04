@@ -8,7 +8,6 @@ const initialState = {
   currentPage: 1,
   totalcount: 1,
   totalitems: "",
-  allPokemons: [],
 };
 
 const handler = {
@@ -24,10 +23,6 @@ const handler = {
       obj.currentPage = 1;
     }
     if (prop === "totalcount") {
-      obj[prop] = value;
-      return true;
-    }
-    if (prop === "allPokemons") {
       obj[prop] = value;
       return true;
     }

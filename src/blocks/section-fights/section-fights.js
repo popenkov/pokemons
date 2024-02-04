@@ -10,11 +10,14 @@ ready(function () {
 
   if (fightsSection) {
     const searchInputs = fightsSection.querySelectorAll(".js-search-input");
-    const searchResultsWrapper = fightsSection.querySelector(".js-search-results");
+
     const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
     const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
     const fightField = fightsSection.querySelector(".js-fights-field");
-    const fightBtn = document.querySelector(".js-fight-btn");
+    const allFighterContainers = fightsSection.querySelectorAll(".js-fighter-card");
+
+    const fightBtn = fightsSection.querySelector(".js-fight-btn");
+    const fightsResultContainer = fightsSection.querySelector(".js-fights-result");
 
     const showNode = (node) => {
       node.classList.remove("hide");
@@ -28,65 +31,16 @@ ready(function () {
       hideNode(pageLoader);
       showNode(fightField);
     };
-    hidePagePreloader();
-    // todo temporary hidden
-    // setTimeout(() => {
-    //   hidePagePreloader();
-    // }, 1000);
 
-    const handleInputSearch = async (evt) => {
-      evt.preventDefault();
+    setTimeout(() => {
+      hidePagePreloader();
+    }, 1000);
 
-      const currentInput = evt.target;
-
-      const trimmedValue = currentInput.value.trim();
-      const currentSearchContainer = currentInput.closest(".search-field");
-      const currentLoader = currentSearchContainer.querySelector(".js-search-loader");
-      const currentResultsContainer = currentSearchContainer.querySelector(
-        ".js-search-results-container",
-      );
-
-      if (trimmedValue.length > 2) {
-        showNode(currentLoader);
-        currentResultsContainer.innerHTML = null;
-
-        const result = await getPockemonByName(trimmedValue);
-
-        if (result) {
-          result.forEach((item) => {
-            currentResultsContainer.insertAdjacentHTML("beforeend", createSearchResultsItem(item));
-          });
-          highlightText(trimmedValue);
-          hideNode(currentLoader);
-          showNode(currentResultsContainer);
-        } else {
-          hideNode(currentResultsContainer);
-        }
-      } else {
-        searchResultsContainer.innerHTML = null;
-      }
+    const clearSearchInput = (input) => {
+      input.style.backgroundImage = "";
     };
-
-    const handleInputBlur = (evt) => {
-      // todo
-      console.log(evt);
-      // const currentInput = evt.target;
-      // const currentSearchContainer = currentInput.closest(".search-field");
-      // const currentResultsContainer = currentSearchContainer.querySelector(
-      //   ".js-search-results-container",
-      // );
-      // hideNode(currentResultsContainer);
-      // currentInput.value = "";
-    };
-
-    searchInputs.forEach((input) => {
-      input.addEventListener("input", debounce(handleInputSearch, 500));
-      input.addEventListener("blur", handleInputBlur);
-      input.addEventListener("focus", () => showNode(searchResultsWrapper));
-    });
 
     const fillSearchInput = (input, data) => {
-      console.log(data);
       const {
         id,
         name: { english: name },
@@ -105,6 +59,64 @@ ready(function () {
       input.value = `${idValue} - ${name}`;
     };
 
+    const handleInputSearch = async (evt) => {
+      evt.preventDefault();
+
+      const currentInput = evt.target;
+      clearSearchInput(currentInput);
+
+      const trimmedValue = currentInput.value.trim();
+      const currentSearchContainer = currentInput.closest(".search-field");
+      const currentLoader = currentSearchContainer.querySelector(".js-search-loader");
+      const currentResultsContainer = currentSearchContainer.querySelector(
+        ".js-search-results-container",
+      );
+
+      if (trimmedValue.length > 2) {
+        showNode(currentLoader);
+        hideNode(currentResultsContainer);
+        currentResultsContainer.innerHTML = null;
+
+        const result = await getPockemonByName(trimmedValue);
+
+        if (result) {
+          result.forEach((item) => {
+            currentResultsContainer.insertAdjacentHTML("beforeend", createSearchResultsItem(item));
+          });
+          highlightText(trimmedValue);
+          setTimeout(() => {
+            hideNode(currentLoader);
+            showNode(currentResultsContainer);
+          }, 1000);
+        } else {
+          hideNode(currentResultsContainer);
+        }
+      } else {
+        searchResultsContainer.innerHTML = null;
+      }
+    };
+
+    searchInputs.forEach((input) => {
+      input.addEventListener("input", debounce(handleInputSearch, 500));
+    });
+
+    const showFightBtn = () => {
+      let areBothCardsSelected = true;
+      console.log(areBothCardsSelected);
+      allFighterContainers.forEach((item) => {
+        if (item.classList.contains("hide")) {
+          console.log(item);
+          areBothCardsSelected = false;
+        }
+      });
+
+      if (areBothCardsSelected) {
+        fightBtn.removeAttribute("disabled");
+      } else {
+        fightBtn.setAttribute("disabled", true);
+      }
+    };
+
     const handlePokemonChoose = async (id, currentBtn) => {
       const currentCard = currentBtn.closest(".js-fighter-container");
       const currentLoader = currentCard.querySelector(".js-fighter-loader");
@@ -116,8 +128,11 @@ ready(function () {
       const currentSearchInput = currentCard.querySelector(".js-search-input");
 
       showNode(currentLoader);
+      hideNode(fighterContainer);
       hideNode(currentPlaceholder);
       hideNode(currentSearchResultsContainer);
+      hideNode(fightsResultContainer);
+      fightsResultContainer.innerHTML = "";
       fighterContainer.innerHTML = "";
 
       const data = await getPockemonById(id);
@@ -127,13 +142,11 @@ ready(function () {
 
       fillSearchInput(currentSearchInput, data[0]);
 
-      // todo temporary hidden
-      // setTimeout(() => {
-      //   hideNode(currentLoader);
-      //   showNode(fighterContainer);
-      // }, 1000);
-      hideNode(currentLoader);
-      showNode(fighterContainer);
+      setTimeout(() => {
+        hideNode(currentLoader);
+        showNode(fighterContainer);
+        showFightBtn();
+      }, 1000);
     };
 
     fightsSection.addEventListener("click", (evt) => {
@@ -144,31 +157,48 @@ ready(function () {
       }
     });
 
+    const returnDrawResult = () => {
+      showNode(fightsResultContainer);
+      fightsResultContainer.innerHTML = `<span class="section-fights__results-text section-fights__results-text--draw">Round draw!</span>`;
+    };
+
+    const returnWinnerResult = (name) => {
+      showNode(fightsResultContainer);
+      fightsResultContainer.innerHTML = `<span class="section-fights__results-text section-fights__results-text--winner">${name} is the winner!</span>`;
+    };
+
     const handleFightClick = async () => {
-      // сохранить слабости в дата атрибуты
-      // todo
-      // if (state.allPokemons.length) {
-      //   pokemons = state.allPokemons;
-      //   console.log("if", pokemons);
-      // } else {
-      //   const data = await getAllPockemons();
-      //   // pokemons = items;
-      //   // state.allPokemons = pokemons;
-      //   console.log("else", pokemons, data);
-      // }
-      // const firstFighterId = document.querySelectorAll(".js-fighter-card .p-card")[0].dataset.id;
-      // const secondFighterId = document.querySelectorAll(".js-fighter-card .p-card")[1].dataset.id;
-      // const firstFighter = pokemons.find((item) => item.id === firstFighterId);
-      // const secondFighter = pokemons.find((item) => item.id === secondFighterId);
-      // // console.log(firstFighter, secondFighter);
-      // const { weakness: firstWeakness, type: firstType } = firstFighter;
-      // const { weakness: secondWeakness, type: secondType } = secondFighter;
-      // const firstFighterPowerValue = firstType.filter((element) =>
-      //   secondWeakness.includes(element),
-      // );
-      // const secondFighterPowerValue = secondType.filter((element) =>
-      //   firstWeakness.includes(element),
-      // );
+      const allFighters = document.querySelectorAll(".js-fighter-card .p-card");
+      const firstFighter = allFighters[0];
+      const firstFighterWeakness = firstFighter.dataset.weakness.split(",");
+      const firstFighterType = firstFighter.dataset.types.split(",");
+      const firstFighterName = firstFighter.dataset.name;
+
+      const secondFighter = allFighters[1];
+      const secondFighterWeakness = secondFighter.dataset.weakness.split(",");
+      const secondFighterType = secondFighter.dataset.types.split(",");
+      const secondFighterName = secondFighter.dataset.name;
+
+      const firstFighterPowerValue = firstFighterType.filter((element) =>
+        secondFighterWeakness.includes(element),
+      ).length;
+      const secondFighterPowerValue = secondFighterType.filter((element) =>
+        firstFighterWeakness.includes(element),
+      ).length;
+
+      switch (true) {
+        case firstFighterPowerValue === secondFighterPowerValue:
+          returnDrawResult();
+          break;
+        case firstFighterPowerValue > secondFighterPowerValue:
+          returnWinnerResult(firstFighterName);
+          break;
+        case firstFighterPowerValue < secondFighterPowerValue:
+          returnWinnerResult(secondFighterName);
+          break;
+        default:
+          break;
+      }
     };
 
     fightBtn.addEventListener("click", () => {

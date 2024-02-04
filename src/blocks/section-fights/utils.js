@@ -67,7 +67,7 @@ export const generateFighterPockemon = (itemData) => {
   const idValue = id.slice(-3);
 
   return `
-    <div class="p-card  p-card--fighter" data-id='${id}'>
+    <div class="p-card  p-card--fighter" data-name='${name}' data-weakness=${weakness} data-types=${type}>
       <div class="p-card__miniature"><span class="p-card__miniature-id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}" alt="${name}"></div>
       <div class="p-card__row">
         <h3 class="p-card__title">${name}</h3>
