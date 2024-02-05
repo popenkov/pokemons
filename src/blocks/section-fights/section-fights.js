@@ -1,9 +1,10 @@
 import ready from "../../js/utils/documentReady.js";
-import { createSearchResultsItem, generateFighterPockemon } from "./utils.js";
+import { createSearchResultsItem, generateFighterPockemon } from "./renderHTML.js";
 import { debounce } from "../../js/utils/debounce.js";
 import { highlightText } from "../../js/utils/highlightText.js";
 import { getPockemonById, getPockemonByName } from "../../js/services.js";
 import { BASE_URL } from "../../js/services.js";
+import { hideNode, showNode } from "../../js/utils/showNode.js";
 
 ready(function () {
   const fightsSection = document.querySelector(".section-fights");
@@ -15,17 +16,9 @@ ready(function () {
     const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
     const fightField = fightsSection.querySelector(".js-fights-field");
     const allFighterContainers = fightsSection.querySelectorAll(".js-fighter-card");
-
+    const fightBtnContainer = fightsSection.querySelector(".js-fight-btn-container");
     const fightBtn = fightsSection.querySelector(".js-fight-btn");
     const fightsResultContainer = fightsSection.querySelector(".js-fights-result");
-
-    const showNode = (node) => {
-      node.classList.remove("hide");
-    };
-
-    const hideNode = (node) => {
-      node.classList.add("hide");
-    };
 
     const hidePagePreloader = () => {
       hideNode(pageLoader);
@@ -101,8 +94,8 @@ ready(function () {
     });
 
     const showFightBtn = () => {
+      showNode(fightBtnContainer);
       let areBothCardsSelected = true;
-      console.log(areBothCardsSelected);
       allFighterContainers.forEach((item) => {
         if (item.classList.contains("hide")) {
           console.log(item);
@@ -121,7 +114,8 @@ ready(function () {
       const currentCard = currentBtn.closest(".js-fighter-container");
       const currentLoader = currentCard.querySelector(".js-fighter-loader");
       const currentPlaceholder = currentCard.querySelector(".js-fighter-empty");
-      const fighterContainer = currentCard.querySelector(".js-fighter-card");
+      const fighterContainer = currentCard.querySelector(".js-fighter-card"); //
+
       const currentSearchResultsContainer = currentCard.querySelector(
         ".js-search-results-container",
       );
@@ -145,6 +139,7 @@ ready(function () {
       setTimeout(() => {
         hideNode(currentLoader);
         showNode(fighterContainer);
+        hideNode(fightsResultContainer);
         showFightBtn();
       }, 1000);
     };
@@ -199,6 +194,7 @@ ready(function () {
         default:
           break;
       }
+      hideNode(fightBtnContainer);
     };
 
     fightBtn.addEventListener("click", () => {

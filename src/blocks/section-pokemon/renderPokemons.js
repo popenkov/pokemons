@@ -6,21 +6,22 @@ const pokemonsItems = document.querySelector(".js-pokemon-items");
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import { addScrollPadding } from "../../js/utils/addScrollPadding.js";
+import { hideNode, showNode } from "../../js/utils/showNode.js";
 import { initPagination } from "../pagination/initPagination.js";
 
 const loader = pokemonsSection.querySelector(".js-pokemon-loader");
 const pagination = pokemonsSection.querySelector(".js-pagination");
 
 const showLoader = () => {
-  loader.classList.remove("hidden");
-  pagination.classList.add("hidden");
-  pokemonsItems.classList.add("hidden");
+  showNode(loader);
+  hideNode(pagination);
+  hideNode(pokemonsItems);
 };
 
 const hideLoader = () => {
-  loader.classList.add("hidden");
-  pagination.classList.remove("hidden");
-  pokemonsItems.classList.remove("hidden");
+  hideNode(loader);
+  showNode(pagination);
+  showNode(pokemonsItems);
 };
 
 const generateTypesHTML = (type) => {

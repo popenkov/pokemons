@@ -1,7 +1,7 @@
 import { getMenuData } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import ready from "../../js/utils/documentReady.js";
-import { createFilterItem, createFirstFilterItem } from "./utils.js";
+import { createFilterItem, createFirstFilterItem } from "./createFilterItem.js";
 
 ready(function () {
   const filterBtn = document.querySelector(".js-mobile-filter-button");

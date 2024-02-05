@@ -29,8 +29,6 @@ const generateWeeknessesHTML = (weak) => {
     weaknessContainer.insertAdjacentHTML("beforeend", html);
   });
 
-  console.log("weaknessContainer.innerHTML", weaknessContainer.innerHTML);
-
   return weaknessContainer.outerHTML;
 };
 
