@@ -4,12 +4,12 @@
   font-size: fluid(16, 32, 320, 1680);
   line-height: 125%;
   letter-spacing: 0.32px;
+}
 
-  @media screen and (min-width: $screen-d) {
-    font-size: 32px;
-    line-height: 125%;
-    letter-spacing: 0.64px;
-  }
+@mixin title-desktop {
+  font-size: 32px;
+  line-height: 125%;
+  letter-spacing: 0.64px;
 }
 
 @mixin title-num {

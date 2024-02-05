@@ -1,0 +1,27 @@
+mixin fighter-card(data)
+  .fighter-card
+      .fighter-card__miniature
+          span.fighter-card__miniature-id= data.id
+          img.fighter-card__miniature-img(src= src.img + data.photo, alt=data.name)
+
+      .fighter-card__row
+        h3.fighter-card__title= data.name
+        .fighter-card__types
+          each type in data.types
+            svg.fighter-card__type: use(href= src.icon + 'type-' + type)
+      .fighter-card__features
+        each feat in data.fightFeatures
+          .fighter-card__feature
+            span.fighter-card__feature-icon
+              svg.fighter-card__feature-icon-svg: use(href= src.icon + 'category-' + feat.name)
+            span.fighter-card__feature-value= feat.value
+        .fighter-card__feature.fighter-card__feature--full-width
+          span.fighter-card__feature-icon
+            svg.fighter-card__feature-icon-svg: use(href= src.icon + 'category-weakness')
+          span.fighter-card__feature-value
+            each weakness in data.weakness
+              svg.fighter-card__feature-icon-svg: use(href= src.icon + 'type-' + weakness)
+        .fighter-card__feature.fighter-card__feature--full-width
+          span.fighter-card__feature-icon
+            svg.fighter-card__feature-icon-svg: use(href= src.icon + 'category-strength')
+          span.fighter-card__feature-value= data.strength

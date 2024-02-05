@@ -164,7 +164,7 @@ ready(function () {
 
     const handleFightClick = async () => {
       fightBtn.classList.add("active");
-      const allFighters = document.querySelectorAll(".js-fighter-card .p-card");
+      const allFighters = document.querySelectorAll(".js-fighter-card .fighter-card");
       const firstFighter = allFighters[0];
       const firstFighterWeakness = firstFighter.dataset.weakness.split(",");
       const firstFighterType = firstFighter.dataset.types.split(",");

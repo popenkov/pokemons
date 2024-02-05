@@ -32,7 +32,13 @@ block content
               .section-pokemon__items--loading.js-pokemon-loader
                 +loader
               .section-pokemon__items.js-pokemon-items
+              .section-pokemon__items.js-skeletons-items
+                - var n = 0;
+                while n < 12
+                  - n++
+                  +skeleton-card
             +pagination
+
 
             button.filter-button.js-mobile-filter-button
               svg.filter-button__icon: use(href= src.icon + 'filter-icon')
@@ -52,7 +58,10 @@ block content
                         span.choose-fighter-card__result-text Type name <br/> of champion above
                       .choose-fighter-card__result-loader.js-fighter-loader.hide
                         +loader
+                        //- todo
+                        //- +skeleton-card(true, "fighter")
                       .js-fighter-card.hide
+
 
                   span.section-fights__choose-fighter-separator VS
 
@@ -65,7 +74,7 @@ block content
                       .choose-fighter-card__result-loader.js-fighter-loader.hide
                         +loader
                       .js-fighter-card.hide
-                        +p-card(data.pokemons[3], true, 'fighter')
+
 
                 .section-fights__footer.js-fight-btn-container
                   +button('FIGHT!', 'js-fight-btn')
