@@ -163,6 +163,7 @@ ready(function () {
     };
 
     const handleFightClick = async () => {
+      fightBtn.classList.add("active");
       const allFighters = document.querySelectorAll(".js-fighter-card .p-card");
       const firstFighter = allFighters[0];
       const firstFighterWeakness = firstFighter.dataset.weakness.split(",");
@@ -181,20 +182,24 @@ ready(function () {
         firstFighterWeakness.includes(element),
       ).length;
 
-      switch (true) {
-        case firstFighterPowerValue === secondFighterPowerValue:
-          returnDrawResult();
-          break;
-        case firstFighterPowerValue > secondFighterPowerValue:
-          returnWinnerResult(firstFighterName);
-          break;
-        case firstFighterPowerValue < secondFighterPowerValue:
-          returnWinnerResult(secondFighterName);
-          break;
-        default:
-          break;
-      }
-      hideNode(fightBtnContainer);
+      setTimeout(() => {
+        switch (true) {
+          case firstFighterPowerValue === secondFighterPowerValue:
+            returnDrawResult();
+            break;
+          case firstFighterPowerValue > secondFighterPowerValue:
+            returnWinnerResult(firstFighterName);
+            break;
+          case firstFighterPowerValue < secondFighterPowerValue:
+            returnWinnerResult(secondFighterName);
+            break;
+          default:
+            break;
+        }
+
+        hideNode(fightBtnContainer);
+        fightBtn.classList.remove("active");
+      }, 1000);
     };
 
     fightBtn.addEventListener("click", () => {
