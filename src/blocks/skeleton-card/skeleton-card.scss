@@ -1,0 +1,82 @@
+@import "../../scss/mixins/flexbox";
+@import "../../scss/mixins/text-styles";
+@import "../../scss/mixins/blocks";
+@import "../../scss/mixins/skeleton";
+@import "../../scss/breakpoints";
+
+.skeleton-card {
+  $block-name: &; // #{$block-name}__element
+
+  --card-border: 1px solid var(--monochrome-500); // stylelint-disable-line
+
+  @include flex-column-center;
+
+  gap: 8px;
+  height: 100%;
+  min-height: 360px;
+  padding: 7px 8px 8px;
+  background-color: var(--monochrome-600);
+  border-top: var(--card-border);
+  border-radius: 8px;
+
+  @media screen and (min-width: $screen-tl) {
+    gap: 16px;
+    min-height: 512px;
+    padding-bottom: 16px;
+    border-radius: 16px;
+  }
+
+  &__miniature {
+    @include skeleton;
+
+    width: 100%;
+    height: 152px;
+
+    @media screen and (min-width: $screen-tl) {
+      height: 320px;
+      padding: 40px;
+    }
+  }
+
+  &__row {
+    @include skeleton;
+
+    width: 100%;
+    height: 48px;
+    margin-bottom: 12px;
+
+    @media screen and (min-width: $screen-tl) {
+      width: calc(100% - 16px);
+      height: 40px;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    width: 100%;
+
+    @media screen and (min-width: $screen-tl) {
+      gap: 8px;
+      padding: 0 8px;
+    }
+  }
+
+  &__feature {
+    @include skeleton;
+
+    height: 57px;
+    border: var(--card-border);
+    border-radius: 8px;
+
+    @media screen and (min-width: $screen-tl) {
+      height: 40px;
+    }
+
+    &--full-width {
+      width: calc(100% - 16px);
+    }
+  }
+}

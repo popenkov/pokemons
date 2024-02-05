@@ -5,7 +5,7 @@
 @import "../../scss/mixins/dashed-border";
 
 .section-fights {
-  @media screen and (min-width: $screen-txl) {
+  @media screen and (min-width: $screen-tl) {
     @include flex-column;
 
     gap: 48px;
@@ -28,7 +28,7 @@
     gap: 16px;
     width: 100%;
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       gap: 48px;
       margin-bottom: 0;
     }
@@ -47,7 +47,7 @@
 
     gap: 16px;
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       flex-direction: row;
       align-items: center;
     }
@@ -58,7 +58,7 @@
       margin-bottom: 8px;
     }
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       flex-grow: 1;
       width: 100%;
       max-width: 607px;
@@ -74,7 +74,7 @@
 
     margin: 0 auto;
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       margin-top: 72px;
     }
   }
@@ -84,7 +84,7 @@
 
     gap: 16px;
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       padding-bottom: 38px;
     }
   }
@@ -95,7 +95,7 @@
 
     padding: 16px;
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       padding: 28px 16px;
     }
 
@@ -107,7 +107,7 @@
   &__results-text {
     @include tile-title-mobile;
 
-    @media screen and (min-width: $screen-txl) {
+    @media screen and (min-width: $screen-tl) {
       @include tile-title-desktop;
     }
 
