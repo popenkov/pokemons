@@ -5,6 +5,7 @@ import { highlightText } from "../../js/utils/highlightText.js";
 import { getPockemonById, getPockemonByName } from "../../js/services.js";
 import { BASE_URL } from "../../js/services.js";
 import { hideNode, showNode } from "../../js/utils/showNode.js";
+import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 
 ready(function () {
   const fightsSection = document.querySelector(".section-fights");
@@ -27,7 +28,7 @@ ready(function () {
 
     setTimeout(() => {
       hidePagePreloader();
-    }, 1000);
+    }, TIMEOUT_VALUE);
 
     const clearSearchInput = (input) => {
       input.style.backgroundImage = "";
@@ -80,7 +81,7 @@ ready(function () {
           setTimeout(() => {
             hideNode(currentLoader);
             showNode(currentResultsContainer);
-          }, 1000);
+          }, TIMEOUT_VALUE);
         } else {
           hideNode(currentResultsContainer);
         }
@@ -141,7 +142,7 @@ ready(function () {
         showNode(fighterContainer);
         hideNode(fightsResultContainer);
         showFightBtn();
-      }, 1000);
+      }, TIMEOUT_VALUE);
     };
 
     fightsSection.addEventListener("click", (evt) => {
@@ -199,7 +200,7 @@ ready(function () {
 
         hideNode(fightBtnContainer);
         fightBtn.classList.remove("active");
-      }, 1000);
+      }, TIMEOUT_VALUE);
     };
 
     fightBtn.addEventListener("click", () => {

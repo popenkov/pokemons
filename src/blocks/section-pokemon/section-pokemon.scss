@@ -55,7 +55,7 @@
 
     @media screen and (min-width: $screen-d) {
       grid-template-columns: 1fr 1fr 1fr;
-      background-repeat: 24px;
+      border-radius: 24px;
     }
 
     &--loading {

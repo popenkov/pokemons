@@ -20,17 +20,22 @@ block content
             h2.visually-hidden Выбор покемона
 
             .filter.js-filter-menu
-              .filter__inner.js-filter-menu-body
+              .filter__inner.js-filter-menu-items.hide
                 .filter__container.filter__container--page
                   span.filter__title Per page:
                   .filter__items
                     each menu, index in data.filters.perPage
                       button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '', data-perpage=menu)= menu
                 .filter__container.filter__container--type.js-type-filter-container
+              .filter__inner.js-filter-skeleton
+                +skeleton-menu('pages')
+                .filter__container.filter__container--type
+                  - var n = 0;
+                  while n < 20
+                    - n++
+                    +skeleton-menu
 
             .section-pokemon__wrapper
-              .section-pokemon__items--loading.js-pokemon-loader
-                +loader
               .section-pokemon__items.js-pokemon-items
               .section-pokemon__items.js-skeletons-items
                 - var n = 0;
@@ -57,10 +62,10 @@ block content
                       .choose-fighter-card__result-empty.js-fighter-empty
                         span.choose-fighter-card__result-text Type name <br/> of champion above
                       .choose-fighter-card__result-loader.js-fighter-loader.hide
-                        +loader
-                        //- todo
-                        //- +skeleton-card(true, "fighter")
+                        +skeleton-fighter
+
                       .js-fighter-card.hide
+
 
 
                   span.section-fights__choose-fighter-separator VS
@@ -71,8 +76,8 @@ block content
                     .choose-fighter-card__result
                       .choose-fighter-card__result-empty.js-fighter-empty
                         span.choose-fighter-card__result-text Type name <br/> of champion above
-                      .choose-fighter-card__result-loader.js-fighter-loader.hide
-                        +loader
+                      .choose-fighter-card__result-loader.js-fighter-loader
+                        +skeleton-fighter
                       .js-fighter-card.hide
 
 
@@ -81,3 +86,10 @@ block content
 
                 .section-fights__results.js-fights-result.hide
                   span.section-fights__results-text.section-fights__results-text--winner Charmander is the winner!
+
+
+
+                  //- todo   как сделать, чтобы стили были всегда
+                  .visually-hidden
+                    +p-card(data.pokemons[0])
+                    +fighter-card(data.pokemons[0])

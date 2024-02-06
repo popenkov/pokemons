@@ -145,7 +145,7 @@
   }
 
   &__result-loader {
-    @include flex-center;
+    // @include flex-center;
     @include dashed-border;
 
     min-height: 248px;

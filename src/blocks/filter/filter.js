@@ -1,6 +1,8 @@
 import { getMenuData } from "../../js/services.js";
 import { state } from "../../js/state.js";
+import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 import ready from "../../js/utils/documentReady.js";
+import { hideNode, showNode } from "../../js/utils/showNode.js";
 import { createFilterItem, createFirstFilterItem } from "./createFilterItem.js";
 
 ready(function () {
@@ -10,6 +12,8 @@ ready(function () {
     const filterMenu = document.querySelector(".js-filter-menu");
     const typesContainer = filterMenu.querySelector(".js-type-filter-container");
     const petPageBtns = filterMenu.querySelectorAll(".js-per-page-button");
+    const filterItemsContainer = filterMenu.querySelector(".js-filter-menu-items");
+    const filterSkeletonContainer = filterMenu.querySelector(".js-filter-skeleton");
 
     filterBtn.addEventListener("click", (evt) => {
       evt.preventDefault();
@@ -69,6 +73,11 @@ ready(function () {
         filterData.forEach((elem) => {
           container.insertAdjacentHTML("beforeend", createFilterItem(elem));
         });
+
+        setTimeout(() => {
+          hideNode(filterSkeletonContainer);
+          showNode(filterItemsContainer);
+        }, TIMEOUT_VALUE);
       }
     };
 

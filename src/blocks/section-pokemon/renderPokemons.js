@@ -6,20 +6,21 @@ const pokemonsItems = document.querySelector(".js-pokemon-items");
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import { addScrollPadding } from "../../js/utils/addScrollPadding.js";
+import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 import { hideNode, showNode } from "../../js/utils/showNode.js";
 import { initPagination } from "../pagination/initPagination.js";
 
-const loader = pokemonsSection.querySelector(".js-pokemon-loader");
 const pagination = pokemonsSection.querySelector(".js-pagination");
+const skeleton = pokemonsSection.querySelector(".js-skeletons-items");
 
-const showLoader = () => {
-  showNode(loader);
+const showSkeleton = () => {
+  showNode(skeleton);
   hideNode(pagination);
   hideNode(pokemonsItems);
 };
 
-const hideLoader = () => {
-  hideNode(loader);
+const hideSkeleton = () => {
+  hideNode(skeleton);
   showNode(pagination);
   showNode(pokemonsItems);
 };
@@ -75,7 +76,7 @@ const renderPockemonCard = (data) => {
 };
 
 export const renderPockemonCards = async () => {
-  showLoader();
+  showSkeleton();
   const data = await getPockemons();
 
   if (!data) {
@@ -94,6 +95,6 @@ export const renderPockemonCards = async () => {
   addScrollPadding();
 
   setTimeout(() => {
-    hideLoader();
-  }, 1000);
+    hideSkeleton();
+  }, TIMEOUT_VALUE);
 };

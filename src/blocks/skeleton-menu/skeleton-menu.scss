@@ -1,0 +1,18 @@
+@import "../../scss/mixins/skeleton";
+
+.skeleton-menu {
+  $block-name: &; // #{$block-name}__element
+
+  @include skeleton;
+
+  height: 40px;
+
+  &--pages {
+    height: 48px;
+    border-radius: 16px;
+
+    @media screen and (min-width: $screen-tl) {
+      height: 56px;
+    }
+  }
+}

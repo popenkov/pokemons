@@ -4,7 +4,7 @@
   }
 }
 
-@mixin skeleton() {
+@mixin skeleton($br: 8px) {
   --skeleton-bg: var(--monochrome-500);
   --skeleton-shine: var(--monochrome-400);
 
@@ -20,6 +20,6 @@
   background-position-x: 120%;
   background-position-x: 180%;
   background-size: 200% 100%;
-  border-radius: 8px;
+  border-radius: $br;
   animation: 1.5s loading ease-in-out infinite;
 }

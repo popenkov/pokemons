@@ -1,0 +1,12 @@
+mixin skeleton-menu(mods)
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' skeleton-menu--' + modsList[i].trim();
+      }
+    }
+
+  .skeleton-menu(class=allMods)
