@@ -2,7 +2,7 @@ mixin p-card(data)
   block
   .p-card
       .p-card__miniature
-          span.p-card__miniature-id= data.id
+          span.p-card__id= data.id
           img.p-card__miniature-img(src= src.img + data.photo, alt=data.name)
 
       .p-card__row

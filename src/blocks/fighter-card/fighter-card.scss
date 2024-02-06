@@ -64,7 +64,7 @@
     }
   }
 
-  &__miniature-id {
+  &__id {
     @include title-num-desktop;
 
     position: absolute;
@@ -97,13 +97,11 @@
     flex-direction: column;
     flex-grow: 1;
     gap: 10px;
-    margin-bottom: 12px;
 
     @media screen and (min-width: $screen-tl) {
       gap: 12px;
       justify-content: space-between;
       width: 100%;
-      margin-bottom: 0;
       padding: 0 8px;
     }
   }
@@ -152,6 +150,14 @@
 
     @media screen and (min-width: $screen-tl) {
       grid-area: description;
+    }
+  }
+
+  &__row + &__features {
+    margin-top: 12px;
+
+    @media screen and (min-width: $screen-tl) {
+      margin-top: 0;
     }
   }
 

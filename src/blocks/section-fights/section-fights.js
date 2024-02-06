@@ -50,7 +50,7 @@ ready(function () {
       const idValue = id.slice(-3);
 
       input.style.backgroundImage = `url('${imageURL}')`;
-      input.value = `${idValue} - ${name}`;
+      input.value = `${idValue} — ${name}`;
     };
 
     const handleInputSearch = async (evt) => {

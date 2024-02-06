@@ -66,7 +66,7 @@ export const generateFighterPockemon = (itemData) => {
 
   return `
     <div class="fighter-card" data-name='${name}' data-weakness=${weakness} data-types=${type}>
-      <div class="fighter-card__miniature"><span class="fighter-card__miniature-id">${idValue}</span><img class="fighter-card__miniature-img" src="${imageURL}" alt="${name}"></div>
+      <div class="fighter-card__miniature"><span class="fighter-card__id">${idValue}</span><img class="fighter-card__miniature-img" src="${imageURL}" alt="${name}"></div>
       <div class="fighter-card__row">
         <h3 class="fighter-card__title">${name}</h3>
         <div class="fighter-card__types">

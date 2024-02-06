@@ -55,7 +55,7 @@ const renderPockemonCard = (data) => {
 
   const html = `<div class="section-pokemon__item">
                       <div class="p-card">
-                        <div class="p-card__miniature"><span class="p-card__miniature-id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}
+                        <div class="p-card__miniature"><span class="p-card__id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}
                         " alt="${name}"></div>
                         <div class="p-card__row">
                           <h3 class="p-card__title">${name}</h3>
