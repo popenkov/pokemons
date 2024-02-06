@@ -1,7 +1,7 @@
-mixin search-field(placeholder, name )
-  .search-field(class= allMods)
+mixin search-field(placeholder, index)
+  .search-field
     label.search-field__inner
-      input.search-field__input.js-search-input(type='text', placeholder=placeholder, name=name)&attributes(attributes)
+      input.search-field__input.js-search-input(type='text', placeholder=placeholder, data-index= index)&attributes(attributes)
     .search-field__results.js-search-results
       .search-field__results-loader.js-search-loader.hide
         +loader

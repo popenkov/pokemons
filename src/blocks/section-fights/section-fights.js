@@ -11,8 +11,12 @@ ready(function () {
   const fightsSection = document.querySelector(".section-fights");
 
   if (fightsSection) {
-    const searchInputs = fightsSection.querySelectorAll(".js-search-input");
+    let currentInputValue = {
+      0: "",
+      1: "",
+    };
 
+    const searchInputs = fightsSection.querySelectorAll(".js-search-input");
     const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
     const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
     const fightField = fightsSection.querySelector(".js-fights-field");
@@ -48,15 +52,34 @@ ready(function () {
       img.src = imageURL;
 
       const idValue = id.slice(-3);
+      const index = input.dataset.index;
 
       input.style.backgroundImage = `url('${imageURL}')`;
       input.value = `${idValue} — ${name}`;
+      currentInputValue[index] = `${idValue} — ${name}`;
+      input.style.backgroundSize = "20px 20px";
     };
 
-    const handleInputSearch = async (evt) => {
+    const handleInputFocus = (evt) => {
+      const currentInput = evt.target;
+      currentInput.style.backgroundSize = "0";
+      currentInput.value = "";
+    };
+
+    const handleInputBlur = (evt, index) => {
+      const currentInput = evt.target;
+
+      if (currentInput.value === "") {
+        currentInput.style.backgroundSize = "20px 20px";
+        currentInput.value = currentInputValue[index];
+      }
+    };
+
+    const handleInputSearch = async (evt, index) => {
       evt.preventDefault();
 
       const currentInput = evt.target;
+      currentInputValue[index] = currentInput.value;
       clearSearchInput(currentInput);
 
       const trimmedValue = currentInput.value.trim();
@@ -90,8 +113,13 @@ ready(function () {
       }
     };
 
-    searchInputs.forEach((input) => {
-      input.addEventListener("input", debounce(handleInputSearch, 500));
+    searchInputs.forEach((input, index) => {
+      input.addEventListener(
+        "input",
+        debounce((evt) => handleInputSearch(evt, index), 500),
+      );
+      input.addEventListener("focus", handleInputFocus);
+      input.addEventListener("blur", (evt) => handleInputBlur(evt, index));
     });
 
     const showFightBtn = () => {
@@ -149,6 +177,7 @@ ready(function () {
       if (evt.target.closest(".js-search-result-item")) {
         const currentBtn = evt.target.closest(".js-search-result-item");
         const chosenId = currentBtn.dataset.id;
+
         handlePokemonChoose(chosenId, currentBtn);
       }
     });
