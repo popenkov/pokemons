@@ -20,13 +20,23 @@ export const getMenuData = async () => {
   }
 };
 
+export const getTotalAmountPockemons = async () => {
+  const data = await pb.collection("pockemon").getList(1, 1, {
+    sort: "+id",
+  });
+  if (!state.totalitems) {
+    state.totalitems = data.totalItems;
+  }
+  return data;
+};
+
 export const getPockemons = async () => {
   const { currentPage, type, perPage } = state;
   const data = await pb.collection("pockemon").getList(currentPage, perPage, {
     sort: "+id",
     filter: type === "All" || type === "all" ? "" : `type ~ "${type}"`,
   });
-  if (type === "All" || type === "all") {
+  if (type === "All" && !state.totalitems) {
     state.totalitems = data.totalItems;
   }
   return data;

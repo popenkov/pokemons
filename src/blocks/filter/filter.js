@@ -1,4 +1,4 @@
-import { getMenuData } from "../../js/services.js";
+import { getMenuData, getTotalAmountPockemons } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 import ready from "../../js/utils/documentReady.js";
@@ -48,12 +48,16 @@ ready(function () {
 
     const selectActivePageMenu = (page) => {
       petPageBtns.forEach((button) => {
-        button.dataset.perpage === page
+        console.log(Number(button.dataset.perpage), page);
+        Number(button.dataset.perpage) === Number(page)
           ? button.classList.add("filter__button--active")
           : button.classList.remove("filter__button--active");
       });
       closeMenu();
     };
+
+    // todo установить вначале корректную активную кнопку
+    selectActivePageMenu(state.perPage);
 
     const getData = async () => {
       const filterData = await getMenuData();
@@ -83,9 +87,14 @@ ready(function () {
 
     let isFirstLoad = true;
 
-    document.addEventListener("itemsrendered", function () {
+    document.addEventListener("itemsrendered", async () => {
       if (!isFirstLoad) {
         return;
+      }
+
+      if (!state.totalitems) {
+        const { totalItems } = await getTotalAmountPockemons();
+        state.totalitems = totalItems;
       }
 
       generateFilterMenu(typesContainer);
