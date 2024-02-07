@@ -16,6 +16,11 @@ ready(function () {
       1: "",
     };
 
+    let fightersObj = {
+      0: undefined,
+      1: undefined,
+    };
+
     const searchInputs = fightsSection.querySelectorAll(".js-search-input");
     const searchResultsContainer = fightsSection.querySelector(".js-search-results-container");
     const pageLoader = fightsSection.querySelector(".js-pokemon-loader");
@@ -127,7 +132,6 @@ ready(function () {
       let areBothCardsSelected = true;
       allFighterContainers.forEach((item) => {
         if (item.classList.contains("hide")) {
-          console.log(item);
           areBothCardsSelected = false;
         }
       });
@@ -141,6 +145,7 @@ ready(function () {
 
     const handlePokemonChoose = async (id, currentBtn) => {
       const currentCard = currentBtn.closest(".js-fighter-container");
+      const currentFighterId = currentCard.dataset.fighter;
       const currentLoader = currentCard.querySelector(".js-fighter-loader");
       const currentPlaceholder = currentCard.querySelector(".js-fighter-empty");
       const fighterContainer = currentCard.querySelector(".js-fighter-card"); //
@@ -159,11 +164,21 @@ ready(function () {
       fighterContainer.innerHTML = "";
 
       const data = await getPockemonById(id);
+      const chosenFighter = data[0];
 
-      const pokemonItem = generateFighterPockemon(data[0]);
+      const pokemonItem = generateFighterPockemon(chosenFighter);
       fighterContainer.insertAdjacentHTML("afterbegin", pokemonItem);
 
-      fillSearchInput(currentSearchInput, data[0]);
+      fillSearchInput(currentSearchInput, chosenFighter);
+      const {
+        name: { english: name },
+        weakness,
+        type,
+      } = chosenFighter;
+
+      const fighterDataForObj = { name, weakness, type };
+
+      fightersObj[currentFighterId] = fighterDataForObj;
 
       setTimeout(() => {
         hideNode(currentLoader);
@@ -194,16 +209,18 @@ ready(function () {
 
     const handleFightClick = async () => {
       fightBtn.classList.add("active");
-      const allFighters = document.querySelectorAll(".js-fighter-card .fighter-card");
-      const firstFighter = allFighters[0];
-      const firstFighterWeakness = firstFighter.dataset.weakness.split(",");
-      const firstFighterType = firstFighter.dataset.types.split(",");
-      const firstFighterName = firstFighter.dataset.name;
 
-      const secondFighter = allFighters[1];
-      const secondFighterWeakness = secondFighter.dataset.weakness.split(",");
-      const secondFighterType = secondFighter.dataset.types.split(",");
-      const secondFighterName = secondFighter.dataset.name;
+      const {
+        weakness: firstFighterWeakness,
+        type: firstFighterType,
+        name: firstFighterName,
+      } = fightersObj[0];
+
+      const {
+        weakness: secondFighterWeakness,
+        type: secondFighterType,
+        name: secondFighterName,
+      } = fightersObj[1];
 
       const firstFighterPowerValue = firstFighterType.filter((element) =>
         secondFighterWeakness.includes(element),
