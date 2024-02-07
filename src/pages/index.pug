@@ -10,9 +10,10 @@ block content
   .container
     h1.visually-hidden Покемоны
     .pockemon-page.tabs
-      .tabs__labels
-        each label, index in data.tabs.labels
-            button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
+      .tabs__wrapper
+        .tabs__labels
+          each label, index in data.tabs.labels
+              button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
 
       .tabs__panes
         .tabs__pane.tabs__pane--active#tab0
@@ -56,7 +57,7 @@ block content
                 +loader
               .section-fights__fights-field.js-fights-field.hide
                 .section-fights__choose-fighter-wrapper
-                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container(data-fighter='0')
                     .choose-fighter-card__search
                       +search-field('Choose fighter', '0')
                     .choose-fighter-card__result
@@ -71,7 +72,7 @@ block content
 
                   span.section-fights__choose-fighter-separator VS
 
-                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container(data-fighter='1')
                     .choose-fighter-card__search
                       +search-field('Choose fighter', '1')
                     .choose-fighter-card__result

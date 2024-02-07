@@ -48,7 +48,6 @@ ready(function () {
 
     const selectActivePageMenu = (page) => {
       petPageBtns.forEach((button) => {
-        console.log(Number(button.dataset.perpage), page);
         Number(button.dataset.perpage) === Number(page)
           ? button.classList.add("filter__button--active")
           : button.classList.remove("filter__button--active");

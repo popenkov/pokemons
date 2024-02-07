@@ -3,15 +3,14 @@
 .pockemon-page {
   $block-name: &; // #{$block-name}__element
 
-  padding-top: 12px;
   padding-bottom: 32px;
 
   @media screen and (min-width: $screen-d) {
-    padding-top: 80px;
     padding-top: 76px;
+    padding-bottom: 72px;
   }
 
-  .tabs__labels {
+  .tabs__wrapper {
     position: fixed;
     right: 0;
     left: 0;
