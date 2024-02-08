@@ -44,6 +44,8 @@ let config = {
     "sanitize.css/reduce-motion.css",
     "src/scss/variables.scss",
     "src/scss/reboot.scss",
+    "src/blocks/p-card/p-card.scss",
+    "src/blocks/fighter-card/fighter-card.scss",
     // "src/scss/mixins.scss",
     // "src/scss/typography.scss",
     // "src/scss/vendor.scss",
