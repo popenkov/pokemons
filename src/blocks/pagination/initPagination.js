@@ -1,4 +1,4 @@
-const BTNS_IN_ROW_AMOUNT = 5;
+import { PAGINATION_BTNS_AMOUNT } from "../../js/utils/constants";
 
 const paginationBlock = document.querySelector(".pagination");
 const buttonsContainer = paginationBlock.querySelector(".js-pagination-buttons-wrapper");
@@ -37,16 +37,16 @@ const addButton = (number, currentPage) => {
 
 const createButtons = (currentPage, totalPages) => {
   buttonsContainer.innerHTML = "";
-  let startPage = currentPage - Math.floor(BTNS_IN_ROW_AMOUNT / 2);
-  let endPage = currentPage + Math.floor(BTNS_IN_ROW_AMOUNT / 2);
+  let startPage = currentPage - Math.floor(PAGINATION_BTNS_AMOUNT / 2);
+  let endPage = currentPage + Math.floor(PAGINATION_BTNS_AMOUNT / 2);
 
   if (startPage < 1) {
     startPage = 1;
-    endPage = BTNS_IN_ROW_AMOUNT;
+    endPage = PAGINATION_BTNS_AMOUNT;
   }
 
   if (endPage > totalPages) {
-    startPage = totalPages > BTNS_IN_ROW_AMOUNT ? totalPages - BTNS_IN_ROW_AMOUNT + 1 : 1;
+    startPage = totalPages > PAGINATION_BTNS_AMOUNT ? totalPages - PAGINATION_BTNS_AMOUNT + 1 : 1;
     endPage = totalPages;
   }
 

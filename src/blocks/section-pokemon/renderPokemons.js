@@ -1,8 +1,4 @@
 import { getPockemons } from "../../js/services.js";
-
-const pokemonsSection = document.querySelector(".section-pokemon");
-const pokemonsItems = document.querySelector(".js-pokemon-items");
-
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import { addScrollPadding } from "../../js/utils/addScrollPadding.js";
@@ -10,6 +6,8 @@ import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 import { hideNode, showNode } from "../../js/utils/showNode.js";
 import { initPagination } from "../pagination/initPagination.js";
 
+const pokemonsSection = document.querySelector(".section-pokemon");
+const pokemonsItems = document.querySelector(".js-pokemon-items");
 const pagination = pokemonsSection.querySelector(".js-pagination");
 const skeleton = pokemonsSection.querySelector(".js-skeletons-items");
 

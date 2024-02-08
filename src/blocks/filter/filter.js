@@ -3,7 +3,7 @@ import { state } from "../../js/state.js";
 import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 import ready from "../../js/utils/documentReady.js";
 import { hideNode, showNode } from "../../js/utils/showNode.js";
-import { createFilterItem, createFirstFilterItem } from "./createFilterItem.js";
+import { createFilterItem } from "./createFilterItem.js";
 
 ready(function () {
   const filterBtn = document.querySelector(".js-mobile-filter-button");
@@ -25,12 +25,6 @@ ready(function () {
       filterMenu.classList.remove("open");
       document.body.classList.remove("body-lock");
     };
-
-    filterMenu.addEventListener("click", (evt) => {
-      if (evt.target === filterMenu) {
-        closeMenu();
-      }
-    });
 
     window.addEventListener("resize", () => {
       closeMenu();
@@ -55,7 +49,7 @@ ready(function () {
       closeMenu();
     };
 
-    // todo установить вначале корректную активную кнопку
+    // установить вначале корректную активную кнопку
     selectActivePerPageButton(state.perPage);
 
     const getData = async () => {
@@ -68,11 +62,13 @@ ready(function () {
 
       container.innerHTML = "";
 
-      const totalAmount = state.totalitems;
+      const allTypeData = {
+        amount: state.totalitems,
+        name: { english: "All" },
+      };
+      filterData.unshift(allTypeData);
 
       if (filterData) {
-        createFirstFilterItem;
-        container.insertAdjacentHTML("beforeend", createFirstFilterItem(totalAmount));
         filterData.forEach((elem) => {
           container.insertAdjacentHTML("beforeend", createFilterItem(elem));
         });
@@ -101,7 +97,10 @@ ready(function () {
       isFirstLoad = false;
     });
 
-    document.addEventListener("click", (evt) => {
+    filterMenu.addEventListener("click", (evt) => {
+      if (evt.target === filterMenu) {
+        closeMenu();
+      }
       if (evt.target.closest(".js-type-button")) {
         const currentBtn = evt.target.closest(".js-type-button");
         const currentType = currentBtn.dataset.type;
