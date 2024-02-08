@@ -53,6 +53,7 @@
     border-radius: 8px;
 
     @media screen and (min-width: $screen-tl) {
+      height: 320px;
       padding: 40px;
     }
   }
@@ -64,7 +65,7 @@
     top: 8px;
     left: 8px;
 
-    @media screen and (min-width: $screen-tl) {
+    @media screen and (min-width: $screen-ti) {
       @include title-num-desktop;
 
       top: 11px;
@@ -104,7 +105,6 @@
       align-items: flex-end;
       justify-content: space-between;
       width: 100%;
-      margin-bottom: 8px;
       padding: 0 8px;
     }
   }

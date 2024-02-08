@@ -46,7 +46,7 @@ ready(function () {
       closeMenu();
     };
 
-    const selectActivePageMenu = (page) => {
+    const selectActivePerPageButton = (page) => {
       petPageBtns.forEach((button) => {
         Number(button.dataset.perpage) === Number(page)
           ? button.classList.add("filter__button--active")
@@ -56,7 +56,7 @@ ready(function () {
     };
 
     // todo установить вначале корректную активную кнопку
-    selectActivePageMenu(state.perPage);
+    selectActivePerPageButton(state.perPage);
 
     const getData = async () => {
       const filterData = await getMenuData();
@@ -112,7 +112,7 @@ ready(function () {
         const currentBtn = evt.target.closest(".js-per-page-button");
         const perPageValue = currentBtn.dataset.perpage;
         state.perPage = perPageValue;
-        selectActivePageMenu(perPageValue);
+        selectActivePerPageButton(perPageValue);
       }
     });
   }
