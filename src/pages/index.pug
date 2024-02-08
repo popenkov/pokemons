@@ -26,7 +26,6 @@ block content
                   span.filter__title Per page:
                   .filter__items
                     each menu, index in data.filters.perPage
-                      //- button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '', data-perpage=menu)= menu
                       button.filter__button.filter__button--page.js-per-page-button(data-perpage=menu)= menu
                 .filter__container.filter__container--type.js-type-filter-container
               .filter__inner.js-filter-skeleton
@@ -68,8 +67,6 @@ block content
 
                       .js-fighter-card.hide
 
-
-
                   span.section-fights__choose-fighter-separator VS
 
                   .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container(data-fighter='1')
@@ -82,9 +79,7 @@ block content
                         +skeleton-fighter
                       .js-fighter-card.hide
 
-
                 .section-fights__footer.js-fight-btn-container
                   +button('FIGHT!', 'js-fight-btn')
 
                 .section-fights__results.js-fights-result.hide
-                  span.section-fights__results-text.section-fights__results-text--winner Charmander is the winner!

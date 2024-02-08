@@ -2,6 +2,8 @@
 @import "../../scss/mixins/dashed-border";
 
 .section-pokemon {
+  $block-name: &; // #{$block-name}__element
+
   @media screen and (min-width: $screen-tl) {
     display: grid;
     grid-template: auto auto / 1fr 2fr;
@@ -69,17 +71,4 @@
       }
     }
   }
-
-  &__item {
-    // width: calc(100% / 2 - 4px);
-
-    // @media screen and (min-width: $screen-tl) {
-    //   width: calc(100% / 2 - 4px);
-    // }
-
-    // @media screen and (min-width: $screen-d) {
-    //   width: calc(100% / 3 - 6px);
-    // }
-  }
-  $block-name: &; // #{$block-name}__element
 }

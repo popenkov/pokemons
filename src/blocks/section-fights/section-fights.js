@@ -11,7 +11,7 @@ ready(function () {
   const fightsSection = document.querySelector(".section-fights");
 
   if (fightsSection) {
-    let currentInputValue = {
+    let searchInputsValues = {
       0: "",
       1: "",
     };
@@ -61,7 +61,7 @@ ready(function () {
 
       input.style.backgroundImage = `url('${imageURL}')`;
       input.value = `${idValue} — ${name}`;
-      currentInputValue[index] = `${idValue} — ${name}`;
+      searchInputsValues[index] = `${idValue} — ${name}`;
       input.style.backgroundSize = "20px 20px";
     };
 
@@ -76,7 +76,7 @@ ready(function () {
 
       if (currentInput.value === "") {
         currentInput.style.backgroundSize = "20px 20px";
-        currentInput.value = currentInputValue[index];
+        currentInput.value = searchInputsValues[index];
       }
     };
 
@@ -84,7 +84,7 @@ ready(function () {
       evt.preventDefault();
 
       const currentInput = evt.target;
-      currentInputValue[index] = currentInput.value;
+      searchInputsValues[index] = currentInput.value;
       clearSearchInput(currentInput);
 
       const trimmedValue = currentInput.value.trim();

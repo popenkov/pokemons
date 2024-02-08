@@ -5,6 +5,8 @@
 @import "../../scss/mixins/dashed-border";
 
 .section-fights {
+  $block-name: &; // #{$block-name}__element
+
   @media screen and (min-width: $screen-tl) {
     @include flex-column;
 
@@ -119,7 +121,6 @@
       color: var(--color-yellow);
     }
   }
-  $block-name: &; // #{$block-name}__element
 }
 
 .choose-fighter-card {
@@ -145,7 +146,6 @@
   }
 
   &__result-loader {
-    // @include flex-center;
     @include dashed-border;
 
     min-height: 248px;
