@@ -1,0 +1,25 @@
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+
+@mixin skeleton($br: 8px) {
+  --skeleton-bg: var(--monochrome-500);
+  --skeleton-shine: var(--monochrome-400);
+
+  width: 100%;
+  background-color: var(--skeleton-bg);
+  background-image:
+    linear-gradient(
+      140deg,
+      transparent 40%,
+      color-mix(in srgb, var(--skeleton-shine), transparent 50%) 50%,
+      transparent 60%
+    );
+  background-position-x: 120%;
+  background-position-x: 180%;
+  background-size: 200% 100%;
+  border-radius: $br;
+  animation: 1.5s loading ease-in-out infinite;
+}

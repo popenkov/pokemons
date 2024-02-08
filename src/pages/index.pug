@@ -10,9 +10,10 @@ block content
   .container
     h1.visually-hidden Покемоны
     .pockemon-page.tabs
-      .tabs__labels
-        each label, index in data.tabs.labels
-            button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
+      .tabs__wrapper
+        .tabs__labels
+          each label, index in data.tabs.labels
+              button.tabs__label(class= (index === 0) ? "tabs__label--active" : '', data-href='#tab' + index)= label
 
       .tabs__panes
         .tabs__pane.tabs__pane--active#tab0
@@ -20,19 +21,31 @@ block content
             h2.visually-hidden Выбор покемона
 
             .filter.js-filter-menu
-              .filter__inner.js-filter-menu-body
+              .filter__inner.js-filter-menu-items.hide
                 .filter__container.filter__container--page
                   span.filter__title Per page:
                   .filter__items
                     each menu, index in data.filters.perPage
-                      button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '', data-perpage=menu)= menu
+                      //- button.filter__button.filter__button--page.js-per-page-button(class= (index === 0) ? "filter__button--active" : '', data-perpage=menu)= menu
+                      button.filter__button.filter__button--page.js-per-page-button(data-perpage=menu)= menu
                 .filter__container.filter__container--type.js-type-filter-container
+              .filter__inner.js-filter-skeleton
+                +skeleton-menu('pages')
+                .filter__container.filter__container--type
+                  - var n = 0;
+                  while n < 20
+                    - n++
+                    +skeleton-menu
 
             .section-pokemon__wrapper
-              .section-pokemon__items--loading.js-pokemon-loader
-                +loader
               .section-pokemon__items.js-pokemon-items
+              .section-pokemon__items.js-skeletons-items
+                - var n = 0;
+                while n < 12
+                  - n++
+                  +skeleton-card
             +pagination
+
 
             button.filter-button.js-mobile-filter-button
               svg.filter-button__icon: use(href= src.icon + 'filter-icon')
@@ -42,24 +55,43 @@ block content
             .section-fights__wrapper
               .section-pokemon__items--loading.js-pokemon-loader
                 +loader
-              .section-fights__fights-field.js-fights-field
+              .section-fights__fights-field.js-fights-field.hide
                 .section-fights__choose-fighter-wrapper
-                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container(data-fighter='0')
                     .choose-fighter-card__search
-                      +search-field('Choose fighter', '', 'fighter-search')
-                    .choose-fighter-card__result.choose-fighter-card__result--empty.js-fighter-card-result
-                      span.choose-fighter-card__result-text Type name <br/> of champion above
+                      +search-field('Choose fighter', '0')
+                    .choose-fighter-card__result
+                      .choose-fighter-card__result-empty.js-fighter-empty
+                        span.choose-fighter-card__result-text Type name <br/> of champion above
+                      .choose-fighter-card__result-loader.js-fighter-loader.hide
+                        +skeleton-fighter
+
+                      .js-fighter-card.hide
+
+
 
                   span.section-fights__choose-fighter-separator VS
 
-                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-card
+                  .section-fights__choose-fighter-card.choose-fighter-card.js-fighter-container(data-fighter='1')
                     .choose-fighter-card__search
-                      +search-field('Choose fighter', '', 'fighter-search')
-                    .choose-fighter-card__result.js-fighter-card-result
-                      +p-card(data.pokemons[3], true, 'fighter')
+                      +search-field('Choose fighter', '1')
+                    .choose-fighter-card__result
+                      .choose-fighter-card__result-empty.js-fighter-empty
+                        span.choose-fighter-card__result-text Type name <br/> of champion above
+                      .choose-fighter-card__result-loader.js-fighter-loader.hide
+                        +skeleton-fighter
+                      .js-fighter-card.hide
 
-                .section-fights__footer
-                  +button('FIGHT!')
 
-                .section-fights__results
+                .section-fights__footer.js-fight-btn-container
+                  +button('FIGHT!', 'js-fight-btn')
+
+                .section-fights__results.js-fights-result.hide
                   span.section-fights__results-text.section-fights__results-text--winner Charmander is the winner!
+
+
+
+                  //- todo   как сделать, чтобы стили были всегда
+                  .visually-hidden
+                    +p-card(data.pokemons[0])
+                    +fighter-card(data.pokemons[0])

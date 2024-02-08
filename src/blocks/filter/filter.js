@@ -1,7 +1,9 @@
-import { getMenuData } from "../../js/services.js";
+import { getMenuData, getTotalAmountPockemons } from "../../js/services.js";
 import { state } from "../../js/state.js";
+import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
 import ready from "../../js/utils/documentReady.js";
-import { createFilterItem, createFirstFilterItem } from "./utils.js";
+import { hideNode, showNode } from "../../js/utils/showNode.js";
+import { createFilterItem, createFirstFilterItem } from "./createFilterItem.js";
 
 ready(function () {
   const filterBtn = document.querySelector(".js-mobile-filter-button");
@@ -10,6 +12,8 @@ ready(function () {
     const filterMenu = document.querySelector(".js-filter-menu");
     const typesContainer = filterMenu.querySelector(".js-type-filter-container");
     const petPageBtns = filterMenu.querySelectorAll(".js-per-page-button");
+    const filterItemsContainer = filterMenu.querySelector(".js-filter-menu-items");
+    const filterSkeletonContainer = filterMenu.querySelector(".js-filter-skeleton");
 
     filterBtn.addEventListener("click", (evt) => {
       evt.preventDefault();
@@ -42,14 +46,17 @@ ready(function () {
       closeMenu();
     };
 
-    const selectActivePageMenu = (page) => {
+    const selectActivePerPageButton = (page) => {
       petPageBtns.forEach((button) => {
-        button.dataset.perpage === page
+        Number(button.dataset.perpage) === Number(page)
           ? button.classList.add("filter__button--active")
           : button.classList.remove("filter__button--active");
       });
       closeMenu();
     };
+
+    // todo установить вначале корректную активную кнопку
+    selectActivePerPageButton(state.perPage);
 
     const getData = async () => {
       const filterData = await getMenuData();
@@ -61,9 +68,7 @@ ready(function () {
 
       container.innerHTML = "";
 
-      const totalAmount = filterData.reduce((acc, item) => {
-        return acc + item.amount;
-      }, 0);
+      const totalAmount = state.totalitems;
 
       if (filterData) {
         createFirstFilterItem;
@@ -71,10 +76,30 @@ ready(function () {
         filterData.forEach((elem) => {
           container.insertAdjacentHTML("beforeend", createFilterItem(elem));
         });
+
+        setTimeout(() => {
+          hideNode(filterSkeletonContainer);
+          showNode(filterItemsContainer);
+        }, TIMEOUT_VALUE);
       }
     };
 
-    generateFilterMenu(typesContainer);
+    let isFirstLoad = true;
+
+    document.addEventListener("itemsrendered", async () => {
+      if (!isFirstLoad) {
+        return;
+      }
+
+      if (!state.totalitems) {
+        const { totalItems } = await getTotalAmountPockemons();
+        state.totalitems = totalItems;
+      }
+
+      generateFilterMenu(typesContainer);
+
+      isFirstLoad = false;
+    });
 
     document.addEventListener("click", (evt) => {
       if (evt.target.closest(".js-type-button")) {
@@ -87,7 +112,7 @@ ready(function () {
         const currentBtn = evt.target.closest(".js-per-page-button");
         const perPageValue = currentBtn.dataset.perpage;
         state.perPage = perPageValue;
-        selectActivePageMenu(perPageValue);
+        selectActivePerPageButton(perPageValue);
       }
     });
   }

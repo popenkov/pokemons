@@ -1,28 +1,8 @@
-//- Все примеси в этом файле должны начинаться c имени блока (p-card)
-//- Упоминание имени блока в классах обязательно, без этого он не попадёт
-//- в сборку
-
-mixin p-card(data, isFight, mods)
-
-  //- Принимает:
-  //-   text    {string} - текст
-  //-   mods    {string} - список модификаторов
-  //- Вызов:
-        +p-card('Текст', 'some-mod')
-
-  -
-    // список модификаторов
-    var allMods = '';
-    if(typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' p-card--' + modsList[i].trim();
-      }
-    }
-
-  .p-card(class=allMods)&attributes(attributes)
+mixin p-card(data)
+  block
+  .p-card
       .p-card__miniature
-          span.p-card__miniature-id= data.id
+          span.p-card__id= data.id
           img.p-card__miniature-img(src= src.img + data.photo, alt=data.name)
 
       .p-card__row
@@ -31,26 +11,8 @@ mixin p-card(data, isFight, mods)
           each type in data.types
             svg.p-card__type: use(href= src.icon + 'type-' + type)
       .p-card__features
-        if isFight
-          each feat in data.fightFeatures
-            .p-card__feature
-              span.p-card__feature-icon
-                svg.p-card__feature-icon-svg: use(href= src.icon + 'category-' + feat.name)
-              span.p-card__feature-value= feat.value
-          .p-card__feature.p-card__feature--full-width
+        each feat in data.features
+          .p-card__feature
             span.p-card__feature-icon
-              svg.p-card__feature-icon-svg: use(href= src.icon + 'category-weakness')
-            span.p-card__feature-value
-              each weakness in data.weakness
-                svg.p-card__feature-value-icon: use(href= src.icon + 'type-' + weakness)
-          .p-card__feature.p-card__feature--full-width
-            span.p-card__feature-icon
-              svg.p-card__feature-icon-svg: use(href= src.icon + 'category-strength')
-            span.p-card__feature-value= data.strength
-
-        else
-          each feat in data.features
-            .p-card__feature
-              span.p-card__feature-icon
-                svg.p-card__feature-icon-svg: use(href= src.icon + 'category-' + feat.name)
-              span.p-card__feature-value= feat.value
+              svg.p-card__feature-icon-svg: use(href= src.icon + 'category-' + feat.name)
+            span.p-card__feature-value= feat.value

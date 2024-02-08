@@ -9,7 +9,7 @@ const pb = new PocketBase(BASE_URL);
 
 export const getMenuData = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/api/collections/types/records`);
+    const response = await fetch(`${BASE_URL}/api/collections/types/records?sort=+name.english`);
 
     if (response.status === 200) {
       const data = await response.json();
@@ -20,13 +20,25 @@ export const getMenuData = async () => {
   }
 };
 
+export const getTotalAmountPockemons = async () => {
+  const data = await pb.collection("pockemon").getList(1, 1, {
+    sort: "+id",
+  });
+  if (!state.totalitems) {
+    state.totalitems = data.totalItems;
+  }
+  return data;
+};
+
 export const getPockemons = async () => {
   const { currentPage, type, perPage } = state;
   const data = await pb.collection("pockemon").getList(currentPage, perPage, {
     sort: "+id",
-    filter: type !== "All" ? `type ~ "${type}"` : "",
+    filter: type === "All" || type === "all" ? "" : `type ~ "${type}"`,
   });
-
+  if (type === "All" && !state.totalitems) {
+    state.totalitems = data.totalItems;
+  }
   return data;
 };
 

@@ -6,12 +6,8 @@
 .tabs {
   $block-name: &; // #{$block-name}__element
 
-  &__labels {
-    display: flex;
-    gap: 8px;
-    margin: 0 16px;
-    padding: 8px 8px 12px;
-    background-color: var(--monochrome-800);
+  &__wrapper {
+    padding: 12px 0;
     border-radius: 16px;
 
     @media screen and (min-width: $screen-t) {
@@ -20,7 +16,20 @@
 
     @media screen and (min-width: $screen-ti) {
       margin: 0;
-      padding: 12px 8px 40px;
+      padding: 12px 0 32px;
+    }
+  }
+
+  &__labels {
+    display: flex;
+    gap: 8px;
+    margin: 0 16px;
+    padding: 8px;
+    background-color: var(--monochrome-800);
+    border-radius: 16px;
+
+    @media screen and (min-width: $screen-ti) {
+      margin: 0;
       border-radius: 24px;
     }
   }

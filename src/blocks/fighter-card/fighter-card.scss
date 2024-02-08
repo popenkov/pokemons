@@ -3,7 +3,7 @@
 @import "../../scss/mixins/blocks";
 @import "../../scss/breakpoints";
 
-.p-card {
+.fighter-card {
   $block-name: &; // #{$block-name}__element
 
   --card-box-shadow: 0 4px 16px 0 rgb(0 0 0 / 10%); // stylelint-disable-line
@@ -17,14 +17,19 @@
   padding: 7px 8px 8px;
   background-color: var(--monochrome-600);
   border-top: var(--card-border);
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: var(--card-box-shadow);
   transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
 
-  @media screen and (min-width: $screen-ti) {
-    gap: 16px;
-    padding-bottom: 16px;
-    border-radius: 16px;
+  @media screen and (min-width: $screen-tl) {
+    display: grid;
+    grid-template: 152px auto / 152px 1fr;
+    grid-template-areas:
+      "image description"
+      "name description";
+    gap: 8px 16px;
+    align-items: start;
+    padding-bottom: 8px;
   }
 
   @media (hover: hover) {
@@ -48,29 +53,23 @@
 
     position: relative;
     width: 100%;
+    height: 152px;
     padding: 16px 8px;
     background-color: var(--monochrome-700);
     border-radius: 8px;
 
     @media screen and (min-width: $screen-tl) {
-      height: 320px;
-      padding: 40px;
+      grid-area: image;
+      padding: 16px;
     }
   }
 
   &__id {
-    @include title-num;
+    @include title-num-desktop;
 
     position: absolute;
-    top: 8px;
-    left: 8px;
-
-    @media screen and (min-width: $screen-ti) {
-      @include title-num-desktop;
-
-      top: 11px;
-      left: 12px;
-    }
+    top: 12px;
+    left: 12px;
   }
 
   &__miniature-img {
@@ -86,6 +85,7 @@
     width: 100%;
 
     @media screen and (min-width: $screen-tl) {
+      display: grid;
       gap: 24px;
       padding: 0 8px;
     }
@@ -99,10 +99,7 @@
     gap: 10px;
 
     @media screen and (min-width: $screen-tl) {
-      flex-direction: row;
-      gap: 16px;
-      align-items: space;
-      align-items: flex-end;
+      gap: 12px;
       justify-content: space-between;
       width: 100%;
       padding: 0 8px;
@@ -116,8 +113,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    @media screen and (min-width: $screen-d) {
-      @include title-desktop;
+    @media screen and (min-width: $screen-tl) {
+      @include tile-title-mobile;
+
+      grid-area: name;
     }
   }
 
@@ -126,34 +125,31 @@
     gap: 8px;
     justify-content: center;
     width: 100%;
-    max-width: 28%;
+    max-width: 24%;
 
     @media screen and (min-width: $screen-tl) {
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
       justify-content: flex-end;
-      padding: 5px 0;
+      width: auto;
+      max-width: unset;
+      padding: 0;
     }
   }
 
   &__type {
     @include box(16px);
-
-    @media screen and (min-width: $screen-tl) {
-      @include box(24px);
-    }
   }
 
   &__features {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 8px;
     width: 100%;
 
     @media screen and (min-width: $screen-tl) {
-      gap: 8px;
-      padding: 0 8px;
+      grid-area: description;
     }
   }
 
@@ -161,18 +157,18 @@
     margin-top: 12px;
 
     @media screen and (min-width: $screen-tl) {
-      margin-top: 8px;
+      margin-top: 0;
     }
   }
 
   &__feature {
-    width: calc(100% / 2 - 2px);
+    display: flex;
+    width: calc(100% / 2 - 4px);
     border: var(--card-border);
     border-radius: 8px;
 
-    @media screen and (min-width: $screen-tl) {
-      display: flex;
-      width: calc(100% / 2 - 4px);
+    &--full-width {
+      width: 100%;
     }
   }
 
@@ -180,30 +176,28 @@
     @include flex-center;
 
     padding: 7px 12px;
-    border-bottom: var(--card-border);
-
-    @media screen and (min-width: $screen-tl) {
-      border-right: var(--card-border);
-      border-bottom: none;
-    }
+    border-right: var(--card-border);
+    border-bottom: none;
   }
 
   &__feature-icon-svg {
-    @include box(16px);
-
-    @media screen and (min-width: $screen-tl) {
-      @include box(24px);
-    }
+    @include box(24px);
   }
 
   &__feature-value {
     @include flex-center;
-    @include title-data;
+    @include title-data-desktop;
 
+    display: flex;
+    flex-grow: 1;
+    gap: 8px;
+    align-items: center;
     padding: 8px 7px 7px;
     white-space: nowrap;
 
     @media screen and (min-width: $screen-tl) {
+      @include box(24px);
+
       width: 100%;
     }
   }

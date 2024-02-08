@@ -21,8 +21,9 @@
     }
   }
 
-  &:active {
+  &.active {
     background-color: var(--color-violet-200);
+    pointer-events: none;
   }
 
   &:disabled {

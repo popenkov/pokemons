@@ -6,21 +6,23 @@ const pokemonsItems = document.querySelector(".js-pokemon-items");
 import { BASE_URL } from "../../js/services.js";
 import { state } from "../../js/state.js";
 import { addScrollPadding } from "../../js/utils/addScrollPadding.js";
+import { TIMEOUT_VALUE } from "../../js/utils/constants.js";
+import { hideNode, showNode } from "../../js/utils/showNode.js";
 import { initPagination } from "../pagination/initPagination.js";
 
-const loader = pokemonsSection.querySelector(".js-pokemon-loader");
 const pagination = pokemonsSection.querySelector(".js-pagination");
+const skeleton = pokemonsSection.querySelector(".js-skeletons-items");
 
-const showLoader = () => {
-  loader.classList.remove("hidden");
-  pagination.classList.add("hidden");
-  pokemonsItems.classList.add("hidden");
+const showSkeleton = () => {
+  showNode(skeleton);
+  hideNode(pagination);
+  hideNode(pokemonsItems);
 };
 
-const hideLoader = () => {
-  loader.classList.add("hidden");
-  pagination.classList.remove("hidden");
-  pokemonsItems.classList.remove("hidden");
+const hideSkeleton = () => {
+  hideNode(skeleton);
+  showNode(pagination);
+  showNode(pokemonsItems);
 };
 
 const generateTypesHTML = (type) => {
@@ -53,7 +55,7 @@ const renderPockemonCard = (data) => {
 
   const html = `<div class="section-pokemon__item">
                       <div class="p-card">
-                        <div class="p-card__miniature"><span class="p-card__miniature-id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}
+                        <div class="p-card__miniature"><span class="p-card__id">${idValue}</span><img class="p-card__miniature-img" src="${imageURL}
                         " alt="${name}"></div>
                         <div class="p-card__row">
                           <h3 class="p-card__title">${name}</h3>
@@ -74,7 +76,7 @@ const renderPockemonCard = (data) => {
 };
 
 export const renderPockemonCards = async () => {
-  showLoader();
+  showSkeleton();
   const data = await getPockemons();
 
   if (!data) {
@@ -91,7 +93,8 @@ export const renderPockemonCards = async () => {
   });
   initPagination(state.currentPage, state.totalcount);
   addScrollPadding();
+
   setTimeout(() => {
-    hideLoader();
-  }, 1000);
+    hideSkeleton();
+  }, TIMEOUT_VALUE);
 };
